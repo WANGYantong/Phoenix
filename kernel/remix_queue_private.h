@@ -1,0 +1,6 @@
+#ifndef __REMIX_QUEUE_PRIVATE_H__
+#define __REMIX_QUEUE_PRIVATE_H__
+
+#define QUEUESCHEDULEMASK             SEMSCHEDULEMASK
+
+#endif

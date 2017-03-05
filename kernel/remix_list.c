@@ -47,7 +47,7 @@ void REMIX_DlistCurNodeInsert(REMIX_DLIST * pstrList, REMIX_DLIST * pstrNode, RE
 		pstrNode->pstrHead->pstrTail = pstrNewNode;
 		pstrNewNode->pstrHead = pstrNode->pstrHead;
 		pstrNewNode->pstrTail = pstrNode;
-		/pstrNode->pstrHead = pstrNewNode;
+		pstrNode->pstrHead = pstrNewNode;
 	} else {
 		REMIX_DlistNodeAdd(pstrList, pstrNewNode);
 	}

@@ -48,7 +48,7 @@ S32 main(void)
 
 void REMIXOS_Init(void)
 {
-	Remix_SetUser(USERROOT);
+	REMIX_SetUser(USERROOT);
 
 	guiSystemStatus = SYSTEMNOTSCHEDULE;
 
@@ -71,7 +71,7 @@ void REMIXOS_Init(void)
 
 #ifdef REMIX_DEBUGCONTEXT
 	REMIX_TaskContextInit();
-	gpstrContext->vfSendChar = (*NULL) (U8);
+	gpstrContext->vfSendChar = (VFUNCTION1) NULL;
 #endif
 
 #ifdef REMIX_CPUSTATISTIC
@@ -134,13 +134,13 @@ void REMIX_TaskSched(void)
 
 	if (TICKSCHEDSET == gucTickSched) {
 		gucTickSched = TICKSCHEDCLR;
-		REMIX_TaskDelayTabSched();
+		REMIX_TaskDelayTableSched();
 	}
 
-	pstrTcb = REMIX_TaskReadyTabSched();
+	pstrTcb = REMIX_TaskReadyTableSched();
 
 #ifdef REMIX_CPUSTATISTIC
-	REMIX_CpuShareStatistic(gpstrCurTcb, pstrTcb);
+	REMIX_CPUShareStatistic(gpstrCurTcb, pstrTcb);
 #endif
 
 #ifdef REMIX_INCLUDETASKHOOK
@@ -193,7 +193,7 @@ void REMIX_TaskAddToReadyTable(REMIX_DLIST * pstrList, REMIX_DLIST * pstrNode, R
 REMIX_DLIST *REMIX_TaskDeleteFromReadyTable(REMIX_DLIST * pstrList, REMIX_PRIOFLAG * pstrPrioFlag,
 					    PRIORITYBITS ucTaskPrio)
 {
-	REMIX_TaskDeleteFromSchedTable(pstrList, pstrPrioFlag, ucTaskPrio);
+	return REMIX_TaskDeleteFromSchedTable(pstrList, pstrPrioFlag, ucTaskPrio);
 }
 
 REMIX_TCB *REMIX_TaskReadyTableSched(void)
@@ -257,11 +257,11 @@ void REMIX_TaskAddToDelayTable(REMIX_DLIST * pstrNode)
 
 	if (NULL != pstrTempNode) {
 		pstrTcbQue = (REMIX_TCBQUE *) pstrNode;
-		uiStillTick = pstrTcbQue->pstrTcb.uiStillTick;
+		uiStillTick = pstrTcbQue->pstrTcb->uiStillTick;
 
 		while (1) {
 			pstrTcbQue = (REMIX_TCBQUE *) pstrTempNode;
-			uiTempStillTick = pstrTcbQue->pstrTcb.uiStillTick;
+			uiTempStillTick = pstrTcbQue->pstrTcb->uiStillTick;
 
 			if (((guiTick < uiStillTick) && (uiStillTick < uiTempStillTick))
 			    || ((uiStillTick < uiTempStillTick) && (uiTempStillTick < guiTick))
@@ -313,16 +313,16 @@ void REMIX_TaskDelayTableSched(void)
 			uiTick = pstrTcb->uiStillTick;
 
 			if (uiTick == guiTick) {
-				pstrNextNode = REMIX_TaskDeleteFromDelayTable(&gstrDelayTab, pstrDelayNode);
+				pstrNextNode = REMIX_TaskDeleteFromDelayTable(pstrDelayNode);
 				pstrTcb->uiTaskFlag &= (~((U32) DELAYQUEFLAG));
 
 				if (TASKDELAY == (TASKDELAY & pstrTcb->strTaskOpt.ucTaskSta)) {
 					pstrTcb->strTaskOpt.ucTaskSta &= ~((U8) TASKDELAY);
-					pstrTcb->strTaskOpt.uiDelayTick = RTN_TKDLTO;
+					pstrTcb->strTaskOpt.uiDelayTick = RTN_TASKDELAYTIMEOUT;
 				} else if (TASKPEND == (TASKPEND & pstrTcb->strTaskOpt.ucTaskSta)) {
-					(void) REMIX_TaskDelFromSemTab(pstrTcb);
+					(void) REMIX_TaskDeleteFromSemTable(pstrTcb);
 					pstrTcb->strTaskOpt.ucTaskSta &= ~((U8) TASKPEND);
-					pstrTcb->strTaskOpt.uiDelayTick = RTN_SMTKTO;
+					pstrTcb->strTaskOpt.uiDelayTick = RTN_SEMTASKTIMEOUT;
 				}
 
 				pstrNode = &pstrTcb->strTcbQue.strQueHead;
@@ -361,7 +361,7 @@ void REMIX_TaskAddToSemTable(REMIX_TCB * pstrTcb, REMIX_SEM * pstrSem)
 	REMIX_PRIOFLAG *pstrPrioFlag;
 	PRIORITYBITS ucTaskPrio;
 
-	if (SEMPRIO == (SEMSCHEDOPTMASK & pstrSem->uiSemOpt)) {
+	if (SEMPRIO == (SEMSCHEDULEMASK & pstrSem->uiSemOpt)) {
 		ucTaskPrio = pstrTcb->ucTaskPrio;
 		pstrNode = &pstrTcb->strSemQue.strQueHead;
 
@@ -373,7 +373,7 @@ void REMIX_TaskAddToSemTable(REMIX_TCB * pstrTcb, REMIX_SEM * pstrSem)
 		pstrList = &pstrSem->strSemTab.astrList[LOWESTPRIORITY];
 		pstrNode = &pstrTcb->strSemQue.strQueHead;
 
-		MDS_DlistNodeAdd(pstrList, pstrNode);
+		REMIX_DlistNodeAdd(pstrList, pstrNode);
 	}
 
 	pstrTcb->pstrSem = pstrSem;
@@ -388,7 +388,7 @@ REMIX_DLIST *REMIX_TaskDeleteFromSemTable(REMIX_TCB * pstrTcb)
 
 	pstrSem = pstrTcb->pstrSem;
 
-	if (SEMPRIO == (SEMSCHEDOPTMASK & pstrSem->uiSemOpt)) {
+	if (SEMPRIO == (SEMSCHEDULEMASK & pstrSem->uiSemOpt)) {
 		ucTaskPrio = pstrTcb->ucTaskPrio;
 		pstrList = &pstrSem->strSemTab.astrList[ucTaskPrio];
 		pstrPrioFlag = &pstrSem->strSemTab.strFlag;
@@ -407,7 +407,7 @@ REMIX_TCB *REMIX_TaskSemTableSche(REMIX_SEM * pstrSem)
 	REMIX_TCBQUE *pstrTaskQue;
 	PRIORITYBITS ucTaskPrio;
 
-	if (SEMPRIO == (SEMSCHEDOPTMASK & pstrSem->uiSemOpt)) {
+	if (SEMPRIO == (SEMSCHEDULEMASK & pstrSem->uiSemOpt)) {
 		ucTaskPrio = REMIX_TaskGetHighestPrio(&pstrSem->strSemTab.strFlag);
 	} else {
 		ucTaskPrio = LOWESTPRIORITY;
@@ -654,8 +654,8 @@ PRIORITYBITS REMIX_TaskGetHighestPrio(REMIX_PRIOFLAG * pstrPrioFlag)
 	ucPrioFlagGrp2 = caucTaskPrioUnmapTab[pstrPrioFlag->aucPrioFlagGrp3[ucPrioFlagGrp3]];
 	ucPrioFlagGrp1 = caucTaskPrioUnmapTab[pstrPrioFlag->aucPrioFlagGrp2[ucPrioFlagGrp3 * 8 + ucPrioFlagGrp2]];
 	ucHighestFlagInGrp1 =
-	    caucTaskPrioUnmapTab[pstrPrioFlag->
-				 aucPrioFlagGrp1[(ucPrioFlagGrp3 * 8 + ucPrioFlagGrp2) * 8 + ucPrioFlagGrp1]];
+	    caucTaskPrioUnmapTab[pstrPrioFlag->aucPrioFlagGrp1
+				 [(ucPrioFlagGrp3 * 8 + ucPrioFlagGrp2) * 8 + ucPrioFlagGrp1]];
 	return (PRIORITYBITS) (((ucPrioFlagGrp3 * 8 + ucPrioFlagGrp2) * 8 + ucPrioFlagGrp1) * 8 + ucHighestFlagInGrp1);
 #elif PRIORITYNUM >= PRIORITY128
 	ucPrioFlagGrp2 = caucTaskPrioUnmapTab[pstrPrioFlag->ucPrioFlagGrp3];
@@ -670,6 +670,15 @@ PRIORITYBITS REMIX_TaskGetHighestPrio(REMIX_PRIOFLAG * pstrPrioFlag)
 	return caucTaskPrioUnmapTab[pstrPrioFlag->ucPrioFlagGrp1];
 #endif
 }
+
+//*************************************************************************//
+
+void REMIX_IdleTask(void *pvPara)
+{
+	while (1);
+}
+
+
 
 U32 REMIX_GetSystemTick(void)
 {

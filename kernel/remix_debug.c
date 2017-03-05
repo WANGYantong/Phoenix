@@ -432,14 +432,14 @@ U32 REMIX_TaskStackCheck(REMIX_TCB * pstrTcb)
 //*************************************************************************//
 #ifdef REMIX_CPUSTATISTIC
 
-void REMIX_TaskCpuShareInit(REMIX_TCB * pstrTcb)
+void REMIX_TaskCPUShareInit(REMIX_TCB * pstrTcb)
 {
 	pstrTcb->strCpuShare.uiSysTickVal = 0;
 	pstrTcb->strCpuShare.uiCounter = 0;
 	pstrTcb->strCpuShare.uiCpuShare = 0;
 }
 
-void REMIX_CpuShareStatistic(REMIX_TCB * pstrOldTcb, REMIX_TCB * pstrNewTcb)
+void REMIX_CPUShareStatistic(REMIX_TCB * pstrOldTcb, REMIX_TCB * pstrNewTcb)
 {
 	static U32 suiTick = 0;
 	REMIX_DLIST *pstrTaskList;
@@ -477,7 +477,7 @@ void REMIX_CpuShareStatistic(REMIX_TCB * pstrOldTcb, REMIX_TCB * pstrNewTcb)
 	}
 }
 
-U32 REMIX_GetCpuShare(REMIX_TCB * pstrTcb)
+U32 REMIX_GetCPUShare(REMIX_TCB * pstrTcb)
 {
 	return pstrTcb->strCpuShare.uiCpuShare;
 }

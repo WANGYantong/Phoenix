@@ -48,6 +48,7 @@ extern REMIX_DLIST* REMIX_TaskDeleteFromSchedTable(REMIX_DLIST * pstrList, REMIX
 extern void REMIX_TaskSetPrioFlag(REMIX_PRIOFLAG * pstrPrioFlag, PRIORITYBITS ucTaskPrio);
 extern void REMIX_TaskClrPrioFlag(REMIX_PRIOFLAG * pstrPrioFlag, PRIORITYBITS ucTaskPrio);
 extern PRIORITYBITS REMIX_TaskGetHighestPrio(REMIX_PRIOFLAG * pstrPrioFlag);
+extern void REMIX_IdleTask(void * pvPara);
 extern void REMIX_SetUser(U32 uiUser);
 extern U32 REMIX_GetUser(void);
 extern void REMIX_SwitchToTask(void);

@@ -15,13 +15,13 @@
 
 extern U32 guiIntLockCounter;
 
-extern void REMIX_TaskStackInit(REMIX_TCB * pstrTcb, FUNCTION vfFuncPointer, void * pvPara);
+extern void REMIX_TaskStackInit(REMIX_TCB * pstrTcb, VFUNCTION vfFuncPointer, void * pvPara);
 extern void REMIX_SystemHardwareInit(void);
 extern void REMIX_TickTimerInit(void);
 extern void REMIX_PendSvIsrInit(void);
 extern void REMIX_SetChipWorkMode(U32 uiMode);
 extern void REMIX_TaskSwiSched(void);
-extern void REMIX_TaskOccrSwi(U32 uiSwiNo);
+extern void REMIX_TaskOccurSwi(U32 uiSwiNo);
 
 
 #endif

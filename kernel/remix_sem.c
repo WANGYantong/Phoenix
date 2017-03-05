@@ -37,7 +37,7 @@ REMIX_SEM *REMIX_SemCreate(REMIX_SEM * pstrSem, U32 uiSemOpt, U32 uiInitVal)
 
 		(void) REMIX_IntUnlock();
 
-		pstrSem = pucSemMemAddr;
+		pstrSem = (REMIX_SEM *) pucSemMemAddr;
 	} else {
 		pucSemMemAddr = (U8 *) NULL;
 	}
@@ -162,7 +162,7 @@ U32 REMIX_SemTake(REMIX_SEM * pstrSem, U32 uiDelayTick)
 				(void) REMIX_IntUnlock();
 				return RTN_SUCD;
 			} else {
-				if (gpstrCurTcb == pstrSem->pucSemMem) {
+				if (gpstrCurTcb == pstrSem->pstrSemTask) {
 					if (SEMEMPTY != pstrSem->uiCounter) {
 						pstrSem->uiCounter--;
 						(void) REMIX_IntUnlock();

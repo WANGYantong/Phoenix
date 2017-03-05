@@ -25,6 +25,7 @@ typedef int                         S32;
 
 
 typedef void                    (*VFUNCTION)(void*);
+typedef void                    (*VFUNCTION1)(U8);
 
 #ifndef NULL
     #define NULL                ((void*)0)
@@ -198,7 +199,7 @@ typedef struct remix_tcb
     REMIX_TASKOPT strTaskOpt;           //里面的ucTaskSta记录5中状态:ready?delay?pend...
     U32 uiStillTick;
 #ifdef REMIX_CPUSTATISTIC
-    M_CPUSHARE strCpuShare;
+    REMIX_CPUSHARE strCpuShare;
 #endif
 }REMIX_TCB;
 

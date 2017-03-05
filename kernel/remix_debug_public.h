@@ -11,7 +11,7 @@ extern U32 REMIX_TaskStackCheck(REMIX_TCB * pstrTcb);
 #endif
 
 #ifdef REMIX_CPUSTATISTIC
-extern U32 REMIX_GetCpuShare(REMIX_TCB * pstrTcb);
+extern U32 REMIX_GetCPUShare(REMIX_TCB * pstrTcb);
 #endif
 
 

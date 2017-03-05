@@ -24,7 +24,7 @@ extern VFHDLT gvfTaskDeleteHook;
 extern REMIX_TCB* REMIX_TaskTcbInit(U8 * pucTaskName, VFUNCTION vfFucPionter, void * pvPara, U8 * pucTaskStack, U32 uiStackSize, PRIORITYBITS ucTaskPrio, REMIX_TASKOPT * pstrTaskOpt);
 extern U32 REMIX_TaskPend(REMIX_SEM * pstrSem, U32 uiDelayTick);
 
-#ifdef REMIX_TSKPRIOINHER
+#ifdef REMIX_TASKPRIOINHER
 extern void REMIX_TaskPrioInheritance(REMIX_TCB * pstrTcb, PRIORITYBITS ucTaskPrio);
 extern void REMIX_TaskPrioResume(REMIX_TCB * pstrTcb);
 #endif

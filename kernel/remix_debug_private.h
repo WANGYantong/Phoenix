@@ -5,7 +5,7 @@
     #define STACKCHECKVALUE             0xCCCCCCCC
 #endif
 
-#ifdef REMIX_DEBUGCOMTEXT
+#ifdef REMIX_DEBUGCONTEXT
 
 #define VALIDTASKNAMEMAXLEN         20
 
@@ -19,7 +19,7 @@ typedef struct remix_conthead
     U32 uiRelAddr;
     U32 uiLen;
     U32 uiRemLen;
-    void (*vfSendChar)(U8);
+    VFUNCTION1 vfSendChar;
 }REMIX_CONTHEAD;
 
 typedef struct remix_contmsg
@@ -75,8 +75,8 @@ void REMIX_TaskStackCheckInit(REMIX_TCB * pstrTcb);
 #endif
 
 #ifdef REMIX_CPUSTATISTIC
-extern void REMIX_TaskCpuShareInit(REMIX_TCB * pstrTcb);
-extern void REMIX_CpuShareStatistic(REMIX_TCB * pstrOldTcb, REMIX_TCB * pstrNewTcb);
+extern void REMIX_TaskCPUShareInit(REMIX_TCB * pstrTcb);
+extern void REMIX_CPUShareStatistic(REMIX_TCB * pstrOldTcb, REMIX_TCB * pstrNewTcb);
 #endif
 
 

@@ -3,7 +3,7 @@
 
 #include "stm32f10x.h"
 
-#define REMIX_INLUCDETASKHOOK
+#define REMIX_INCLUDETASKHOOK
 #define REMIX_TASKPRIOINHER
 #define REMIX_TASKROUNDROBIN
 #define REMIX_DEBUGCONTEXT
@@ -22,7 +22,7 @@
 #define ROOTIDLENAME                "Idle"
 
 #define ROOTTASKSTACK               600
-#define IDLERASKSTACK               600
+#define IDLETASKSTACK               600
 
 #define STACKALIGNMASK              ALIGN4MASK
 #define TCBALIGNMASK                ALIGN8MASK

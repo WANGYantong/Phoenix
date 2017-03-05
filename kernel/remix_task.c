@@ -66,8 +66,8 @@ REMIX_TCB *REMIX_TaskCreate(U8 * pucTaskName, VFUNCTION vfFucPointer, void *pvPa
 
 }
 
-REMIX_TCB *REMIX_TaskTcbInit(U8 * pucTaskName, VFUNCTION vfFucPionter, void *pvPara, U8 * pucTaskStack, U32 uiStackSize,
-			     PRIORITYBITS ucTaskPrio, REMIX_TASKOPT * pstrTaskOpt)
+REMIX_TCB *REMIX_TaskTcbInit(U8 * pucTaskName, VFUNCTION vfFuncPointer, void *pvPara, U8 * pucTaskStack,
+			     U32 uiStackSize, PRIORITYBITS ucTaskPrio, REMIX_TASKOPT * pstrTaskOpt)
 {
 	REMIX_TCB *pstrTcb;
 	REMIX_DLIST *pstrList;
@@ -100,7 +100,7 @@ REMIX_TCB *REMIX_TaskTcbInit(U8 * pucTaskName, VFUNCTION vfFucPionter, void *pvP
 
 	REMIX_TaskStackInit(pstrTcb, vfFuncPointer, pvPara);
 
-	REMIX_TaskAddToTaskList(pstrTcb->strTaskQue.strQueHead);
+	REMIX_TaskAddToTaskList(&pstrTcb->strTaskQue.strQueHead);
 
 #ifdef REMIX_CPUSTATISTIC
 
@@ -122,8 +122,8 @@ REMIX_TCB *REMIX_TaskTcbInit(U8 * pucTaskName, VFUNCTION vfFucPionter, void *pvP
 	if (NULL == pstrTaskOpt) {
 		pstrTcb->strTaskOpt.ucTaskSta = TASKREADY;
 	} else {
-		pstrTcb->strTaskOpt.ucTaskSta = pstrTaskOpt.ucTaskSta;
-		pstrTcb->strTaskOpt.uiDelayTick = pstrTaskOpt.uiDelayTick;
+		pstrTcb->strTaskOpt.ucTaskSta = pstrTaskOpt->ucTaskSta;
+		pstrTcb->strTaskOpt.uiDelayTick = pstrTaskOpt->uiDelayTick;
 	}
 
 	if (TASKREADY == (pstrTcb->strTaskOpt.ucTaskSta & TASKREADY)) {
@@ -273,7 +273,7 @@ U32 REMIX_TaskDelay(U32 uiDelayTick)
 
 	return gpstrCurTcb->strTaskOpt.uiDelayTick;
 }
-}
+
 
 U32 REMIX_TaskWake(REMIX_TCB * pstrTcb)
 {
@@ -427,7 +427,7 @@ void REMIX_TaskPrioResume(REMIX_TCB * pstrTcb)
 	ucTaskPrioTemp = pstrTcb->ucTaskPrio;
 	pstrList = &gstrReadyTab.astrList[ucTaskPrioTemp];
 	pstrPrioFlag = &gstrReadyTab.strFlag;
-	pstrNode = REMIX_TaskDeleteFromReadyTable(pstrList, pstrPrioFlag, ucTaskPrio);
+	pstrNode = REMIX_TaskDeleteFromReadyTable(pstrList, pstrPrioFlag, ucTaskPrioTemp);
 
 	pstrTcb->ucTaskPrio = pstrTcb->ucTaskPrioBackup;
 	pstrTcb->uiTaskFlag &= (~((U32) TASKPRIINHFLAG));

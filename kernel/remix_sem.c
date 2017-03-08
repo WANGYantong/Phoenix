@@ -156,7 +156,7 @@ U32 REMIX_SemTake(REMIX_SEM * pstrSem, U32 uiDelayTick)
 		}
 
 		else {
-			if (SEMFULL == (SEMTYPEMASK & pstrSem->uiSemOpt)) {
+			if (SEMFULL == (pstrSem->uiCounter)) {
 				pstrSem->pstrSemTask = gpstrCurTcb;
 				pstrSem->uiCounter--;
 				(void) REMIX_IntUnlock();

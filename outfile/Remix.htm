@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\outfile\Remix.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\outfile\Remix.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 24]: Last Updated: Sun Mar 05 23:47:36 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 24]: Last Updated: Wed Mar 08 21:44:07 2017
 <BR><P>
 <H3>Maximum Stack Usage =        400 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -698,7 +698,7 @@ Global Symbols
 <LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_RootTask
 </UL>
 
-<P><STRONG><a name="[106]"></a>REMIX_GetCurrentTcb</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, remix_core.o(.text))
+<P><STRONG><a name="[105]"></a>REMIX_GetCurrentTcb</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, remix_core.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TEST_TestTask3
 <LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TEST_TestTask2
 </UL>
@@ -929,7 +929,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskStackInit
 </UL>
 
-<P><STRONG><a name="[107]"></a>REMIX_TaskStackCheck</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, remix_debug.o(.text))
+<P><STRONG><a name="[106]"></a>REMIX_TaskStackCheck</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, remix_debug.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TEST_TestTask3
 <LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TEST_TestTask2
 </UL>
@@ -1069,7 +1069,7 @@ Global Symbols
 <LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_QueueCreate
 </UL>
 
-<P><STRONG><a name="[dd]"></a>REMIX_SemTake</STRONG> (Thumb, 470 bytes, Stack size 16 bytes, remix_sem.o(.text))
+<P><STRONG><a name="[dd]"></a>REMIX_SemTake</STRONG> (Thumb, 464 bytes, Stack size 16 bytes, remix_sem.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104 + Unknown Stack Size
 <LI>Call Chain = REMIX_SemTake &rArr; REMIX_TaskPend &rArr; REMIX_TaskAddToSemTable &rArr; REMIX_TaskAddToSchedTable
 </UL>
@@ -1082,6 +1082,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TEST_TestTask3
 <LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TEST_TestTask2
+<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TEST_TestTask1
 <LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_QueueGetNode
 </UL>
 
@@ -1099,7 +1100,9 @@ Global Symbols
 <LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskDeleteFromSemTable
 <LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskAddToReadyTable
 </UL>
-<BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TEST_TestTask1
+<BR>[Called By]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TEST_TestTask3
+<LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TEST_TestTask2
+<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TEST_TestTask1
 <LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_QueuePutNode
 </UL>
 
@@ -1155,7 +1158,7 @@ Global Symbols
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIXOS_Init
 </UL>
 
-<P><STRONG><a name="[e8]"></a>REMIX_TaskDelete</STRONG> (Thumb, 154 bytes, Stack size 32 bytes, remix_task.o(.text))
+<P><STRONG><a name="[e8]"></a>REMIX_TaskDelete</STRONG> (Thumb, 180 bytes, Stack size 32 bytes, remix_task.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80 + Unknown Stack Size
 <LI>Call Chain = REMIX_TaskDelete &rArr; REMIX_SaveTaskContext &rArr; REMIX_SaveLastContext
 </UL>
@@ -1217,7 +1220,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TEST_PrintCpuUtilize
 </UL>
 
-<P><STRONG><a name="[e1]"></a>REMIX_TaskPrioInheritance</STRONG> (Thumb, 162 bytes, Stack size 32 bytes, remix_task.o(.text))
+<P><STRONG><a name="[e1]"></a>REMIX_TaskPrioInheritance</STRONG> (Thumb, 168 bytes, Stack size 32 bytes, remix_task.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = REMIX_TaskPrioInheritance &rArr; REMIX_TaskAddToReadyTable &rArr; REMIX_TaskAddToSchedTable
 </UL>
 <BR>[Calls]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskDeleteFromReadyTable
@@ -1286,7 +1289,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DEV_SoftwareInit
 </UL>
 
-<P><STRONG><a name="[ef]"></a>DEV_SoftwareInit</STRONG> (Thumb, 62 bytes, Stack size 8 bytes, device.o(.text))
+<P><STRONG><a name="[ef]"></a>DEV_SoftwareInit</STRONG> (Thumb, 64 bytes, Stack size 8 bytes, device.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96 + Unknown Stack Size
 <LI>Call Chain = DEV_SoftwareInit &rArr; REMIX_QueueCreate &rArr; REMIX_SemCreate &rArr; malloc &rArr; __Heap_Full &rArr; __Heap_ProvideMemory &rArr; free
 </UL>
@@ -1435,54 +1438,54 @@ Global Symbols
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TEST_TestTask1
 </UL>
 
-<P><STRONG><a name="[53]"></a>TEST_TestTask1</STRONG> (Thumb, 140 bytes, Stack size 16 bytes, test.o(.text))
+<P><STRONG><a name="[53]"></a>TEST_TestTask1</STRONG> (Thumb, 156 bytes, Stack size 16 bytes, test.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 176 + Unknown Stack Size
 <LI>Call Chain = TEST_TestTask1 &rArr; DEV_PutStrToMem &rArr; REMIX_QueuePutNode &rArr; REMIX_SemGive &rArr; REMIX_TaskPrioResume &rArr; REMIX_TaskAddToReadyTable &rArr; REMIX_TaskAddToSchedTable
 </UL>
 <BR>[Calls]<UL><LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TEST_TaskRun
 <LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DEV_PutStrToMem
 <LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskDelay
+<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_SemTake
 <LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_SemGive
 <LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_GetSystemTick
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> remix_userroot.o(.text)
 </UL>
-<P><STRONG><a name="[105]"></a>TEST_Fibonacci</STRONG> (Thumb, 74 bytes, Stack size 16 bytes, test.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = TEST_Fibonacci &rArr; malloc &rArr; __Heap_Full &rArr; __Heap_ProvideMemory &rArr; free
-</UL>
-<BR>[Calls]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free
-<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
+<P><STRONG><a name="[107]"></a>TEST_Fibonacci</STRONG> (Thumb, 54 bytes, Stack size 164 bytes, test.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 164<LI>Call Chain = TEST_Fibonacci
 </UL>
 <BR>[Called By]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TEST_TestTask3
 <LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TEST_TestTask2
 </UL>
 
-<P><STRONG><a name="[54]"></a>TEST_TestTask2</STRONG> (Thumb, 216 bytes, Stack size 16 bytes, test.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 176 + Unknown Stack Size
-<LI>Call Chain = TEST_TestTask2 &rArr; DEV_PutStrToMem &rArr; REMIX_QueuePutNode &rArr; REMIX_SemGive &rArr; REMIX_TaskPrioResume &rArr; REMIX_TaskAddToReadyTable &rArr; REMIX_TaskAddToSchedTable
+<P><STRONG><a name="[54]"></a>TEST_TestTask2</STRONG> (Thumb, 222 bytes, Stack size 16 bytes, test.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 180 + Unknown Stack Size
+<LI>Call Chain = TEST_TestTask2 &rArr; TEST_Fibonacci
 </UL>
-<BR>[Calls]<UL><LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TEST_Fibonacci
+<BR>[Calls]<UL><LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TEST_Fibonacci
 <LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TEST_TaskRun
 <LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DEV_PutStrToMem
 <LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskDelay
 <LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_SemTake
-<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskStackCheck
-<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_GetCurrentTcb
+<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_SemGive
+<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskStackCheck
+<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_GetCurrentTcb
 <LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_GetSystemTick
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> remix_userroot.o(.text)
 </UL>
-<P><STRONG><a name="[55]"></a>TEST_TestTask3</STRONG> (Thumb, 214 bytes, Stack size 16 bytes, test.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 176 + Unknown Stack Size
-<LI>Call Chain = TEST_TestTask3 &rArr; DEV_PutStrToMem &rArr; REMIX_QueuePutNode &rArr; REMIX_SemGive &rArr; REMIX_TaskPrioResume &rArr; REMIX_TaskAddToReadyTable &rArr; REMIX_TaskAddToSchedTable
+<P><STRONG><a name="[55]"></a>TEST_TestTask3</STRONG> (Thumb, 222 bytes, Stack size 16 bytes, test.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 180 + Unknown Stack Size
+<LI>Call Chain = TEST_TestTask3 &rArr; TEST_Fibonacci
 </UL>
-<BR>[Calls]<UL><LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TEST_Fibonacci
+<BR>[Calls]<UL><LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TEST_Fibonacci
 <LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TEST_TaskRun
 <LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DEV_PutStrToMem
 <LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskDelay
 <LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_SemTake
-<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskStackCheck
-<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_GetCurrentTcb
+<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_SemGive
+<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskStackCheck
+<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_GetCurrentTcb
 <LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_GetSystemTick
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> remix_userroot.o(.text)
@@ -1519,7 +1522,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TEST_TaskSwitchPrint
 </UL>
 
-<P><STRONG><a name="[51]"></a>TEST_TaskSwitchPrint</STRONG> (Thumb, 1008 bytes, Stack size 16 bytes, test.o(.text))
+<P><STRONG><a name="[51]"></a>TEST_TaskSwitchPrint</STRONG> (Thumb, 1010 bytes, Stack size 16 bytes, test.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 200 + Unknown Stack Size
 <LI>Call Chain = TEST_TaskSwitchPrint &rArr; TEST_PrintCpuUtilize &rArr; DEV_PutStrToMem &rArr; REMIX_QueuePutNode &rArr; REMIX_SemGive &rArr; REMIX_TaskPrioResume &rArr; REMIX_TaskAddToReadyTable &rArr; REMIX_TaskAddToSchedTable
 </UL>
@@ -1935,8 +1938,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__Heap_Full
 <LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_heap_descriptor
 </UL>
-<BR>[Called By]<UL><LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TEST_Fibonacci
-<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskTcbInit
+<BR>[Called By]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskTcbInit
 <LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_SemCreate
 <LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_QueueCreate
 </UL>
@@ -1946,8 +1948,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_heap_descriptor
 </UL>
-<BR>[Called By]<UL><LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TEST_Fibonacci
-<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskDelete
+<BR>[Called By]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskDelete
 <LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_SemDelete
 <LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_QueueDelete
 <LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_QueueCreate

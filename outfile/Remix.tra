@@ -49,7 +49,7 @@
 ### ADS-LD Output File: '..\outfile\Remix.axf'
 ### ADS-LD Command File: '..\outfile\Remix.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile '..\outfile\Remix.lnp', Handle=0x000014B8
+### Creating CmdFile '..\outfile\Remix.lnp', Handle=0x00000704
 ### Writing '.lnp' file
 ### ADS-LD Command file '..\outfile\Remix.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.

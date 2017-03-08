@@ -15,7 +15,7 @@ void DEV_SoftwareInit(void)
 	DEV_BufferInit(&gstrBufPool);	//初始化消息缓冲池
 
 	gpstrSerialMsgQue = REMIX_QueueCreate((REMIX_QUEUE *) NULL, QUEUEPRIO);	//创建打印消息的队列
-	gpstrSemBin = REMIX_SemCreate((REMIX_SEM *) NULL, SEMPRIINH | SEMBIN | SEMPRIO, SEMEMPTY);
+	gpstrSemMut = REMIX_SemCreate((REMIX_SEM *) NULL, SEMPRIINH | SEMMUT | SEMPRIO, SEMFULL);
 
 #ifdef REMIX_INCLUDETASKHOOK
 	REMIX_TaskCreateHookAdd(TEST_TaskCreatePrint);

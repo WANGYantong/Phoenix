@@ -3,7 +3,7 @@
 
 REMIX_QUEUE *gpstrSerialMsgQue;	/* 串口打印消息队列指针 */
 REMIX_TCB *gpstrSerialTaskTcb;	/* 串口打印任务TCB指针 */
-REMIX_SEM *gpstrSemBin;
+REMIX_SEM *gpstrSemMut;
 U32 number;
 
 
@@ -15,23 +15,28 @@ U32 number;
 void TEST_TestTask1(void *pvPara)
 {
 	while (1) {
-		/* 任务打印 */
-		DEV_PutStrToMem((U8 *) "\r\nTeacher will release a question! Tick is: %d", REMIX_GetSystemTick());
 
-		DEV_PutStrToMem((U8 *) "\r\nTeacher is thinking...");
+		if (RTN_SUCD == REMIX_SemTake(gpstrSemMut, SEMWAITFOREVER)) {
+			/* 任务打印 */
+			DEV_PutStrToMem((U8 *) "\r\nTeacher will release a question! Tick is: %d",
+					REMIX_GetSystemTick());
 
-		TEST_TaskRun(1000);
+			DEV_PutStrToMem((U8 *) "\r\nTeacher is thinking...");
 
-		number = REMIX_GetSystemTick() % 39;
+			TEST_TaskRun(1000);
 
-		/* 任务打印 */
-		DEV_PutStrToMem((U8 *) "\r\nTeacher ask students to count the fibonacci: %d", number);
+			number = REMIX_GetSystemTick() % 39;
 
-		REMIX_SemGive(gpstrSemBin);
+			/* 任务打印 */
+			DEV_PutStrToMem((U8 *) "\r\nTeacher ask students to count the fibonacci: %d", number);
+
+			REMIX_SemGive(gpstrSemMut);
+
+		}
 
 		DEV_PutStrToMem((U8 *) "\r\nTeacher is sleeping! Tick is: %d", REMIX_GetSystemTick());
 
-		(void) REMIX_TaskDelay(600);
+		(void) REMIX_TaskDelay(300);
 
 		DEV_PutStrToMem((U8 *) "\r\nTeacher wakes up! Tick is: %d", REMIX_GetSystemTick());
 
@@ -58,7 +63,7 @@ void TEST_TestTask2(void *pvPara)
 
 	while (1) {
 
-		if (RTN_SUCD == REMIX_SemTake(gpstrSemBin, SEMNOWAIT)) {
+		if (RTN_SUCD == REMIX_SemTake(gpstrSemMut, SEMNOWAIT)) {
 
 			DEV_PutStrToMem((U8 *) "\r\nStudent1 answers the question! Tick is: %d", REMIX_GetSystemTick());
 
@@ -73,12 +78,13 @@ void TEST_TestTask2(void *pvPara)
 			DEV_PutStrToMem((U8 *) "\r\nStudent1 stack remain %d bytes, Tick is: %d", uiStackRemainLen,
 					REMIX_GetSystemTick());
 
+			REMIX_SemGive(gpstrSemMut);
+
 		}
 
-		/* 任务打印 */
 		DEV_PutStrToMem((U8 *) "\r\nStudent1 is sleeping! Tick is: %d", REMIX_GetSystemTick());
 
-		(void) REMIX_TaskDelay(300);
+		(void) REMIX_TaskDelay(200);
 
 		DEV_PutStrToMem((U8 *) "\r\nStudent1 wakes up! Tick is: %d", REMIX_GetSystemTick());
 
@@ -109,13 +115,13 @@ void TEST_TestTask3(void *pvPara)
 
 	while (1) {
 
-		if (RTN_SUCD == REMIX_SemTake(gpstrSemBin, SEMNOWAIT)) {
+		if (RTN_SUCD == REMIX_SemTake(gpstrSemMut, SEMNOWAIT)) {
 
 			DEV_PutStrToMem((U8 *) "\r\nStudent2 answers the question! Tick is: %d", REMIX_GetSystemTick());
 
 			DEV_PutStrToMem((U8 *) "\r\nStudent2 is thinking...");
 
-			TEST_TaskRun(5000);
+			TEST_TaskRun(2000);
 
 			DEV_PutStrToMem((U8 *) "\r\nStudent2 says the %d fibonacci number is %d !", number,
 					TEST_Fibonacci(number));
@@ -123,6 +129,8 @@ void TEST_TestTask3(void *pvPara)
 			uiStackRemainLen = REMIX_TaskStackCheck(REMIX_GetCurrentTcb());
 			DEV_PutStrToMem((U8 *) "\r\nStudent2 stack remain %d bytes, Tick is: %d", uiStackRemainLen,
 					REMIX_GetSystemTick());
+
+			REMIX_SemGive(gpstrSemMut);
 
 		}
 
@@ -151,22 +159,30 @@ U32 TEST_Fibonacci(U32 num)
 {
 	U32 index;
 
-	DYNAMIC_ARRAY *f = (DYNAMIC_ARRAY *) malloc(sizeof(DYNAMIC_ARRAY) + num + 4);
+//      DYNAMIC_ARRAY *f = (DYNAMIC_ARRAY *) malloc(sizeof(DYNAMIC_ARRAY) + num);
+//
+//      f->data[0] = 0;
+//      f->data[1] = 1;
+//      if (num > 1) {
+//              for (index = 2; index <= num; index++)
+//                      f->data[index] = f->data[index - 1] + f->data[index - 2];
+//      }
 
-	f->data[0] = 0;
-	f->data[1] = 1;
+//      index = f->data[num];
+
+//      free(f);
+
+	U32 fibonacci[39];
+
+	fibonacci[0] = 0;
+	fibonacci[1] = 1;
+
 	if (num > 1) {
 		for (index = 2; index <= num; index++)
-			f->data[index] = f->data[index - 1] + f->data[index - 2];
+			fibonacci[index] = fibonacci[index - 1] + fibonacci[index - 2];
 	}
 
-	index = f->data[num];
-
-	free(f->data);
-
-	free(f);
-
-	return index;
+	return fibonacci[num];
 }
 
 /**********************************************/

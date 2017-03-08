@@ -174,9 +174,9 @@ U32 REMIX_TaskDelete(REMIX_TCB * pstrTcb)
 
 	(void) REMIX_IntLock();
 
-#ifdef MDS_INCLUDETASKHOOK
+#ifdef REMIX_INCLUDETASKHOOK
 
-	if ((*NULL) (REMIX_TCB *) != gvfTaskDeleteHook) {
+	if ((VFHDLT) NULL != gvfTaskDeleteHook) {
 		gvfTaskDeleteHook(pstrTcb);
 	}
 #endif
@@ -206,6 +206,10 @@ U32 REMIX_TaskDelete(REMIX_TCB * pstrTcb)
 	if (gpstrCurTcb == pstrTcb) {
 		REMIX_SaveTaskContext();	// save register for debugging
 		gpstrCurTcb = NULL;
+
+#ifdef REMIX_TASKROUNDROBIN
+		gauiSliceCnt[gpstrCurTcb->ucTaskPrio] = 0;
+#endif
 	}
 
 	if (TASKSTACKFLAG == (pstrTcb->uiTaskFlag & TASKSTACKFLAG)) {

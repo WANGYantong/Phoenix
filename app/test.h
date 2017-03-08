@@ -3,9 +3,9 @@
 
 #include "global.h"
 
-typedef struct dynamic_array{
-    U32 data[1];
-}DYNAMIC_ARRAY;
+// typedef struct dynamic_array{
+//     U32 data[1];
+// }DYNAMIC_ARRAY;
 
 extern void TEST_TaskRun(U32 uiMs);
 extern void TEST_PrintCpuUtilize(void);

@@ -194,7 +194,7 @@ typedef struct remix_tcb
     U32 uiTaskFlag;                 // «∑Ò‘⁄delay±Ì÷–? «∑ÒºÃ≥–”≈œ»º∂? «∑Ò…Í«Î’ªÂ
     PRIORITYBITS ucTaskPrio;
 #ifdef REMIX_TASKPRIOINHER
-    U8 ucTaskPrioBackup;
+    PRIORITYBITS ucTaskPrioBackup;
 #endif
     REMIX_TASKOPT strTaskOpt;           //¿Ô√ÊµƒucTaskStaº«¬º5÷–◊¥Ã¨:ready?delay?pend...
     U32 uiStillTick;

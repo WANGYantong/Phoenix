@@ -11,7 +11,4 @@
 #include "remix_sem_private.h"
 #include "remix_task_private.h"
 
-#include "remix_userroot_private.h"
-
-
 #endif

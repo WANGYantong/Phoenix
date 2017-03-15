@@ -36,16 +36,6 @@ const U8 caucTaskPrioUnmapTab[256] = {
 	4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0
 };
 
-S32 main(void)
-{
-	REMIXOS_Init();
-
-	REMIXOS_Start();
-
-	return 0;
-}
-
-
 void REMIXOS_Init(void)
 {
 	REMIX_SetUser(USERROOT);
@@ -101,7 +91,6 @@ void REMIX_BeforeRootTask(void *pvPara)
 
 	REMIX_SetUser(USERGUEST);
 
-	REMIX_RootTask();
 }
 
 
@@ -114,7 +103,7 @@ void REMIX_TaskTick(void)
 	guiCpuSharePeriod++;
 #endif
 
-#ifdef CPU_TASKROUNDROBIN
+#ifdef REMIX_TASKROUNDROBIN
 	if ((0 != guiTimeSlice) && (NULL != gpstrCurTcb)) {
 		gauiSliceCnt[gpstrCurTcb->ucTaskPrio]++;
 	}

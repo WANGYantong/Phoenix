@@ -49,4 +49,3 @@
 ..\outfile\remix_debug.o: ..\kernel\remix_queue_private.h
 ..\outfile\remix_debug.o: ..\kernel\remix_sem_private.h
 ..\outfile\remix_debug.o: ..\kernel\remix_task_private.h
-..\outfile\remix_debug.o: ..\kernel\remix_userroot_private.h

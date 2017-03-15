@@ -47,4 +47,3 @@
 ..\outfile\remix_task.o: ..\kernel\remix_queue_private.h
 ..\outfile\remix_task.o: ..\kernel\remix_sem_private.h
 ..\outfile\remix_task.o: ..\kernel\remix_task_private.h
-..\outfile\remix_task.o: ..\kernel\remix_userroot_private.h

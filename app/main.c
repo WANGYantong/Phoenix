@@ -1,12 +1,9 @@
-#include "remix_userroot.h"
+#include "global.h"
 
-/**********************************************/
-//函数功能:根任务，用户代码从此执行
-//输入参数:none
-//返回值  :none
-/**********************************************/
-void REMIX_RootTask(void)
+S32 main(void)
 {
+    REMIXOS_Init();
+
 	DEV_SoftwareInit();
 
 	DEV_HardwareInit();
@@ -25,4 +22,7 @@ void REMIX_RootTask(void)
 
 	DEV_PutStrToMem((U8 *) "\r\nREMIX is running! Tick is: %d", REMIX_GetSystemTick());
 
+    REMIXOS_Start();
+
+    return 0;
 }

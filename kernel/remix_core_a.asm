@@ -31,10 +31,6 @@ REMIX_PendSvContextSwitch
     POP    {R0}
     STMIA  R12, {R0}
 
-    LDR    R0, =REMIX_SaveTaskContext
-    ADR.W  R14, {PC} + 0x7
-    BX     R0
-
 __BACKUP_REG
 
     LDR    R0, =gpstrNextTaskReg
@@ -77,29 +73,6 @@ REMIX_GetXpsr
 
     MRS    R0, XPSR
     BX     R14
-
-
-REMIX_FaultIsrContext
-
-    PUSH   {R14}
-    MOV    R14, R13
-    LDR    R0, =gpstrNextTaskReg
-    LDR    R12, [R0]
-    ADD    R14, #0x4
-    LDMIA  R14!, {R0 - R3}
-    STMIA  R12!, {R0 - R11}
-    LDMIA  R14, {R0 - R3}
-    SUB    R14, #0x10
-    STMIA  R12!, {R0}
-    STMIA  R12!, {R14}
-    STMIA  R12!, {R1 - R3}
-    POP    {R0}
-    STMIA  R12, {R0}
-
-    LDR    R0, =REMIX_FaultIsrPrint
-    ADR.W  R14, {PC} + 0x7
-    BX     R0
-
 
     ALIGN
 

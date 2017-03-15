@@ -24,10 +24,6 @@ void DEV_SoftwareInit(void)
 
 #endif
 
-#ifdef REMIX_DEBUGCONTEXT
-	REMIX_SendCharFuncInit(DEV_PutChar);
-#endif
-
 }
 
 /**********************************************/

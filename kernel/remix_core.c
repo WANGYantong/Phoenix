@@ -69,11 +69,6 @@ void REMIXOS_Init(void)
 	REMIX_TaskTimeSlice(0);
 #endif
 
-#ifdef REMIX_DEBUGCONTEXT
-	REMIX_TaskContextInit();
-	gpstrContext->vfSendChar = (VFUNCTION1) NULL;
-#endif
-
 #ifdef REMIX_CPUSTATISTIC
 	guiCpuSharePeriod = 0;
 #endif

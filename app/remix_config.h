@@ -6,14 +6,8 @@
 #define REMIX_INCLUDETASKHOOK
 #define REMIX_TASKPRIOINHER
 #define REMIX_TASKROUNDROBIN
-#define REMIX_DEBUGCONTEXT
 #define REMIX_DEBUGSTACKCHECK
 #define REMIX_CPUSTATISTIC
-
-#ifdef REMIX_DEBUGCONTEXT
-    #define REMIX_CONTEXTADDR       0x2000B000
-    #define REMIX_CONTEXTLEN        0x1000
-#endif
 
 #define TICK                        10
 #define CORECLOCKPMS                72000000

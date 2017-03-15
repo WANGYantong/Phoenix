@@ -204,7 +204,6 @@ U32 REMIX_TaskDelete(REMIX_TCB * pstrTcb)
 	REMIX_TaskDeleteFromTaskList(&pstrTcb->strTaskQue.strQueHead);
 
 	if (gpstrCurTcb == pstrTcb) {
-		REMIX_SaveTaskContext();	// save register for debugging
 		gpstrCurTcb = NULL;
 
 #ifdef REMIX_TASKROUNDROBIN

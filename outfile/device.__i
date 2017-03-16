@@ -1,5 +1,0 @@
--c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\lib\CMSIS\CM3\CoreSupport -I..\lib\STM32F10x_StdPeriph_Driver\inc -I..\kernel -I..\app -I..\lib\STM32F10x_StdPeriph_Driver\src 
--I "C:\Program Files (x86)\KeilMDK\ARM\RV31\INC" 
--I "C:\Program Files (x86)\KeilMDK\ARM\CMSIS\Include" 
--I "C:\Program Files (x86)\KeilMDK\ARM\Inc\ST\STM32F10x" 
--o "..\outfile\device.o" --omf_browse "..\outfile\device.crf" --depend "..\outfile\device.d" "..\app\device.c"

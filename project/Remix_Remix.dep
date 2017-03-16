@@ -1,5 +1,5 @@
 Dependencies for Project 'Remix', Target 'Remix': (DO NOT MODIFY !)
-F (..\kernel\remix_core.c)(0x58CA551D)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\lib\CMSIS\CM3\CoreSupport -I..\lib\STM32F10x_StdPeriph_Driver\inc -I..\kernel -I..\app -I..\lib\STM32F10x_StdPeriph_Driver\src -I "C:\Program Files (x86)\KeilMDK\ARM\RV31\INC" -I "C:\Program Files (x86)\KeilMDK\ARM\CMSIS\Include" -I "C:\Program Files (x86)\KeilMDK\ARM\Inc\ST\STM32F10x" -o "..\outfile\remix_core.o" --omf_browse "..\outfile\remix_core.crf" --depend "..\outfile\remix_core.d")
+F (..\kernel\remix_core.c)(0x58CA9EAD)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\lib\CMSIS\CM3\CoreSupport -I..\lib\STM32F10x_StdPeriph_Driver\inc -I..\kernel -I..\app -I..\lib\STM32F10x_StdPeriph_Driver\src -I "C:\Program Files (x86)\KeilMDK\ARM\RV31\INC" -I "C:\Program Files (x86)\KeilMDK\ARM\CMSIS\Include" -I "C:\Program Files (x86)\KeilMDK\ARM\Inc\ST\STM32F10x" -o "..\outfile\remix_core.o" --omf_browse "..\outfile\remix_core.crf" --depend "..\outfile\remix_core.d")
 I (..\kernel\remix_private.h)(0x58C951A6)
 I (..\kernel\remix_public.h)(0x58B980E6)
 I (..\app\remix_config.h)(0x58C94ACB)
@@ -38,14 +38,14 @@ I (..\kernel\remix_debug_public.h)(0x58C9487B)
 I (..\kernel\remix_list_public.h)(0x58B3D15E)
 I (..\kernel\remix_queue_public.h)(0x58B971AE)
 I (..\kernel\remix_sem_public.h)(0x58B93D5F)
-I (..\kernel\remix_task_public.h)(0x58B8CA22)
+I (..\kernel\remix_task_public.h)(0x58CA947E)
 I (..\kernel\remix_core_private.h)(0x58BABDF4)
 I (..\kernel\remix_cpu_private.h)(0x58BBCE06)
 I (..\kernel\remix_debug_private.h)(0x58C94870)
 I (..\kernel\remix_list_private.h)(0x58BABCD8)
 I (..\kernel\remix_queue_private.h)(0x58BABCEA)
 I (..\kernel\remix_sem_private.h)(0x58BABCF4)
-I (..\kernel\remix_task_private.h)(0x58BB90E3)
+I (..\kernel\remix_task_private.h)(0x58CA8FDF)
 F (..\kernel\remix_cpu.c)(0x58C00A4A)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\lib\CMSIS\CM3\CoreSupport -I..\lib\STM32F10x_StdPeriph_Driver\inc -I..\kernel -I..\app -I..\lib\STM32F10x_StdPeriph_Driver\src -I "C:\Program Files (x86)\KeilMDK\ARM\RV31\INC" -I "C:\Program Files (x86)\KeilMDK\ARM\CMSIS\Include" -I "C:\Program Files (x86)\KeilMDK\ARM\Inc\ST\STM32F10x" -o "..\outfile\remix_cpu.o" --omf_browse "..\outfile\remix_cpu.crf" --depend "..\outfile\remix_cpu.d")
 I (..\kernel\remix_private.h)(0x58C951A6)
 I (..\kernel\remix_public.h)(0x58B980E6)
@@ -85,14 +85,14 @@ I (..\kernel\remix_debug_public.h)(0x58C9487B)
 I (..\kernel\remix_list_public.h)(0x58B3D15E)
 I (..\kernel\remix_queue_public.h)(0x58B971AE)
 I (..\kernel\remix_sem_public.h)(0x58B93D5F)
-I (..\kernel\remix_task_public.h)(0x58B8CA22)
+I (..\kernel\remix_task_public.h)(0x58CA947E)
 I (..\kernel\remix_core_private.h)(0x58BABDF4)
 I (..\kernel\remix_cpu_private.h)(0x58BBCE06)
 I (..\kernel\remix_debug_private.h)(0x58C94870)
 I (..\kernel\remix_list_private.h)(0x58BABCD8)
 I (..\kernel\remix_queue_private.h)(0x58BABCEA)
 I (..\kernel\remix_sem_private.h)(0x58BABCF4)
-I (..\kernel\remix_task_private.h)(0x58BB90E3)
+I (..\kernel\remix_task_private.h)(0x58CA8FDF)
 F (..\kernel\remix_debug.c)(0x58C9482E)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\lib\CMSIS\CM3\CoreSupport -I..\lib\STM32F10x_StdPeriph_Driver\inc -I..\kernel -I..\app -I..\lib\STM32F10x_StdPeriph_Driver\src -I "C:\Program Files (x86)\KeilMDK\ARM\RV31\INC" -I "C:\Program Files (x86)\KeilMDK\ARM\CMSIS\Include" -I "C:\Program Files (x86)\KeilMDK\ARM\Inc\ST\STM32F10x" -o "..\outfile\remix_debug.o" --omf_browse "..\outfile\remix_debug.crf" --depend "..\outfile\remix_debug.d")
 I (C:\Program Files (x86)\KeilMDK\ARM\ARMCC\bin\..\include\stdarg.h)(0x50F9614E)
 I (C:\Program Files (x86)\KeilMDK\ARM\ARMCC\bin\..\include\stdio.h)(0x50F96150)
@@ -135,14 +135,14 @@ I (..\kernel\remix_debug_public.h)(0x58C9487B)
 I (..\kernel\remix_list_public.h)(0x58B3D15E)
 I (..\kernel\remix_queue_public.h)(0x58B971AE)
 I (..\kernel\remix_sem_public.h)(0x58B93D5F)
-I (..\kernel\remix_task_public.h)(0x58B8CA22)
+I (..\kernel\remix_task_public.h)(0x58CA947E)
 I (..\kernel\remix_core_private.h)(0x58BABDF4)
 I (..\kernel\remix_cpu_private.h)(0x58BBCE06)
 I (..\kernel\remix_debug_private.h)(0x58C94870)
 I (..\kernel\remix_list_private.h)(0x58BABCD8)
 I (..\kernel\remix_queue_private.h)(0x58BABCEA)
 I (..\kernel\remix_sem_private.h)(0x58BABCF4)
-I (..\kernel\remix_task_private.h)(0x58BB90E3)
+I (..\kernel\remix_task_private.h)(0x58CA8FDF)
 F (..\kernel\remix_list.c)(0x58C00A4A)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\lib\CMSIS\CM3\CoreSupport -I..\lib\STM32F10x_StdPeriph_Driver\inc -I..\kernel -I..\app -I..\lib\STM32F10x_StdPeriph_Driver\src -I "C:\Program Files (x86)\KeilMDK\ARM\RV31\INC" -I "C:\Program Files (x86)\KeilMDK\ARM\CMSIS\Include" -I "C:\Program Files (x86)\KeilMDK\ARM\Inc\ST\STM32F10x" -o "..\outfile\remix_list.o" --omf_browse "..\outfile\remix_list.crf" --depend "..\outfile\remix_list.d")
 I (..\kernel\remix_private.h)(0x58C951A6)
 I (..\kernel\remix_public.h)(0x58B980E6)
@@ -182,14 +182,14 @@ I (..\kernel\remix_debug_public.h)(0x58C9487B)
 I (..\kernel\remix_list_public.h)(0x58B3D15E)
 I (..\kernel\remix_queue_public.h)(0x58B971AE)
 I (..\kernel\remix_sem_public.h)(0x58B93D5F)
-I (..\kernel\remix_task_public.h)(0x58B8CA22)
+I (..\kernel\remix_task_public.h)(0x58CA947E)
 I (..\kernel\remix_core_private.h)(0x58BABDF4)
 I (..\kernel\remix_cpu_private.h)(0x58BBCE06)
 I (..\kernel\remix_debug_private.h)(0x58C94870)
 I (..\kernel\remix_list_private.h)(0x58BABCD8)
 I (..\kernel\remix_queue_private.h)(0x58BABCEA)
 I (..\kernel\remix_sem_private.h)(0x58BABCF4)
-I (..\kernel\remix_task_private.h)(0x58BB90E3)
+I (..\kernel\remix_task_private.h)(0x58CA8FDF)
 F (..\kernel\remix_queue.c)(0x58C00A4A)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\lib\CMSIS\CM3\CoreSupport -I..\lib\STM32F10x_StdPeriph_Driver\inc -I..\kernel -I..\app -I..\lib\STM32F10x_StdPeriph_Driver\src -I "C:\Program Files (x86)\KeilMDK\ARM\RV31\INC" -I "C:\Program Files (x86)\KeilMDK\ARM\CMSIS\Include" -I "C:\Program Files (x86)\KeilMDK\ARM\Inc\ST\STM32F10x" -o "..\outfile\remix_queue.o" --omf_browse "..\outfile\remix_queue.crf" --depend "..\outfile\remix_queue.d")
 I (C:\Program Files (x86)\KeilMDK\ARM\ARMCC\bin\..\include\stdlib.h)(0x50F96150)
 I (..\kernel\remix_private.h)(0x58C951A6)
@@ -230,14 +230,14 @@ I (..\kernel\remix_debug_public.h)(0x58C9487B)
 I (..\kernel\remix_list_public.h)(0x58B3D15E)
 I (..\kernel\remix_queue_public.h)(0x58B971AE)
 I (..\kernel\remix_sem_public.h)(0x58B93D5F)
-I (..\kernel\remix_task_public.h)(0x58B8CA22)
+I (..\kernel\remix_task_public.h)(0x58CA947E)
 I (..\kernel\remix_core_private.h)(0x58BABDF4)
 I (..\kernel\remix_cpu_private.h)(0x58BBCE06)
 I (..\kernel\remix_debug_private.h)(0x58C94870)
 I (..\kernel\remix_list_private.h)(0x58BABCD8)
 I (..\kernel\remix_queue_private.h)(0x58BABCEA)
 I (..\kernel\remix_sem_private.h)(0x58BABCF4)
-I (..\kernel\remix_task_private.h)(0x58BB90E3)
+I (..\kernel\remix_task_private.h)(0x58CA8FDF)
 F (..\kernel\remix_sem.c)(0x58C00A4A)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\lib\CMSIS\CM3\CoreSupport -I..\lib\STM32F10x_StdPeriph_Driver\inc -I..\kernel -I..\app -I..\lib\STM32F10x_StdPeriph_Driver\src -I "C:\Program Files (x86)\KeilMDK\ARM\RV31\INC" -I "C:\Program Files (x86)\KeilMDK\ARM\CMSIS\Include" -I "C:\Program Files (x86)\KeilMDK\ARM\Inc\ST\STM32F10x" -o "..\outfile\remix_sem.o" --omf_browse "..\outfile\remix_sem.crf" --depend "..\outfile\remix_sem.d")
 I (C:\Program Files (x86)\KeilMDK\ARM\ARMCC\bin\..\include\stdlib.h)(0x50F96150)
 I (..\kernel\remix_private.h)(0x58C951A6)
@@ -278,15 +278,15 @@ I (..\kernel\remix_debug_public.h)(0x58C9487B)
 I (..\kernel\remix_list_public.h)(0x58B3D15E)
 I (..\kernel\remix_queue_public.h)(0x58B971AE)
 I (..\kernel\remix_sem_public.h)(0x58B93D5F)
-I (..\kernel\remix_task_public.h)(0x58B8CA22)
+I (..\kernel\remix_task_public.h)(0x58CA947E)
 I (..\kernel\remix_core_private.h)(0x58BABDF4)
 I (..\kernel\remix_cpu_private.h)(0x58BBCE06)
 I (..\kernel\remix_debug_private.h)(0x58C94870)
 I (..\kernel\remix_list_private.h)(0x58BABCD8)
 I (..\kernel\remix_queue_private.h)(0x58BABCEA)
 I (..\kernel\remix_sem_private.h)(0x58BABCF4)
-I (..\kernel\remix_task_private.h)(0x58BB90E3)
-F (..\kernel\remix_task.c)(0x58C94AFE)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\lib\CMSIS\CM3\CoreSupport -I..\lib\STM32F10x_StdPeriph_Driver\inc -I..\kernel -I..\app -I..\lib\STM32F10x_StdPeriph_Driver\src -I "C:\Program Files (x86)\KeilMDK\ARM\RV31\INC" -I "C:\Program Files (x86)\KeilMDK\ARM\CMSIS\Include" -I "C:\Program Files (x86)\KeilMDK\ARM\Inc\ST\STM32F10x" -o "..\outfile\remix_task.o" --omf_browse "..\outfile\remix_task.crf" --depend "..\outfile\remix_task.d")
+I (..\kernel\remix_task_private.h)(0x58CA8FDF)
+F (..\kernel\remix_task.c)(0x58CA9230)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\lib\CMSIS\CM3\CoreSupport -I..\lib\STM32F10x_StdPeriph_Driver\inc -I..\kernel -I..\app -I..\lib\STM32F10x_StdPeriph_Driver\src -I "C:\Program Files (x86)\KeilMDK\ARM\RV31\INC" -I "C:\Program Files (x86)\KeilMDK\ARM\CMSIS\Include" -I "C:\Program Files (x86)\KeilMDK\ARM\Inc\ST\STM32F10x" -o "..\outfile\remix_task.o" --omf_browse "..\outfile\remix_task.crf" --depend "..\outfile\remix_task.d")
 I (C:\Program Files (x86)\KeilMDK\ARM\ARMCC\bin\..\include\stdlib.h)(0x50F96150)
 I (..\kernel\remix_private.h)(0x58C951A6)
 I (..\kernel\remix_public.h)(0x58B980E6)
@@ -326,18 +326,18 @@ I (..\kernel\remix_debug_public.h)(0x58C9487B)
 I (..\kernel\remix_list_public.h)(0x58B3D15E)
 I (..\kernel\remix_queue_public.h)(0x58B971AE)
 I (..\kernel\remix_sem_public.h)(0x58B93D5F)
-I (..\kernel\remix_task_public.h)(0x58B8CA22)
+I (..\kernel\remix_task_public.h)(0x58CA947E)
 I (..\kernel\remix_core_private.h)(0x58BABDF4)
 I (..\kernel\remix_cpu_private.h)(0x58BBCE06)
 I (..\kernel\remix_debug_private.h)(0x58C94870)
 I (..\kernel\remix_list_private.h)(0x58BABCD8)
 I (..\kernel\remix_queue_private.h)(0x58BABCEA)
 I (..\kernel\remix_sem_private.h)(0x58BABCF4)
-I (..\kernel\remix_task_private.h)(0x58BB90E3)
+I (..\kernel\remix_task_private.h)(0x58CA8FDF)
 F (..\kernel\remix_core_a.asm)(0x58C94A4B)(--cpu Cortex-M3 -g --apcs=interwork -I..\kernel -I "C:\Program Files (x86)\KeilMDK\ARM\RV31\INC" -I "C:\Program Files (x86)\KeilMDK\ARM\CMSIS\Include" -I "C:\Program Files (x86)\KeilMDK\ARM\Inc\ST\STM32F10x" --list "..\outfile\remix_core_a.lst" --xref -o "..\outfile\remix_core_a.o" --depend "..\outfile\remix_core_a.d")
-F (..\app\device.c)(0x58CA8D66)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\lib\CMSIS\CM3\CoreSupport -I..\lib\STM32F10x_StdPeriph_Driver\inc -I..\kernel -I..\app -I..\lib\STM32F10x_StdPeriph_Driver\src -I "C:\Program Files (x86)\KeilMDK\ARM\RV31\INC" -I "C:\Program Files (x86)\KeilMDK\ARM\CMSIS\Include" -I "C:\Program Files (x86)\KeilMDK\ARM\Inc\ST\STM32F10x" -o "..\outfile\device.o" --omf_browse "..\outfile\device.crf" --depend "..\outfile\device.d")
+F (..\app\device.c)(0x58CA9B00)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\lib\CMSIS\CM3\CoreSupport -I..\lib\STM32F10x_StdPeriph_Driver\inc -I..\kernel -I..\app -I..\lib\STM32F10x_StdPeriph_Driver\src -I "C:\Program Files (x86)\KeilMDK\ARM\RV31\INC" -I "C:\Program Files (x86)\KeilMDK\ARM\CMSIS\Include" -I "C:\Program Files (x86)\KeilMDK\ARM\Inc\ST\STM32F10x" -o "..\outfile\device.o" --omf_browse "..\outfile\device.crf" --depend "..\outfile\device.d")
 I (..\app\device.h)(0x58BA4053)
-I (..\app\global.h)(0x58BCBFCD)
+I (..\app\global.h)(0x58CA9C21)
 I (..\kernel\remix_public.h)(0x58B980E6)
 I (..\app\remix_config.h)(0x58C94ACB)
 I (..\app\stm32f10x.h)(0x583FC7B5)
@@ -375,13 +375,13 @@ I (..\kernel\remix_debug_public.h)(0x58C9487B)
 I (..\kernel\remix_list_public.h)(0x58B3D15E)
 I (..\kernel\remix_queue_public.h)(0x58B971AE)
 I (..\kernel\remix_sem_public.h)(0x58B93D5F)
-I (..\kernel\remix_task_public.h)(0x58B8CA22)
+I (..\kernel\remix_task_public.h)(0x58CA947E)
 I (C:\Program Files (x86)\KeilMDK\ARM\ARMCC\bin\..\include\stdio.h)(0x50F96150)
 I (C:\Program Files (x86)\KeilMDK\ARM\ARMCC\bin\..\include\stdarg.h)(0x50F9614E)
 I (C:\Program Files (x86)\KeilMDK\ARM\ARMCC\bin\..\include\string.h)(0x50F96150)
 F (..\app\stm32f10x_it.c)(0x58C00A6E)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\lib\CMSIS\CM3\CoreSupport -I..\lib\STM32F10x_StdPeriph_Driver\inc -I..\kernel -I..\app -I..\lib\STM32F10x_StdPeriph_Driver\src -I "C:\Program Files (x86)\KeilMDK\ARM\RV31\INC" -I "C:\Program Files (x86)\KeilMDK\ARM\CMSIS\Include" -I "C:\Program Files (x86)\KeilMDK\ARM\Inc\ST\STM32F10x" -o "..\outfile\stm32f10x_it.o" --omf_browse "..\outfile\stm32f10x_it.crf" --depend "..\outfile\stm32f10x_it.d")
 I (..\app\stm32f10x_it.h)(0x583FC7B5)
-I (..\app\global.h)(0x58BCBFCD)
+I (..\app\global.h)(0x58CA9C21)
 I (..\kernel\remix_public.h)(0x58B980E6)
 I (..\app\remix_config.h)(0x58C94ACB)
 I (..\app\stm32f10x.h)(0x583FC7B5)
@@ -419,7 +419,7 @@ I (..\kernel\remix_debug_public.h)(0x58C9487B)
 I (..\kernel\remix_list_public.h)(0x58B3D15E)
 I (..\kernel\remix_queue_public.h)(0x58B971AE)
 I (..\kernel\remix_sem_public.h)(0x58B93D5F)
-I (..\kernel\remix_task_public.h)(0x58B8CA22)
+I (..\kernel\remix_task_public.h)(0x58CA947E)
 F (..\app\system_stm32f10x.c)(0x58C00A6E)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\lib\CMSIS\CM3\CoreSupport -I..\lib\STM32F10x_StdPeriph_Driver\inc -I..\kernel -I..\app -I..\lib\STM32F10x_StdPeriph_Driver\src -I "C:\Program Files (x86)\KeilMDK\ARM\RV31\INC" -I "C:\Program Files (x86)\KeilMDK\ARM\CMSIS\Include" -I "C:\Program Files (x86)\KeilMDK\ARM\Inc\ST\STM32F10x" -o "..\outfile\system_stm32f10x.o" --omf_browse "..\outfile\system_stm32f10x.crf" --depend "..\outfile\system_stm32f10x.d")
 I (..\app\stm32f10x.h)(0x583FC7B5)
 I (..\lib\CMSIS\CM3\CoreSupport\core_cm3.h)(0x4D523B58)
@@ -449,9 +449,9 @@ I (..\lib\STM32F10x_StdPeriph_Driver\inc\stm32f10x_tim.h)(0x4D783BB4)
 I (..\lib\STM32F10x_StdPeriph_Driver\inc\stm32f10x_usart.h)(0x4D783BB4)
 I (..\lib\STM32F10x_StdPeriph_Driver\inc\stm32f10x_wwdg.h)(0x4D783BB4)
 I (..\lib\STM32F10x_StdPeriph_Driver\inc\misc.h)(0x4D783BB4)
-F (..\app\test.c)(0x58CA8CE0)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\lib\CMSIS\CM3\CoreSupport -I..\lib\STM32F10x_StdPeriph_Driver\inc -I..\kernel -I..\app -I..\lib\STM32F10x_StdPeriph_Driver\src -I "C:\Program Files (x86)\KeilMDK\ARM\RV31\INC" -I "C:\Program Files (x86)\KeilMDK\ARM\CMSIS\Include" -I "C:\Program Files (x86)\KeilMDK\ARM\Inc\ST\STM32F10x" -o "..\outfile\test.o" --omf_browse "..\outfile\test.crf" --depend "..\outfile\test.d")
-I (..\app\test.h)(0x58BFB4B3)
-I (..\app\global.h)(0x58BCBFCD)
+F (..\app\test.c)(0x58CA9F96)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\lib\CMSIS\CM3\CoreSupport -I..\lib\STM32F10x_StdPeriph_Driver\inc -I..\kernel -I..\app -I..\lib\STM32F10x_StdPeriph_Driver\src -I "C:\Program Files (x86)\KeilMDK\ARM\RV31\INC" -I "C:\Program Files (x86)\KeilMDK\ARM\CMSIS\Include" -I "C:\Program Files (x86)\KeilMDK\ARM\Inc\ST\STM32F10x" -o "..\outfile\test.o" --omf_browse "..\outfile\test.crf" --depend "..\outfile\test.d")
+I (..\app\test.h)(0x58CA9BFD)
+I (..\app\global.h)(0x58CA9C21)
 I (..\kernel\remix_public.h)(0x58B980E6)
 I (..\app\remix_config.h)(0x58C94ACB)
 I (..\app\stm32f10x.h)(0x583FC7B5)
@@ -489,10 +489,10 @@ I (..\kernel\remix_debug_public.h)(0x58C9487B)
 I (..\kernel\remix_list_public.h)(0x58B3D15E)
 I (..\kernel\remix_queue_public.h)(0x58B971AE)
 I (..\kernel\remix_sem_public.h)(0x58B93D5F)
-I (..\kernel\remix_task_public.h)(0x58B8CA22)
+I (..\kernel\remix_task_public.h)(0x58CA947E)
 I (C:\Program Files (x86)\KeilMDK\ARM\ARMCC\bin\..\include\stdlib.h)(0x50F96150)
 F (..\app\unoptimize.c)(0x58C00A6E)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\lib\CMSIS\CM3\CoreSupport -I..\lib\STM32F10x_StdPeriph_Driver\inc -I..\kernel -I..\app -I..\lib\STM32F10x_StdPeriph_Driver\src -I "C:\Program Files (x86)\KeilMDK\ARM\RV31\INC" -I "C:\Program Files (x86)\KeilMDK\ARM\CMSIS\Include" -I "C:\Program Files (x86)\KeilMDK\ARM\Inc\ST\STM32F10x" -o "..\outfile\unoptimize.o" --omf_browse "..\outfile\unoptimize.crf" --depend "..\outfile\unoptimize.d")
-I (..\app\global.h)(0x58BCBFCD)
+I (..\app\global.h)(0x58CA9C21)
 I (..\kernel\remix_public.h)(0x58B980E6)
 I (..\app\remix_config.h)(0x58C94ACB)
 I (..\app\stm32f10x.h)(0x583FC7B5)
@@ -530,9 +530,9 @@ I (..\kernel\remix_debug_public.h)(0x58C9487B)
 I (..\kernel\remix_list_public.h)(0x58B3D15E)
 I (..\kernel\remix_queue_public.h)(0x58B971AE)
 I (..\kernel\remix_sem_public.h)(0x58B93D5F)
-I (..\kernel\remix_task_public.h)(0x58B8CA22)
-F (..\app\main.c)(0x58CA8D3B)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\lib\CMSIS\CM3\CoreSupport -I..\lib\STM32F10x_StdPeriph_Driver\inc -I..\kernel -I..\app -I..\lib\STM32F10x_StdPeriph_Driver\src -I "C:\Program Files (x86)\KeilMDK\ARM\RV31\INC" -I "C:\Program Files (x86)\KeilMDK\ARM\CMSIS\Include" -I "C:\Program Files (x86)\KeilMDK\ARM\Inc\ST\STM32F10x" -o "..\outfile\main.o" --omf_browse "..\outfile\main.crf" --depend "..\outfile\main.d")
-I (..\app\global.h)(0x58BCBFCD)
+I (..\kernel\remix_task_public.h)(0x58CA947E)
+F (..\app\main.c)(0x58CA9CDB)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\lib\CMSIS\CM3\CoreSupport -I..\lib\STM32F10x_StdPeriph_Driver\inc -I..\kernel -I..\app -I..\lib\STM32F10x_StdPeriph_Driver\src -I "C:\Program Files (x86)\KeilMDK\ARM\RV31\INC" -I "C:\Program Files (x86)\KeilMDK\ARM\CMSIS\Include" -I "C:\Program Files (x86)\KeilMDK\ARM\Inc\ST\STM32F10x" -o "..\outfile\main.o" --omf_browse "..\outfile\main.crf" --depend "..\outfile\main.d")
+I (..\app\global.h)(0x58CA9C21)
 I (..\kernel\remix_public.h)(0x58B980E6)
 I (..\app\remix_config.h)(0x58C94ACB)
 I (..\app\stm32f10x.h)(0x583FC7B5)
@@ -570,7 +570,7 @@ I (..\kernel\remix_debug_public.h)(0x58C9487B)
 I (..\kernel\remix_list_public.h)(0x58B3D15E)
 I (..\kernel\remix_queue_public.h)(0x58B971AE)
 I (..\kernel\remix_sem_public.h)(0x58B93D5F)
-I (..\kernel\remix_task_public.h)(0x58B8CA22)
+I (..\kernel\remix_task_public.h)(0x58CA947E)
 F (..\lib\CMSIS\CM3\CoreSupport\core_cm3.c)(0x4C0C587E)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\lib\CMSIS\CM3\CoreSupport -I..\lib\STM32F10x_StdPeriph_Driver\inc -I..\kernel -I..\app -I..\lib\STM32F10x_StdPeriph_Driver\src -I "C:\Program Files (x86)\KeilMDK\ARM\RV31\INC" -I "C:\Program Files (x86)\KeilMDK\ARM\CMSIS\Include" -I "C:\Program Files (x86)\KeilMDK\ARM\Inc\ST\STM32F10x" -o "..\outfile\core_cm3.o" --omf_browse "..\outfile\core_cm3.crf" --depend "..\outfile\core_cm3.d")
 I (C:\Program Files (x86)\KeilMDK\ARM\ARMCC\bin\..\include\stdint.h)(0x50F96150)
 F (..\lib\STM32F10x_StdPeriph_Driver\src\misc.c)(0x4D783BB4)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\lib\CMSIS\CM3\CoreSupport -I..\lib\STM32F10x_StdPeriph_Driver\inc -I..\kernel -I..\app -I..\lib\STM32F10x_StdPeriph_Driver\src -I "C:\Program Files (x86)\KeilMDK\ARM\RV31\INC" -I "C:\Program Files (x86)\KeilMDK\ARM\CMSIS\Include" -I "C:\Program Files (x86)\KeilMDK\ARM\Inc\ST\STM32F10x" -o "..\outfile\misc.o" --omf_browse "..\outfile\misc.crf" --depend "..\outfile\misc.d")

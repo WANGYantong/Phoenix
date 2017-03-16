@@ -15,6 +15,10 @@ typedef void    (*VFHDLT)(REMIX_TCB*);
 #define TASKPEND                        0x08
 #define TASKSUSPEND                     0x10
 
+#ifdef REMIX_TASKROUNDROBIN
+#define TASKTIMESLICEALLPRIO            0xFFFFFFFF
+#endif
+
 #ifndef RTN_SUCD
     #define RTN_SUCD                    0
 #endif
@@ -37,7 +41,7 @@ extern U32 REMIX_TaskWake(REMIX_TCB * pstrTcb);
 extern REMIX_DLIST* REMIX_GetTaskLinkRoot(void);
 
 #ifdef REMIX_TASKROUNDROBIN
-extern void REMIX_TaskTimeSlice(U32 uiTimeSlice);
+extern void REMIX_TaskTimeSlice(U32 uiTimeSlice, U32 TaskTimeSliceOpt);
 #endif
 
 #ifdef REMIX_INCLUDETASKHOOK

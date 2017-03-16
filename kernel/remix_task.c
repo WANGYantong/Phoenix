@@ -4,7 +4,7 @@
 REMIX_DLIST gstrTaskList;	//for all tasks in remix
 
 #ifdef REMIX_TASKROUNDROBIN
-U32 guiTimeSlice;
+U32 guiTimeSlice[PRIORITYNUM];
 U32 gauiSliceCnt[PRIORITYNUM];
 #endif
 
@@ -445,14 +445,30 @@ void REMIX_TaskPrioResume(REMIX_TCB * pstrTcb)
 //*************************************************************************//
 #ifdef REMIX_TASKROUNDROBIN
 
-//有改进空间，可以考虑不同优先级设置不同的轮转周期，设置一个guiTimeSlice[PRIORITYNUM]
-void REMIX_TaskTimeSlice(U32 uiTimeSlice)
+void REMIX_TaskTimeSlice(U32 uiTimeSlice, U32 TaskTimeSliceOpt)
 {
 	U32 i;
 
 	(void) REMIX_IntLock();
 
-	guiTimeSlice = uiTimeSlice;
+    if(((TaskTimeSliceOpt < USERHIGHESTPRIORITY)
+        ||(TaskTimeSliceOpt > USERLOWESTPRIORITY))
+        && (TASKTIMESLICEALLPRIO != TaskTimeSliceOpt)){
+
+        (void) REMIX_IntUnlock();
+
+        return;
+
+    }
+
+    if(TASKTIMESLICEALLPRIO == TaskTimeSliceOpt){
+        for(i=0;i<PRIORITYNUM;i++){
+            guiTimeSlice[i]=uiTimeSlice;
+        }
+    }
+    else{
+        guiTimeSlice[TaskTimeSliceOpt]=uiTimeSlice;
+    }
 
 	for (i = 0; i < PRIORITYNUM; i++) {
 		gauiSliceCnt[i] = 0;

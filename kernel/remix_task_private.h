@@ -11,7 +11,7 @@
 extern REMIX_DLIST gstrTaskList;
 
 #ifdef REMIX_TASKROUNDROBIN
-extern U32 guiTimeSlice;
+extern U32 guiTimeSlice[PRIORITYNUM];
 extern U32 gauiSliceCnt[PRIORITYNUM];
 #endif
 

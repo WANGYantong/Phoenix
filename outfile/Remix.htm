@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\outfile\Remix.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\outfile\Remix.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 24]: Last Updated: Wed Mar 15 22:47:34 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 24]: Last Updated: Thu Mar 16 11:23:55 2017
 <BR><P>
 <H3>Maximum Stack Usage =        320 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -64,7 +64,7 @@ Function Pointers
  <LI><a href="#[14]">PVD_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
  <LI><a href="#[18]">RCC_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
  <LI><a href="#[94]">REMIX_BeforeRootTask</a> from remix_core.o(.text) referenced from remix_core.o(.text)
- <LI><a href="#[a0]">REMIX_IdleTask</a> from remix_core.o(.text) referenced from remix_core.o(.text)
+ <LI><a href="#[9f]">REMIX_IdleTask</a> from remix_core.o(.text) referenced from remix_core.o(.text)
  <LI><a href="#[11]">REMIX_PendSvContextSwitch</a> from remix_core_a.o(REMIX_CORE) referenced from startup_stm32f10x_hd.o(RESET)
  <LI><a href="#[5c]">REMIX_TaskSched</a> from remix_core.o(.text) referenced from remix_core_a.o(REMIX_CORE)
  <LI><a href="#[4f]">REMIX_TaskSelfDelete</a> from remix_task.o(.text) referenced from remix_cpu.o(.text)
@@ -415,68 +415,68 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_exit
 </UL>
 
-<P><STRONG><a name="[a0]"></a>REMIX_IdleTask</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, remix_core.o(.text))
+<P><STRONG><a name="[9f]"></a>REMIX_IdleTask</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, remix_core.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> remix_core.o(.text)
 </UL>
 <P><STRONG><a name="[158]"></a>_maybe_terminate_alloc</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, maybetermalloc1.o(.emb_text), UNUSED)
 
-<P><STRONG><a name="[96]"></a>REMIX_SetUser</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, remix_core.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIXOS_Init
+<P><STRONG><a name="[95]"></a>REMIX_SetUser</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, remix_core.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIXOS_Init
 <LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_BeforeRootTask
 </UL>
 
-<P><STRONG><a name="[94]"></a>REMIX_BeforeRootTask</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, remix_core.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = REMIX_BeforeRootTask &rArr; REMIX_SystemHardwareInit &rArr; REMIX_TickTimerInit &rArr; NVIC_SetPriority
+<P><STRONG><a name="[94]"></a>REMIX_BeforeRootTask</STRONG> (Thumb, 18 bytes, Stack size 4 bytes, remix_core.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = REMIX_BeforeRootTask
 </UL>
-<BR>[Calls]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_SystemHardwareInit
-<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_SetUser
+<BR>[Calls]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_SetUser
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> remix_core.o(.text)
 </UL>
-<P><STRONG><a name="[97]"></a>REMIX_TaskDelayTableInit</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, remix_core.o(.text))
+<P><STRONG><a name="[96]"></a>REMIX_TaskDelayTableInit</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, remix_core.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = REMIX_TaskDelayTableInit
 </UL>
-<BR>[Calls]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_DlistInit
+<BR>[Calls]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_DlistInit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIXOS_Init
+<BR>[Called By]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIXOS_Init
 </UL>
 
-<P><STRONG><a name="[99]"></a>REMIX_TaskSchedTableInit</STRONG> (Thumb, 30 bytes, Stack size 16 bytes, remix_core.o(.text))
+<P><STRONG><a name="[98]"></a>REMIX_TaskSchedTableInit</STRONG> (Thumb, 30 bytes, Stack size 16 bytes, remix_core.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = REMIX_TaskSchedTableInit
 </UL>
-<BR>[Calls]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_DlistInit
+<BR>[Calls]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_DlistInit
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskSemTableInit
-<LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskReadyTableInit
+<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskReadyTableInit
 </UL>
 
-<P><STRONG><a name="[9a]"></a>REMIX_TaskReadyTableInit</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, remix_core.o(.text))
+<P><STRONG><a name="[99]"></a>REMIX_TaskReadyTableInit</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, remix_core.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = REMIX_TaskReadyTableInit &rArr; REMIX_TaskSchedTableInit
 </UL>
-<BR>[Calls]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskSchedTableInit
+<BR>[Calls]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskSchedTableInit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIXOS_Init
+<BR>[Called By]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIXOS_Init
 </UL>
 
-<P><STRONG><a name="[9b]"></a>REMIX_TaskListInit</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, remix_core.o(.text))
+<P><STRONG><a name="[9a]"></a>REMIX_TaskListInit</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, remix_core.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = REMIX_TaskListInit
 </UL>
-<BR>[Calls]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_DlistInit
+<BR>[Calls]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_DlistInit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIXOS_Init
+<BR>[Called By]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIXOS_Init
 </UL>
 
-<P><STRONG><a name="[9c]"></a>REMIXOS_Init</STRONG> (Thumb, 134 bytes, Stack size 16 bytes, remix_core.o(.text))
+<P><STRONG><a name="[9b]"></a>REMIXOS_Init</STRONG> (Thumb, 138 bytes, Stack size 16 bytes, remix_core.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 176 + Unknown Stack Size
 <LI>Call Chain = REMIXOS_Init &rArr; REMIX_TaskCreate &rArr; REMIX_TaskTcbInit &rArr; REMIX_TaskAddToReadyTable &rArr; REMIX_TaskAddToSchedTable
 </UL>
-<BR>[Calls]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskTimeSlice
-<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskHookInit
-<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskCreate
-<LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskListInit
-<LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskReadyTableInit
-<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskDelayTableInit
-<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_SetUser
+<BR>[Calls]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskTimeSlice
+<LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskHookInit
+<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskCreate
+<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_SystemHardwareInit
+<LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskListInit
+<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskReadyTableInit
+<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskDelayTableInit
+<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_SetUser
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -646,7 +646,7 @@ Global Symbols
 <P><STRONG><a name="[ba]"></a>REMIX_TaskSemTableInit</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, remix_core.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = REMIX_TaskSemTableInit &rArr; REMIX_TaskSchedTableInit
 </UL>
-<BR>[Calls]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskSchedTableInit
+<BR>[Calls]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskSchedTableInit
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_SemCreate
 </UL>
@@ -693,7 +693,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[d9]"></a>REMIX_GetUser</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, remix_core.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskCreate
+<BR><BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskCreate
 </UL>
 
 <P><STRONG><a name="[15a]"></a>REMIX_GetREMIXVersion</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, remix_core.o(.text), UNUSED)
@@ -711,7 +711,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetPriority
 </UL>
-<BR>[Called By]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_SystemHardwareInit
+<BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_SystemHardwareInit
 </UL>
 
 <P><STRONG><a name="[c1]"></a>REMIX_TickTimerInit</STRONG> (Thumb, 68 bytes, Stack size 8 bytes, remix_cpu.o(.text))
@@ -719,16 +719,16 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetPriority
 </UL>
-<BR>[Called By]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_SystemHardwareInit
+<BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_SystemHardwareInit
 </UL>
 
-<P><STRONG><a name="[95]"></a>REMIX_SystemHardwareInit</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, remix_cpu.o(.text))
+<P><STRONG><a name="[a0]"></a>REMIX_SystemHardwareInit</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, remix_cpu.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = REMIX_SystemHardwareInit &rArr; REMIX_TickTimerInit &rArr; NVIC_SetPriority
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TickTimerInit
 <LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_PendSvIsrInit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_BeforeRootTask
+<BR>[Called By]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIXOS_Init
 </UL>
 
 <P><STRONG><a name="[15b]"></a>REMIX_SetChipWorkMode</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, remix_cpu.o(.text), UNUSED)
@@ -765,7 +765,7 @@ Global Symbols
 <LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskDelete
 <LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_SemTake
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_SemGive
-<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskCreate
+<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskCreate
 </UL>
 
 <P><STRONG><a name="[c6]"></a>REMIX_IntLock</STRONG> (Thumb, 60 bytes, Stack size 8 bytes, remix_cpu.o(.text))
@@ -789,7 +789,7 @@ Global Symbols
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_QueueGetNode
 <LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_QueuePutNode
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_QueueCreate
-<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskTimeSlice
+<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskTimeSlice
 </UL>
 
 <P><STRONG><a name="[c7]"></a>REMIX_IntUnlock</STRONG> (Thumb, 62 bytes, Stack size 8 bytes, remix_cpu.o(.text))
@@ -813,7 +813,7 @@ Global Symbols
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_QueueGetNode
 <LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_QueuePutNode
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_QueueCreate
-<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskTimeSlice
+<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskTimeSlice
 </UL>
 
 <P><STRONG><a name="[be]"></a>REMIX_TaskStackCheckInit</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, remix_debug.o(.text))
@@ -841,12 +841,12 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TEST_PrintCpuUtilize
 </UL>
 
-<P><STRONG><a name="[98]"></a>REMIX_DlistInit</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, remix_list.o(.text))
+<P><STRONG><a name="[97]"></a>REMIX_DlistInit</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, remix_list.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DEV_BufferInit
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_QueueCreate
-<LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskListInit
-<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskSchedTableInit
-<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskDelayTableInit
+<LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskListInit
+<LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskSchedTableInit
+<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskDelayTableInit
 </UL>
 
 <P><STRONG><a name="[aa]"></a>REMIX_DlistNodeAdd</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, remix_list.o(.text))
@@ -909,7 +909,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_SemCreate
 <LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_IntUnlock
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_IntLock
-<LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_DlistInit
+<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_DlistInit
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free
 <LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
 </UL>
@@ -1034,10 +1034,10 @@ Global Symbols
 <LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskAddToReadyTable
 <LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
 </UL>
-<BR>[Called By]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskCreate
+<BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskCreate
 </UL>
 
-<P><STRONG><a name="[9f]"></a>REMIX_TaskCreate</STRONG> (Thumb, 134 bytes, Stack size 48 bytes, remix_task.o(.text))
+<P><STRONG><a name="[9e]"></a>REMIX_TaskCreate</STRONG> (Thumb, 134 bytes, Stack size 48 bytes, remix_task.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 160 + Unknown Stack Size
 <LI>Call Chain = REMIX_TaskCreate &rArr; REMIX_TaskTcbInit &rArr; REMIX_TaskAddToReadyTable &rArr; REMIX_TaskAddToSchedTable
 </UL>
@@ -1046,7 +1046,7 @@ Global Symbols
 <LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_GetUser
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIXOS_Init
+<LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIXOS_Init
 </UL>
 
 <P><STRONG><a name="[da]"></a>REMIX_TaskDelete</STRONG> (Thumb, 176 bytes, Stack size 32 bytes, remix_task.o(.text))
@@ -1128,18 +1128,19 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_SemGive
 </UL>
 
-<P><STRONG><a name="[9e]"></a>REMIX_TaskTimeSlice</STRONG> (Thumb, 36 bytes, Stack size 16 bytes, remix_task.o(.text))
+<P><STRONG><a name="[9d]"></a>REMIX_TaskTimeSlice</STRONG> (Thumb, 36 bytes, Stack size 16 bytes, remix_task.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32 + Unknown Stack Size
 <LI>Call Chain = REMIX_TaskTimeSlice &rArr; REMIX_IntUnlock &rArr; REMIX_RunInInt
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_IntUnlock
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_IntLock
 </UL>
-<BR>[Called By]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIXOS_Init
+<BR>[Called By]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DEV_SoftwareInit
+<LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIXOS_Init
 </UL>
 
-<P><STRONG><a name="[9d]"></a>REMIX_TaskHookInit</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, remix_task.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIXOS_Init
+<P><STRONG><a name="[9c]"></a>REMIX_TaskHookInit</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, remix_task.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIXOS_Init
 </UL>
 
 <P><STRONG><a name="[df]"></a>REMIX_TaskCreateHookAdd</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, remix_task.o(.text))
@@ -1164,12 +1165,12 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = DEV_BufferInit
 </UL>
 <BR>[Calls]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_DlistNodeAdd
-<LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_DlistInit
+<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_DlistInit
 </UL>
 <BR>[Called By]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DEV_SoftwareInit
 </UL>
 
-<P><STRONG><a name="[de]"></a>DEV_SoftwareInit</STRONG> (Thumb, 56 bytes, Stack size 8 bytes, device.o(.text))
+<P><STRONG><a name="[de]"></a>DEV_SoftwareInit</STRONG> (Thumb, 62 bytes, Stack size 8 bytes, device.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96 + Unknown Stack Size
 <LI>Call Chain = DEV_SoftwareInit &rArr; REMIX_QueueCreate &rArr; REMIX_SemCreate &rArr; malloc &rArr; __Heap_Full &rArr; __Heap_ProvideMemory &rArr; free
 </UL>
@@ -1179,6 +1180,7 @@ Global Symbols
 <LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskCreateHookAdd
 <LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_SemCreate
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_QueueCreate
+<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskTimeSlice
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1418,17 +1420,17 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> device.o(.text)
 </UL>
-<P><STRONG><a name="[8e]"></a>main</STRONG> (Thumb, 140 bytes, Stack size 24 bytes, main.o(.text))
+<P><STRONG><a name="[8e]"></a>main</STRONG> (Thumb, 142 bytes, Stack size 24 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 200 + Unknown Stack Size
 <LI>Call Chain = main &rArr; REMIXOS_Init &rArr; REMIX_TaskCreate &rArr; REMIX_TaskTcbInit &rArr; REMIX_TaskAddToReadyTable &rArr; REMIX_TaskAddToSchedTable
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DEV_PutStrToMem
 <LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DEV_HardwareInit
 <LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DEV_SoftwareInit
-<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskCreate
+<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_TaskCreate
 <LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIX_GetSystemTick
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIXOS_Start
-<LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIXOS_Init
+<LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;REMIXOS_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>

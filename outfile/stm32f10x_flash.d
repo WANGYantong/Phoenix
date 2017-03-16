@@ -2,7 +2,7 @@
 ..\outfile\stm32f10x_flash.o: ..\lib\STM32F10x_StdPeriph_Driver\inc\stm32f10x_flash.h
 ..\outfile\stm32f10x_flash.o: ..\app\stm32f10x.h
 ..\outfile\stm32f10x_flash.o: ..\lib\CMSIS\CM3\CoreSupport\core_cm3.h
-..\outfile\stm32f10x_flash.o: C:\Program Files (x86)\KeilMDK\ARM\ARMCC\bin\..\include\stdint.h
+..\outfile\stm32f10x_flash.o: C:\Program Files\KeilMDK\ARM\ARMCC\bin\..\include\stdint.h
 ..\outfile\stm32f10x_flash.o: ..\app\system_stm32f10x.h
 ..\outfile\stm32f10x_flash.o: ..\app\stm32f10x_conf.h
 ..\outfile\stm32f10x_flash.o: ..\lib\STM32F10x_StdPeriph_Driver\inc\stm32f10x_adc.h

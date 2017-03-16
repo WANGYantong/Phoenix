@@ -106,10 +106,10 @@ ARM Macro Assembler    Page 2
               00000000 
               00000000 
 Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=..\outfi
-le\remix_core_a.d -o..\outfile\remix_core_a.o -I..\kernel -I"C:\Program Files (
-x86)\KeilMDK\ARM\RV31\INC" -I"C:\Program Files (x86)\KeilMDK\ARM\CMSIS\Include"
- -I"C:\Program Files (x86)\KeilMDK\ARM\Inc\ST\STM32F10x" --list=..\outfile\remi
-x_core_a.lst ..\kernel\remix_core_a.asm
+le\remix_core_a.d -o..\outfile\remix_core_a.o -I..\kernel -I"C:\Program Files\K
+eilMDK\ARM\RV31\INC" -I"C:\Program Files\KeilMDK\ARM\CMSIS\Include" -I"C:\Progr
+am Files\KeilMDK\ARM\Inc\ST\STM32F10x" --list=..\outfile\remix_core_a.lst ..\ke
+rnel\remix_core_a.asm
 
 
 

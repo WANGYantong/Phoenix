@@ -72,6 +72,8 @@ void REMIXOS_Init(void)
 	gpstrIdleTaskTcb =
 	    REMIX_TaskCreate(ROOTIDLENAME, REMIX_IdleTask, NULL, NULL, IDLETASKSTACK, LOWESTPRIORITY, NULL);
 
+    REMIX_SystemHardwareInit();
+
 }
 
 void REMIXOS_Start(void)
@@ -85,12 +87,9 @@ void REMIXOS_Start(void)
 
 void REMIX_BeforeRootTask(void *pvPara)
 {
-	REMIX_SystemHardwareInit();
-
 	guiSystemStatus = SYSTEMSCHEDULE;
 
 	REMIX_SetUser(USERGUEST);
-
 }
 
 

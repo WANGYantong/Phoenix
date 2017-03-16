@@ -24,6 +24,10 @@ void DEV_SoftwareInit(void)
 
 #endif
 
+#ifdef REMIX_TASKROUNDROBIN
+    REMIX_TaskTimeSlice(100);
+#endif
+
 }
 
 /**********************************************/

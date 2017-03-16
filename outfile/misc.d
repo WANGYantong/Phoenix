@@ -2,7 +2,7 @@
 ..\outfile\misc.o: ..\lib\STM32F10x_StdPeriph_Driver\inc\misc.h
 ..\outfile\misc.o: ..\app\stm32f10x.h
 ..\outfile\misc.o: ..\lib\CMSIS\CM3\CoreSupport\core_cm3.h
-..\outfile\misc.o: C:\Program Files\KeilMDK\ARM\ARMCC\bin\..\include\stdint.h
+..\outfile\misc.o: C:\Program Files (x86)\KeilMDK\ARM\ARMCC\bin\..\include\stdint.h
 ..\outfile\misc.o: ..\app\system_stm32f10x.h
 ..\outfile\misc.o: ..\app\stm32f10x_conf.h
 ..\outfile\misc.o: ..\lib\STM32F10x_StdPeriph_Driver\inc\stm32f10x_adc.h

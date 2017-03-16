@@ -2,7 +2,7 @@
 ..\outfile\stm32f10x_gpio.o: ..\lib\STM32F10x_StdPeriph_Driver\inc\stm32f10x_gpio.h
 ..\outfile\stm32f10x_gpio.o: ..\app\stm32f10x.h
 ..\outfile\stm32f10x_gpio.o: ..\lib\CMSIS\CM3\CoreSupport\core_cm3.h
-..\outfile\stm32f10x_gpio.o: C:\Program Files\KeilMDK\ARM\ARMCC\bin\..\include\stdint.h
+..\outfile\stm32f10x_gpio.o: C:\Program Files (x86)\KeilMDK\ARM\ARMCC\bin\..\include\stdint.h
 ..\outfile\stm32f10x_gpio.o: ..\app\system_stm32f10x.h
 ..\outfile\stm32f10x_gpio.o: ..\app\stm32f10x_conf.h
 ..\outfile\stm32f10x_gpio.o: ..\lib\STM32F10x_StdPeriph_Driver\inc\stm32f10x_adc.h

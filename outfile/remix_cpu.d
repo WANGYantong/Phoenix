@@ -4,7 +4,7 @@
 ..\outfile\remix_cpu.o: ..\app\remix_config.h
 ..\outfile\remix_cpu.o: ..\app\stm32f10x.h
 ..\outfile\remix_cpu.o: ..\lib\CMSIS\CM3\CoreSupport\core_cm3.h
-..\outfile\remix_cpu.o: C:\Program Files\KeilMDK\ARM\ARMCC\bin\..\include\stdint.h
+..\outfile\remix_cpu.o: C:\Program Files (x86)\KeilMDK\ARM\ARMCC\bin\..\include\stdint.h
 ..\outfile\remix_cpu.o: ..\app\system_stm32f10x.h
 ..\outfile\remix_cpu.o: ..\app\stm32f10x_conf.h
 ..\outfile\remix_cpu.o: ..\lib\STM32F10x_StdPeriph_Driver\inc\stm32f10x_adc.h

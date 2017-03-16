@@ -25,7 +25,7 @@ void DEV_SoftwareInit(void)
 #endif
 
 #ifdef REMIX_TASKROUNDROBIN
-    REMIX_TaskTimeSlice(100);
+    REMIX_TaskTimeSlice(1);
 #endif
 
 }

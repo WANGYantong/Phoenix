@@ -1,7 +1,7 @@
 ..\outfile\system_stm32f10x.o: ..\app\system_stm32f10x.c
 ..\outfile\system_stm32f10x.o: ..\app\stm32f10x.h
 ..\outfile\system_stm32f10x.o: ..\lib\CMSIS\CM3\CoreSupport\core_cm3.h
-..\outfile\system_stm32f10x.o: C:\Program Files\KeilMDK\ARM\ARMCC\bin\..\include\stdint.h
+..\outfile\system_stm32f10x.o: C:\Program Files (x86)\KeilMDK\ARM\ARMCC\bin\..\include\stdint.h
 ..\outfile\system_stm32f10x.o: ..\app\system_stm32f10x.h
 ..\outfile\system_stm32f10x.o: ..\app\stm32f10x_conf.h
 ..\outfile\system_stm32f10x.o: ..\lib\STM32F10x_StdPeriph_Driver\inc\stm32f10x_adc.h

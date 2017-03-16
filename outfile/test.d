@@ -5,7 +5,7 @@
 ..\outfile\test.o: ..\app\remix_config.h
 ..\outfile\test.o: ..\app\stm32f10x.h
 ..\outfile\test.o: ..\lib\CMSIS\CM3\CoreSupport\core_cm3.h
-..\outfile\test.o: C:\Program Files\KeilMDK\ARM\ARMCC\bin\..\include\stdint.h
+..\outfile\test.o: C:\Program Files (x86)\KeilMDK\ARM\ARMCC\bin\..\include\stdint.h
 ..\outfile\test.o: ..\app\system_stm32f10x.h
 ..\outfile\test.o: ..\app\stm32f10x_conf.h
 ..\outfile\test.o: ..\lib\STM32F10x_StdPeriph_Driver\inc\stm32f10x_adc.h
@@ -40,4 +40,4 @@
 ..\outfile\test.o: ..\kernel\remix_queue_public.h
 ..\outfile\test.o: ..\kernel\remix_sem_public.h
 ..\outfile\test.o: ..\kernel\remix_task_public.h
-..\outfile\test.o: C:\Program Files\KeilMDK\ARM\ARMCC\bin\..\include\stdlib.h
+..\outfile\test.o: C:\Program Files (x86)\KeilMDK\ARM\ARMCC\bin\..\include\stdlib.h

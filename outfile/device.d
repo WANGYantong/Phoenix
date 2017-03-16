@@ -5,7 +5,7 @@
 ..\outfile\device.o: ..\app\remix_config.h
 ..\outfile\device.o: ..\app\stm32f10x.h
 ..\outfile\device.o: ..\lib\CMSIS\CM3\CoreSupport\core_cm3.h
-..\outfile\device.o: C:\Program Files\KeilMDK\ARM\ARMCC\bin\..\include\stdint.h
+..\outfile\device.o: C:\Program Files (x86)\KeilMDK\ARM\ARMCC\bin\..\include\stdint.h
 ..\outfile\device.o: ..\app\system_stm32f10x.h
 ..\outfile\device.o: ..\app\stm32f10x_conf.h
 ..\outfile\device.o: ..\lib\STM32F10x_StdPeriph_Driver\inc\stm32f10x_adc.h
@@ -40,6 +40,6 @@
 ..\outfile\device.o: ..\kernel\remix_queue_public.h
 ..\outfile\device.o: ..\kernel\remix_sem_public.h
 ..\outfile\device.o: ..\kernel\remix_task_public.h
-..\outfile\device.o: C:\Program Files\KeilMDK\ARM\ARMCC\bin\..\include\stdio.h
-..\outfile\device.o: C:\Program Files\KeilMDK\ARM\ARMCC\bin\..\include\stdarg.h
-..\outfile\device.o: C:\Program Files\KeilMDK\ARM\ARMCC\bin\..\include\string.h
+..\outfile\device.o: C:\Program Files (x86)\KeilMDK\ARM\ARMCC\bin\..\include\stdio.h
+..\outfile\device.o: C:\Program Files (x86)\KeilMDK\ARM\ARMCC\bin\..\include\stdarg.h
+..\outfile\device.o: C:\Program Files (x86)\KeilMDK\ARM\ARMCC\bin\..\include\string.h

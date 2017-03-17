@@ -41,6 +41,7 @@ extern void DEV_DelayMs(U32 uiMs);
 extern void TEST_TestTask1(void *pvPara);
 extern void TEST_TestTask2(void *pvPara);
 extern void TEST_TestTask3(void *pvPara);
+//extern void TEST_TestTask4(void *pvPara);
 extern void TEST_SerialPrintTask(void *pvPara);
 extern void TEST_TaskCreatePrint(REMIX_TCB * pstrTcb);
 extern void TEST_TaskSwitchPrint(REMIX_TCB * pstrOldTcb, REMIX_TCB * pstrNewTcb);

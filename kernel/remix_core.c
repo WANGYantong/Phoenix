@@ -56,7 +56,7 @@ void REMIXOS_Init(void)
 #endif
 
 #ifdef REMIX_TASKROUNDROBIN
-	REMIX_TaskTimeSlice(0);
+	REMIX_TaskTimeSlice(0, TASKTIMESLICEALLPRIO);
 #endif
 
 #ifdef REMIX_CPUSTATISTIC
@@ -72,6 +72,8 @@ void REMIXOS_Init(void)
 	gpstrIdleTaskTcb =
 	    REMIX_TaskCreate(ROOTIDLENAME, REMIX_IdleTask, NULL, NULL, IDLETASKSTACK, LOWESTPRIORITY, NULL);
 
+    REMIX_SystemHardwareInit();
+
 }
 
 void REMIXOS_Start(void)
@@ -85,12 +87,9 @@ void REMIXOS_Start(void)
 
 void REMIX_BeforeRootTask(void *pvPara)
 {
-	REMIX_SystemHardwareInit();
-
 	guiSystemStatus = SYSTEMSCHEDULE;
 
 	REMIX_SetUser(USERGUEST);
-
 }
 
 
@@ -104,9 +103,11 @@ void REMIX_TaskTick(void)
 #endif
 
 #ifdef REMIX_TASKROUNDROBIN
-	if ((0 != guiTimeSlice) && (NULL != gpstrCurTcb)) {
-		gauiSliceCnt[gpstrCurTcb->ucTaskPrio]++;
-	}
+    if(NULL!=gpstrCurTcb){
+        if(0 != guiTimeSlice[gpstrCurTcb->ucTaskPrio]){
+            gauiSliceCnt[gpstrCurTcb->ucTaskPrio]++;
+        }
+    }
 #endif
 
 	REMIX_IntPendSvSet();
@@ -199,9 +200,9 @@ REMIX_TCB *REMIX_TaskReadyTableSched(void)
 
 #ifdef REMIX_TASKROUNDROBIN
 
-	if (0 != guiTimeSlice) {
+	if (0 != guiTimeSlice[gpstrCurTcb->ucTaskPrio]) {
 		if (gpstrCurTcb == pstrTcb) {
-			if (gauiSliceCnt[gpstrCurTcb->ucTaskPrio] >= guiTimeSlice) {
+			if (gauiSliceCnt[gpstrCurTcb->ucTaskPrio] >= guiTimeSlice[gpstrCurTcb->ucTaskPrio]) {
 				gauiSliceCnt[gpstrCurTcb->ucTaskPrio] = 0;
 				pstrNextNode = REMIX_DlistNextNodeEmpInq(pstrList, pstrNode);
 

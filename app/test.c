@@ -6,6 +6,75 @@ REMIX_TCB *gpstrSerialTaskTcb;	/* 串口打印任务TCB指针 */
 REMIX_SEM *gpstrSemMut;
 U32 number;
 
+// void TEST_TestTask1(void *pvPara)
+// {
+//     U32 uiDelayTime;
+//     uiDelayTime=350;
+
+//     while(1){
+//         DEV_PutStrToMem((U8*)"\r\nTask1 is running! Tick is: %d",
+//                         REMIX_GetSystemTick());
+//         TEST_TaskRun(2000);
+//         (void)REMIX_TaskDelay(uiDelayTime);
+
+//         if((350==uiDelayTime)&&(REMIX_GetSystemTick()>2000)){
+//             uiDelayTime=300;
+//         }
+
+// 		if(REMIX_GetSystemTick()>12000){
+//             break;
+//         }
+//     }
+// }
+
+// void TEST_TestTask2(void *pvPara)
+// {
+//     while(1){
+//         DEV_PutStrToMem((U8*)"\r\nTask2 is running! Tick is: %d",
+//                         REMIX_GetSystemTick());
+//         TEST_TaskRun(2000);
+//         (void)REMIX_TaskDelay(350);
+
+//         if(REMIX_GetSystemTick()>16000){
+//             break;
+//         }
+//     }
+// }
+
+// void TEST_TestTask3(void *pvPara)
+// {
+//     U32 uiDelayTime;
+//     uiDelayTime=350;
+
+//     while(1){
+//         DEV_PutStrToMem((U8*)"\r\nTask3 is running! Tick is: %d",
+//                         REMIX_GetSystemTick());
+//         TEST_TaskRun(1500);
+//         (void)REMIX_TaskDelay(uiDelayTime);
+
+//         if((350==uiDelayTime)&&(REMIX_GetSystemTick()>2000)){
+//             uiDelayTime=200;
+//         }
+
+//         if(REMIX_GetSystemTick()>14000){
+//             break;
+//         }
+//     }
+// }
+
+// void TEST_TestTask4(void *pvPara)
+// {
+//     while(1){
+//         DEV_PutStrToMem((U8*)"\r\nTask4 is running! Tick is: %d",
+//                         REMIX_GetSystemTick());
+//         TEST_TaskRun(1500);
+//         (void)REMIX_TaskDelay(200);
+
+//         if(REMIX_GetSystemTick()>18000){
+//             break;
+//         }
+//     }
+// }
 
 /**********************************************/
 //函数功能:测试任务1

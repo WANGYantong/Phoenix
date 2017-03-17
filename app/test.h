@@ -9,6 +9,6 @@
 
 extern void TEST_TaskRun(U32 uiMs);
 extern void TEST_PrintCpuUtilize(void);
-//extern U32 TEST_Fibonacci(U32 num);
+extern U32 TEST_Fibonacci(U32 num);
 
 #endif

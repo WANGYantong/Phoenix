@@ -28,7 +28,7 @@ typedef struct bufpool		//消息缓冲池结构
 extern BUFPOOL gstrBufPool;
 extern REMIX_QUEUE *gpstrSerialMsgQue;
 extern REMIX_TCB *gpstrSerialTaskTcb;
-//extern REMIX_SEM *gpstrSemMut;
+extern REMIX_SEM *gpstrSemMut;
 
 /************************************************************************/
 extern void DEV_SoftwareInit(void);
@@ -41,7 +41,7 @@ extern void DEV_DelayMs(U32 uiMs);
 extern void TEST_TestTask1(void *pvPara);
 extern void TEST_TestTask2(void *pvPara);
 extern void TEST_TestTask3(void *pvPara);
-extern void TEST_TestTask4(void *pvPara);
+//extern void TEST_TestTask4(void *pvPara);
 extern void TEST_SerialPrintTask(void *pvPara);
 extern void TEST_TaskCreatePrint(REMIX_TCB * pstrTcb);
 extern void TEST_TaskSwitchPrint(REMIX_TCB * pstrOldTcb, REMIX_TCB * pstrNewTcb);

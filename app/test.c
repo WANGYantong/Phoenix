@@ -316,7 +316,9 @@ void TEST_TaskCreatePrint(REMIX_TCB * pstrTcb)
 void TEST_TaskSwitchPrint(REMIX_TCB * pstrOldTcb, REMIX_TCB * pstrNewTcb)
 {
 	//打印CPU占用率
+#ifdef REMIX_CPUSTATISTIC
 	TEST_PrintCpuUtilize();
+#endif
 	//不打印串口打印任务的切换过程,将此任务定义为空闲任务
 	if (pstrOldTcb == gpstrSerialTaskTcb) {
 		pstrOldTcb = REMIX_GetIdleTcb();
@@ -357,6 +359,7 @@ void TEST_TaskDeletePrint(REMIX_TCB * pstrTcb)
 //输入参数:none
 //返回值  :none
 /**********************************************/
+#ifdef REMIX_CPUSTATISTIC
 void TEST_PrintCpuUtilize(void)
 {
 	static U32 suiLastTime = 0;
@@ -381,3 +384,4 @@ void TEST_PrintCpuUtilize(void)
 		suiLastTime = uiTime;
 	}
 }
+#endif

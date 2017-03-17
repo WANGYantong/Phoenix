@@ -6,6 +6,10 @@
     AREA    REMIX_CORE, CODE, READONLY
     THUMB
 
+REMIX_CalcPrioTemp
+    RBIT   R0, R0
+    CLZ    R0, R0
+    BX     LR
 
 REMIX_PendSvContextSwitch
 

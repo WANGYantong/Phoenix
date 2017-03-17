@@ -3,6 +3,10 @@
 
 #include "stm32f10x.h"
 
+//是否支持指令
+#define RBIT_AND_CLZ
+
+//可选功能
 #define REMIX_INCLUDETASKHOOK
 #define REMIX_TASKPRIOINHER
 #define REMIX_TASKROUNDROBIN

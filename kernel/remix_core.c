@@ -17,24 +17,24 @@ REMIX_TCB *gpstrIdleTaskTcb;
 
 U32 guiUser;
 
-const U8 caucTaskPrioUnmapTab[256] = {
-	0, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-	4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-	5, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-	4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-	6, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-	4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-	5, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-	4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-	7, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-	4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-	5, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-	4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-	6, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-	4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-	5, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-	4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0
-};
+// const U8 caucTaskPrioUnmapTab[256] = {
+// 	0, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+// 	4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+// 	5, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+// 	4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+// 	6, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+// 	4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+// 	5, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+// 	4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+// 	7, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+// 	4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+// 	5, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+// 	4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+// 	6, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+// 	4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+// 	5, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+// 	4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0
+// };
 
 void REMIXOS_Init(void)
 {
@@ -536,7 +536,7 @@ void REMIX_TaskSetPrioFlag(REMIX_PRIOFLAG * pstrPrioFlag, PRIORITYBITS ucTaskPri
 	ucPrioFlagGrp1 = ucTaskPrio / 8;
 
 	ucPositionInGrp1 = ucTaskPrio % 8;
-	ucPositionInGrp2 = ucPositionInGrp1;
+	ucPositionInGrp2 = ucPrioFlagGrp1;
 
 	pstrPrioFlag->aucPrioFlagGrp1[ucPrioFlagGrp1] |= (U8) (1 << ucPositionInGrp1);
 	pstrPrioFlag->ucPrioFlagGrp2 |= (U8) (1 << ucPositionInGrp2);
@@ -607,7 +607,7 @@ void REMIX_TaskClrPrioFlag(REMIX_PRIOFLAG * pstrPrioFlag, PRIORITYBITS ucTaskPri
 	ucPrioFlagGrp1 = ucTaskPrio / 8;
 
 	ucPositionInGrp1 = ucTaskPrio % 8;
-	ucPositionInGrp2 = ucPositionInGrp1;
+	ucPositionInGrp2 = ucPrioFlagGrp1;
 
 	pstrPrioFlag->aucPrioFlagGrp1[ucPrioFlagGrp1] &= ~((U8) (1 << ucPositionInGrp1));
 	if (0 == pstrPrioFlag->aucPrioFlagGrp1[ucPrioFlagGrp1]) {
@@ -634,25 +634,46 @@ PRIORITYBITS REMIX_TaskGetHighestPrio(REMIX_PRIOFLAG * pstrPrioFlag)
 	U8 ucHighestFlagInGrp1;
 #endif
 
+// #if PRIORITYNUM >= PRIORITY1024
+// 	ucPrioFlagGrp3 = caucTaskPrioUnmapTab[pstrPrioFlag->ucPrioFlagGrp4];
+// 	ucPrioFlagGrp2 = caucTaskPrioUnmapTab[pstrPrioFlag->aucPrioFlagGrp3[ucPrioFlagGrp3]];
+// 	ucPrioFlagGrp1 = caucTaskPrioUnmapTab[pstrPrioFlag->aucPrioFlagGrp2[ucPrioFlagGrp3 * 8 + ucPrioFlagGrp2]];
+// 	ucHighestFlagInGrp1 =
+// 	    caucTaskPrioUnmapTab[pstrPrioFlag->aucPrioFlagGrp1
+// 				 [(ucPrioFlagGrp3 * 8 + ucPrioFlagGrp2) * 8 + ucPrioFlagGrp1]];
+// 	return (PRIORITYBITS) (((ucPrioFlagGrp3 * 8 + ucPrioFlagGrp2) * 8 + ucPrioFlagGrp1) * 8 + ucHighestFlagInGrp1);
+// #elif PRIORITYNUM >= PRIORITY128
+// 	ucPrioFlagGrp2 = caucTaskPrioUnmapTab[pstrPrioFlag->ucPrioFlagGrp3];
+// 	ucPrioFlagGrp1 = caucTaskPrioUnmapTab[pstrPrioFlag->aucPrioFlagGrp2[ucPrioFlagGrp2]];
+// 	ucHighestFlagInGrp1 = caucTaskPrioUnmapTab[pstrPrioFlag->aucPrioFlagGrp1[ucPrioFlagGrp2 * 8 + ucPrioFlagGrp1]];
+// 	return (PRIORITYBITS) ((ucPrioFlagGrp2 * 8 + ucPrioFlagGrp1) * 8 + ucHighestFlagInGrp1);
+// #elif PRIORITYNUM >= PRIORITY16
+// 	ucPrioFlagGrp1 = caucTaskPrioUnmapTab[pstrPrioFlag->ucPrioFlagGrp2];
+// 	ucHighestFlagInGrp1 = caucTaskPrioUnmapTab[pstrPrioFlag->aucPrioFlagGrp1[ucPrioFlagGrp1]];
+// 	return (PRIORITYBITS) (ucPrioFlagGrp1 * 8 + ucHighestFlagInGrp1);
+// #else
+// 	return caucTaskPrioUnmapTab[pstrPrioFlag->ucPrioFlagGrp1];
+// #endif
+
 #if PRIORITYNUM >= PRIORITY1024
-	ucPrioFlagGrp3 = caucTaskPrioUnmapTab[pstrPrioFlag->ucPrioFlagGrp4];
-	ucPrioFlagGrp2 = caucTaskPrioUnmapTab[pstrPrioFlag->aucPrioFlagGrp3[ucPrioFlagGrp3]];
-	ucPrioFlagGrp1 = caucTaskPrioUnmapTab[pstrPrioFlag->aucPrioFlagGrp2[ucPrioFlagGrp3 * 8 + ucPrioFlagGrp2]];
+	ucPrioFlagGrp3 = REMIX_CalcPrioFromPrioFlag(pstrPrioFlag->ucPrioFlagGrp4);
+	ucPrioFlagGrp2 = REMIX_CalcPrioFromPrioFlag(pstrPrioFlag->aucPrioFlagGrp3[ucPrioFlagGrp3]);
+	ucPrioFlagGrp1 = REMIX_CalcPrioFromPrioFlag(pstrPrioFlag->aucPrioFlagGrp2[ucPrioFlagGrp3 * 8 + ucPrioFlagGrp2]);
 	ucHighestFlagInGrp1 =
-	    caucTaskPrioUnmapTab[pstrPrioFlag->aucPrioFlagGrp1
-				 [(ucPrioFlagGrp3 * 8 + ucPrioFlagGrp2) * 8 + ucPrioFlagGrp1]];
+	    REMIX_CalcPrioFromPrioFlag(pstrPrioFlag->aucPrioFlagGrp1
+				 [(ucPrioFlagGrp3 * 8 + ucPrioFlagGrp2) * 8 + ucPrioFlagGrp1]);
 	return (PRIORITYBITS) (((ucPrioFlagGrp3 * 8 + ucPrioFlagGrp2) * 8 + ucPrioFlagGrp1) * 8 + ucHighestFlagInGrp1);
 #elif PRIORITYNUM >= PRIORITY128
-	ucPrioFlagGrp2 = caucTaskPrioUnmapTab[pstrPrioFlag->ucPrioFlagGrp3];
-	ucPrioFlagGrp1 = caucTaskPrioUnmapTab[pstrPrioFlag->aucPrioFlagGrp2[ucPrioFlagGrp2]];
-	ucHighestFlagInGrp1 = caucTaskPrioUnmapTab[pstrPrioFlag->aucPrioFlagGrp1[ucPrioFlagGrp2 * 8 + ucPrioFlagGrp1]];
+	ucPrioFlagGrp2 = REMIX_CalcPrioFromPrioFlag(pstrPrioFlag->ucPrioFlagGrp3);
+	ucPrioFlagGrp1 = REMIX_CalcPrioFromPrioFlag(pstrPrioFlag->aucPrioFlagGrp2[ucPrioFlagGrp2]);
+	ucHighestFlagInGrp1 = REMIX_CalcPrioFromPrioFlag(pstrPrioFlag->aucPrioFlagGrp1[ucPrioFlagGrp2 * 8 + ucPrioFlagGrp1]);
 	return (PRIORITYBITS) ((ucPrioFlagGrp2 * 8 + ucPrioFlagGrp1) * 8 + ucHighestFlagInGrp1);
 #elif PRIORITYNUM >= PRIORITY16
-	ucPrioFlagGrp1 = caucTaskPrioUnmapTab[pstrPrioFlag->ucPrioFlagGrp2];
-	ucHighestFlagInGrp1 = caucTaskPrioUnmapTab[pstrPrioFlag->aucPrioFlagGrp1[ucPrioFlagGrp1]];
+	ucPrioFlagGrp1 = REMIX_CalcPrioFromPrioFlag(pstrPrioFlag->ucPrioFlagGrp2);
+	ucHighestFlagInGrp1 = REMIX_CalcPrioFromPrioFlag(pstrPrioFlag->aucPrioFlagGrp1[ucPrioFlagGrp1]);
 	return (PRIORITYBITS) (ucPrioFlagGrp1 * 8 + ucHighestFlagInGrp1);
 #else
-	return caucTaskPrioUnmapTab[pstrPrioFlag->ucPrioFlagGrp1];
+	return REMIX_CalcPrioFromPrioFlag(pstrPrioFlag->ucPrioFlagGrp1);
 #endif
 }
 

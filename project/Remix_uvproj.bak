@@ -442,11 +442,6 @@
               <FilePath>..\app\device.c</FilePath>
             </File>
             <File>
-              <FileName>remix_userroot.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\app\remix_userroot.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f10x_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\app\stm32f10x_it.c</FilePath>
@@ -465,6 +460,11 @@
               <FileName>unoptimize.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\app\unoptimize.c</FilePath>
+            </File>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\app\main.c</FilePath>
             </File>
           </Files>
         </Group>

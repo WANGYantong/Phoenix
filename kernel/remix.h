@@ -181,14 +181,36 @@ typedef struct remix_cpushare
 
 #endif
 
+#ifdef REMIX_SEMGROUPFLAG
+
+typedef struct remix_flag
+{
+    REMIX_TASKSCHEDTAB strFlagTab;      //µÈ´ıµÄÈÎÎñ
+    U32 uiFlagOpt;                      //FIFO OR PRIO
+    U32 uiFlagNowBit;                 //µ±Ç°ÄÄĞ©×´Ì¬±êÖ¾Î»¾ÍĞ÷
+    U8* pucFlagMem;                     //·ÖÅäµÄÄÚ´æ¿Õ¼ä
+}REMIX_FLAG;
+
+typedef struct remix_taskflag
+{
+    struct remix_flag* pRemixFlag;      //Ö¸ÏòĞèÒªµÄĞÅºÅÁ¿¼¯
+    U32 uiFlagWantBit;                //ĞèÒªÄÄĞ©×´Ì¬±êÖ¾Î»
+    U32 uiFlagNodeOpt;                     //ĞèÒªÕâĞ©×´Ì¬±êÖ¾Î»µÄÀàĞÍÊÇAND/OR?
+}REMIX_TASKFLAG;
+
+#endif
+
 //ÓĞÒ»Ğ©¿ÉÒÔ¿¼ÂÇºÏ²¢£¬ÖØĞÂ·â×°
 typedef struct remix_tcb
 {
     STACKREG strStackReg;
     REMIX_TCBQUE strTaskQue;        //ALL Tasks in Remix
     REMIX_TCBQUE strTcbQue;         //register in Ready OR Delay
-    REMIX_TCBQUE strSemQue;         //register in Semaphore queue
+    REMIX_TCBQUE strSemQue;         //register in Semaphore OR Flag queue
     REMIX_SEM* pstrSem;
+#ifdef REMIX_SEMGROUPFLAG
+    REMIX_TASKFLAG strTaskFlag;
+#endif
     U8* pucTaskName;
     U8* pucTaskStack;
     U32 uiTaskFlag;                 //ÊÇ·ñÔÚdelay±íÖĞ?ÊÇ·ñ¼Ì³ĞÓÅÏÈ¼¶?ÊÇ·ñÉêÇëÕ»å

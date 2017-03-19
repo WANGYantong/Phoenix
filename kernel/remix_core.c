@@ -410,6 +410,17 @@ REMIX_TCB *REMIX_TaskSemTableSche(REMIX_SEM * pstrSem)
 
 /**************************************************************************/
 
+/**************************************************************************/
+void REMIX_TaskFlagTableInit(REMIX_TASKSCHEDTAB * pstrSchedTab)
+{
+	REMIX_TaskSchedTableInit(pstrSchedTab);
+}
+
+
+
+
+/**************************************************************************/
+
 /*************************************************************************/
 void REMIX_TaskSchedTableInit(REMIX_TASKSCHEDTAB * pstrSchedTab)
 {

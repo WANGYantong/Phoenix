@@ -146,6 +146,14 @@ REMIX_TCB *REMIX_TaskTcbInit(U8 * pucTaskName, VFUNCTION vfFuncPointer, void *pv
 		}
 	}
 
+#ifdef  REMIX_SEMGROUPFLAG
+
+    pstrTcb->strTaskFlag.pRemixFlag=(REMIX_FLAG*)NULL;
+    pstrTcb->strTaskFlag.uiFlagWantBit=0;
+    pstrTcb->strTaskFlag.uiFlagNodeOpt=REMIXFLAGWAITCLRAND;
+
+#endif
+
 	(void) REMIX_IntUnlock();
 
 	return pstrTcb;

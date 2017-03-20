@@ -431,6 +431,11 @@
               <FileType>2</FileType>
               <FilePath>..\kernel\remix_core_a.asm</FilePath>
             </File>
+            <File>
+              <FileName>remix_flag.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\kernel\remix_flag.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

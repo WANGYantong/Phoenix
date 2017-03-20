@@ -305,9 +305,18 @@ void REMIX_TaskDelayTableSched(void)
 					pstrTcb->strTaskOpt.ucTaskSta &= ~((U8) TASKDELAY);
 					pstrTcb->strTaskOpt.uiDelayTick = RTN_TASKDELAYTIMEOUT;
 				} else if (TASKPEND == (TASKPEND & pstrTcb->strTaskOpt.ucTaskSta)) {
-					(void) REMIX_TaskDeleteFromSemTable(pstrTcb);
-					pstrTcb->strTaskOpt.ucTaskSta &= ~((U8) TASKPEND);
-					pstrTcb->strTaskOpt.uiDelayTick = RTN_SEMTASKTIMEOUT;
+
+#ifdef REMIXSEMGROUPFLAG
+                    if(TASKSEMGROUPFLAG==(pstrTcb->uiTaskFlag&TASKSEMGROUPFLAG)){
+                        (void)REMIX_TaskDeleteFromFlagTable(pstrTcb);
+                        pstrTcb->uiTaskFlag &=~TASKSEMGROUPFLAG;
+                    }
+                    else
+#endif
+                        (void) REMIX_TaskDeleteFromSemTable(pstrTcb);
+
+                    pstrTcb->strTaskOpt.ucTaskSta &= ~((U8) TASKPEND);
+                    pstrTcb->strTaskOpt.uiDelayTick = RTN_SEMTASKTIMEOUT;
 				}
 
 				pstrNode = &pstrTcb->strTcbQue.strQueHead;
@@ -411,13 +420,61 @@ REMIX_TCB *REMIX_TaskSemTableSche(REMIX_SEM * pstrSem)
 /**************************************************************************/
 
 /**************************************************************************/
+#ifdef REMIX_SEMGROUPFLAG
+
 void REMIX_TaskFlagTableInit(REMIX_TASKSCHEDTAB * pstrSchedTab)
 {
 	REMIX_TaskSchedTableInit(pstrSchedTab);
 }
 
+void REMIX_TaskAddToFlagTable(REMIX_TCB * pstrTcb, REMIX_FLAG* pstrFlag)
+{
+	REMIX_DLIST *pstrList;
+	REMIX_DLIST *pstrNode;
+	REMIX_PRIOFLAG *pstrPrioFlag;
+	PRIORITYBITS ucTaskPrio;
 
+    if(REMIXFLAGSCHEDPRIO==(REMIXFLAGSCHEDMASK&pstrFlag->uiFlagOpt)){
+        ucTaskPrio=pstrTcb->ucTaskPrio;
+        pstrNode=&pstrTcb->strSemQue.strQueHead;
 
+        pstrList=&pstrFlag->strFlagTab.astrList[ucTaskPrio];
+        pstrPrioFlag=&pstrFlag->strFlagTab.strFlag;
+
+        REMIX_TaskAddToSchedTable(pstrList, pstrNode, pstrPrioFlag, ucTaskPrio);
+    }
+    else{
+        pstrList = &pstrFlag->strFlagTab.astrList[LOWESTPRIORITY];
+		pstrNode = &pstrTcb->strSemQue.strQueHead;
+
+        REMIX_DlistNodeAdd(pstrList, pstrNode);
+    }
+
+}
+
+REMIX_DLIST *REMIX_TaskDeleteFromFlagTable(REMIX_TCB * pstrTcb)
+{
+	REMIX_FLAG* pstrFlag;
+	REMIX_DLIST *pstrList;
+	REMIX_PRIOFLAG *pstrPrioFlag;
+	PRIORITYBITS ucTaskPrio;
+
+	pstrFlag = pstrTcb->strTaskNodeFlag.pRemixFlag;
+
+	if (REMIXFLAGSCHEDPRIO== (REMIXFLAGSCHEDMASK & pstrFlag->uiFlagOpt)) {
+		ucTaskPrio = pstrTcb->ucTaskPrio;
+		pstrList=&pstrFlag->strFlagTab.astrList[ucTaskPrio];
+        pstrPrioFlag=&pstrFlag->strFlagTab.strFlag;
+
+		return REMIX_TaskDeleteFromSchedTable(pstrList, pstrPrioFlag, ucTaskPrio);
+	} else {
+		pstrList = &pstrFlag->strFlagTab.astrList[LOWESTPRIORITY];
+
+		return REMIX_DlistNodeDelete(pstrList);
+	}
+}
+
+#endif
 
 /**************************************************************************/
 

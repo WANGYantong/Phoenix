@@ -167,7 +167,7 @@ typedef struct remix_sem
     U32 uiCounter;
     U32 uiSemOpt;
     U8* pucSemMem;
-    struct remix_tcb* pstrSemTask;  //äº’æ–¥ä¿¡å·é‡
+    struct remix_tcb* pstrSemTask;  //»¥³âĞÅºÅÁ¿
 }REMIX_SEM;
 
 #ifdef REMIX_CPUSTATISTIC
@@ -185,41 +185,40 @@ typedef struct remix_cpushare
 
 typedef struct remix_flag
 {
-    REMIX_TASKSCHEDTAB strFlagTab;      //ç­‰å¾…çš„ä»»åŠ¡
+    REMIX_TASKSCHEDTAB strFlagTab;      //µÈ´ıµÄÈÎÎñ
     U32 uiFlagOpt;                      //FIFO OR PRIO
-    U32 uiFlagNowBit;                 //å½“å‰å“ªäº›çŠ¶æ€æ ‡å¿—ä½å°±ç»ª
-    U8* pucFlagMem;                     //åˆ†é…çš„å†…å­˜ç©ºé—´
+    U32 uiFlagNowBit;                 //µ±Ç°ÄÄĞ©×´Ì¬±êÖ¾Î»¾ÍĞ÷
+    U8* pucFlagMem;                     //·ÖÅäµÄÄÚ´æ¿Õ¼ä
 }REMIX_FLAG;
 
-typedef struct remix_taskflag
+typedef struct remix_tasknodeflag
 {
-    REMIX_TCBQUE strFlagQue;     //æŒ‚æ¥åˆ°Flag Queue
-    REMIX_FLAG* pRemixFlag;      //æŒ‡å‘éœ€è¦çš„ä¿¡å·é‡é›†
-    U32 uiFlagWantBit;                //éœ€è¦å“ªäº›çŠ¶æ€æ ‡å¿—ä½
-    U32 uiFlagNodeOpt;                     //éœ€è¦è¿™äº›çŠ¶æ€æ ‡å¿—ä½çš„ç±»å‹æ˜¯AND/OR?
-}REMIX_TASKFLAG;
+    REMIX_FLAG* pRemixFlag;      //Ö¸ÏòĞèÒªµÄĞÅºÅÁ¿¼¯
+    U32 uiFlagWantBit;           //ĞèÒªÄÄĞ©×´Ì¬±êÖ¾Î»
+    U32 uiFlagNodeOpt;           //ĞèÒªÕâĞ©×´Ì¬±êÖ¾Î»µÄÀàĞÍÊÇAND/OR?
+}REMIX_TASKNODEFLAG;
 
 #endif
 
-//æœ‰ä¸€äº›å¯ä»¥è€ƒè™‘åˆå¹¶ï¼Œé‡æ–°å°è£…
+//ÓĞÒ»Ğ©¿ÉÒÔ¿¼ÂÇºÏ²¢£¬ÖØĞÂ·â×°
 typedef struct remix_tcb
 {
     STACKREG strStackReg;
     REMIX_TCBQUE strTaskQue;        //ALL Tasks in Remix
     REMIX_TCBQUE strTcbQue;         //register in Ready OR Delay
-    REMIX_TCBQUE strSemQue;         //register in Semaphore
+    REMIX_TCBQUE strSemQue;         //register in Sem OR flag
     REMIX_SEM* pstrSem;
 #ifdef REMIX_SEMGROUPFLAG
-    REMIX_TASKFLAG strTaskFlag;
+    REMIX_TASKNODEFLAG strTaskNodeFlag;
 #endif
     U8* pucTaskName;
     U8* pucTaskStack;
-    U32 uiTaskFlag;                 //æ˜¯å¦åœ¨delayè¡¨ä¸­?æ˜¯å¦ç»§æ‰¿ä¼˜å…ˆçº§?æ˜¯å¦ç”³è¯·æ ˆï¿½
+    U32 uiTaskFlag;                 //ÊÇ·ñÔÚdelay±íÖĞ?ÊÇ·ñ¼Ì³ĞÓÅÏÈ¼¶?ÊÇ·ñÉêÇëÕ»?
     PRIORITYBITS ucTaskPrio;
 #ifdef REMIX_TASKPRIOINHER
     PRIORITYBITS ucTaskPrioBackup;
 #endif
-    REMIX_TASKOPT strTaskOpt;           //é‡Œé¢çš„ucTaskStaè®°å½•5ä¸­çŠ¶æ€:ready?delay?pend...
+    REMIX_TASKOPT strTaskOpt;           //ÀïÃæµÄucTaskSta¼ÇÂ¼5ÖĞ×´Ì¬:ready?delay?pend...
     U32 uiStillTick;
 #ifdef REMIX_CPUSTATISTIC
     REMIX_CPUSHARE strCpuShare;

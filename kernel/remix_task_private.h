@@ -7,6 +7,7 @@
 #define DELAYQUEFLAG                0x00000001
 #define TASKSTACKFLAG               0x00000002
 #define TASKPRIINHFLAG              0x00000004
+#define TASKSEMGROUPFLAG            0x00000008
 
 extern REMIX_DLIST gstrTaskList;
 

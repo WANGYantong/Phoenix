@@ -240,7 +240,7 @@ U32 REMIX_SemGive(REMIX_SEM * pstrSem)
 			if (SEMFULL != pstrSem->uiCounter) {
 				pstrSem->uiCounter++;
 			} else {
-				return RTN_SEMGIVEOVERFLOW;
+				uiRtn = RTN_SEMGIVEOVERFLOW;
 			}
 		}
 	}
@@ -298,6 +298,8 @@ U32 REMIX_SemGive(REMIX_SEM * pstrSem)
 			(void) REMIX_IntUnlock();
 
 			REMIX_TaskSwiSched();
+
+			return uiRtn;
 		} else {
 
 			if (SEMBIN == (SEMTYPEMASK & pstrSem->uiSemOpt)) {

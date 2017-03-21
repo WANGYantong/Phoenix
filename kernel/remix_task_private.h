@@ -7,6 +7,7 @@
 #define DELAYQUEFLAG                0x00000001
 #define TASKSTACKFLAG               0x00000002
 #define TASKPRIINHFLAG              0x00000004
+#define TASKSEMGROUPFLAG            0x00000008
 
 extern REMIX_DLIST gstrTaskList;
 
@@ -23,6 +24,10 @@ extern VFHDLT gvfTaskDeleteHook;
 
 extern REMIX_TCB* REMIX_TaskTcbInit(U8 * pucTaskName, VFUNCTION vfFucPionter, void * pvPara, U8 * pucTaskStack, U32 uiStackSize, PRIORITYBITS ucTaskPrio, REMIX_TASKOPT * pstrTaskOpt);
 extern U32 REMIX_TaskPend(REMIX_SEM * pstrSem, U32 uiDelayTick);
+
+#ifdef REMIX_SEMGROUPFLAG
+extern U32 REMIX_FlagBlock(REMIX_FLAG * pstrFlag, U32 uiFlagWantBit, U32 uiFlagNodeOpt, U32 uiDelayTick);
+#endif
 
 #ifdef REMIX_TASKPRIOINHER
 extern void REMIX_TaskPrioInheritance(REMIX_TCB * pstrTcb, PRIORITYBITS ucTaskPrio);

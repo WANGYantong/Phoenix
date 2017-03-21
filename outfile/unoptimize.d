@@ -39,3 +39,4 @@
 ..\outfile\unoptimize.o: ..\kernel\remix_queue_public.h
 ..\outfile\unoptimize.o: ..\kernel\remix_sem_public.h
 ..\outfile\unoptimize.o: ..\kernel\remix_task_public.h
+..\outfile\unoptimize.o: ..\kernel\remix_flag_public.h

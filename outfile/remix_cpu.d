@@ -39,6 +39,7 @@
 ..\outfile\remix_cpu.o: ..\kernel\remix_queue_public.h
 ..\outfile\remix_cpu.o: ..\kernel\remix_sem_public.h
 ..\outfile\remix_cpu.o: ..\kernel\remix_task_public.h
+..\outfile\remix_cpu.o: ..\kernel\remix_flag_public.h
 ..\outfile\remix_cpu.o: ..\kernel\remix_core_private.h
 ..\outfile\remix_cpu.o: ..\kernel\remix_cpu_private.h
 ..\outfile\remix_cpu.o: ..\kernel\remix_debug_private.h
@@ -46,3 +47,4 @@
 ..\outfile\remix_cpu.o: ..\kernel\remix_queue_private.h
 ..\outfile\remix_cpu.o: ..\kernel\remix_sem_private.h
 ..\outfile\remix_cpu.o: ..\kernel\remix_task_private.h
+..\outfile\remix_cpu.o: ..\kernel\remix_flag_private.h

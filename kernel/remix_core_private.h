@@ -21,7 +21,7 @@ extern REMIX_TCB* gpstrCurTcb;
 extern REMIX_TCB* gpstrRootTaskTcb;
 extern REMIX_TCB* gpstrIdleTaskTcb;
 extern U32 guiUser;
-extern const U8 caucTaskPrioUnmapTab[256];
+//extern const U8 caucTaskPrioUnmapTab[256];
 
 extern void REMIXOS_Init(void);
 extern void REMIXOS_Start(void);
@@ -42,6 +42,11 @@ extern void REMIX_TaskSemTableInit(REMIX_TASKSCHEDTAB * pstrSchedTab);
 extern void REMIX_TaskAddToSemTable(REMIX_TCB * pstrTcb, REMIX_SEM * pstrSem);
 extern REMIX_DLIST* REMIX_TaskDeleteFromSemTable(REMIX_TCB * pstrTcb);
 extern REMIX_TCB* REMIX_TaskSemTableSche(REMIX_SEM * pstrSem);
+extern void REMIX_TaskFlagTableInit(REMIX_TASKSCHEDTAB * pstrSchedTab);
+extern void REMIX_TaskAddToFlagTable(REMIX_TCB * pstrTcb, REMIX_FLAG * pstrFlag);
+extern REMIX_DLIST* REMIX_TaskDeleteFromFlagTable(REMIX_TCB * pstrTcb);
+extern REMIX_TCB* REMIX_TaskFlagTableSche(REMIX_FLAG * pstrFlag);
+extern REMIX_TCB* REMIX_TaskFlagTableCheck(REMIX_FLAG * pstrFlag);
 extern void REMIX_TaskSchedTableInit(REMIX_TASKSCHEDTAB * pstrSchedTab);
 extern void REMIX_TaskAddToSchedTable(REMIX_DLIST * pstrList, REMIX_DLIST * pstrNode, REMIX_PRIOFLAG * pstrPrioFlag, PRIORITYBITS ucTaskPrio);
 extern REMIX_DLIST* REMIX_TaskDeleteFromSchedTable(REMIX_DLIST * pstrList, REMIX_PRIOFLAG * pstrPrioFlag, PRIORITYBITS ucTaskPrio);
@@ -53,6 +58,8 @@ extern void REMIX_SetUser(U32 uiUser);
 extern U32 REMIX_GetUser(void);
 extern void REMIX_SwitchToTask(void);
 extern U32 REMIX_GetXpsr(void);
+extern U8  REMIX_CalcPrioFromPrioFlag(U8 ucPrioFlag);
+extern U32 REMIX_CalcPrioTemp(U32 ucPrioFlag);
 
 
 #endif

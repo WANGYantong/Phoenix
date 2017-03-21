@@ -211,7 +211,7 @@
             <hadIRAM2>0</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
-            <useUlib>0</useUlib>
+            <useUlib>1</useUlib>
             <EndSel>0</EndSel>
             <uLtcg>0</uLtcg>
             <RoSelD>3</RoSelD>
@@ -431,6 +431,11 @@
               <FileType>2</FileType>
               <FilePath>..\kernel\remix_core_a.asm</FilePath>
             </File>
+            <File>
+              <FileName>remix_flag.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\kernel\remix_flag.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -440,11 +445,6 @@
               <FileName>device.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\app\device.c</FilePath>
-            </File>
-            <File>
-              <FileName>remix_userroot.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\app\remix_userroot.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_it.c</FileName>
@@ -465,6 +465,11 @@
               <FileName>unoptimize.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\app\unoptimize.c</FilePath>
+            </File>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\app\main.c</FilePath>
             </File>
           </Files>
         </Group>

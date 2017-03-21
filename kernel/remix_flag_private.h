@@ -9,6 +9,9 @@
 
 #define REMIXFLAGSCHEDMASK           0x00000060
 
+#define REMIXFLAGSETMASK             0x00000001
+
+extern U32 REMIX_FlagFlushValue(REMIX_FLAG * pstrFlag, U32 uiRtnValue);
 
 #endif
 

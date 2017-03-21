@@ -149,28 +149,36 @@ U32 REMIX_IntUnlock(void)
 
 U8 REMIX_CalcPrioFromPrioFlag(U8 ucPrioFlag)
 {
-    U8 ucPrioTemp;
+	U8 ucPrioTemp;
 
 #ifdef  RBIT_AND_CLZ
-    ucPrioTemp=(U8)REMIX_CalcPrioTemp((U32)ucPrioFlag);
-    if(0x20 == ucPrioTemp)    //防止全0的时候误报优先级为0x20
-        return 0;
-    else
-        return ucPrioTemp;
+	ucPrioTemp = (U8) REMIX_CalcPrioTemp((U32) ucPrioFlag);
+	if (0x20 == ucPrioTemp)	//防止全0的时候误报优先级为0x20
+		return 0;
+	else
+		return ucPrioTemp;
 #else
-    ucPrioTemp=ucPrioFlag^(ucPrioFlag-1);
-    switch(ucPrioTemp){
-        case  0x01: return 0;
-        case  0x03: return 1;
-        case  0x07: return 2;
-        case  0x0F: return 3;
-        case  0x1F: return 4;
-        case  0x3F: return 5;
-        case  0x7F: return 6;
-        case  0xFF: return 7;
-        default : return 0;
-    }
+	ucPrioTemp = ucPrioFlag ^ (ucPrioFlag - 1);
+	switch (ucPrioTemp) {
+	case 0x01:
+		return 0;
+	case 0x03:
+		return 1;
+	case 0x07:
+		return 2;
+	case 0x0F:
+		return 3;
+	case 0x1F:
+		return 4;
+	case 0x3F:
+		return 5;
+	case 0x7F:
+		return 6;
+	case 0xFF:
+		return 7;
+	default:
+		return 0;
+	}
 #endif
 
 }
-

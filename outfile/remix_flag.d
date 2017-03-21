@@ -1,4 +1,5 @@
 ..\outfile\remix_flag.o: ..\kernel\remix_flag.c
+..\outfile\remix_flag.o: C:\Program Files (x86)\KeilMDK\ARM\ARMCC\bin\..\include\stdlib.h
 ..\outfile\remix_flag.o: ..\kernel\remix_private.h
 ..\outfile\remix_flag.o: ..\kernel\remix_public.h
 ..\outfile\remix_flag.o: ..\app\remix_config.h
@@ -39,6 +40,7 @@
 ..\outfile\remix_flag.o: ..\kernel\remix_queue_public.h
 ..\outfile\remix_flag.o: ..\kernel\remix_sem_public.h
 ..\outfile\remix_flag.o: ..\kernel\remix_task_public.h
+..\outfile\remix_flag.o: ..\kernel\remix_flag_public.h
 ..\outfile\remix_flag.o: ..\kernel\remix_core_private.h
 ..\outfile\remix_flag.o: ..\kernel\remix_cpu_private.h
 ..\outfile\remix_flag.o: ..\kernel\remix_debug_private.h
@@ -46,3 +48,4 @@
 ..\outfile\remix_flag.o: ..\kernel\remix_queue_private.h
 ..\outfile\remix_flag.o: ..\kernel\remix_sem_private.h
 ..\outfile\remix_flag.o: ..\kernel\remix_task_private.h
+..\outfile\remix_flag.o: ..\kernel\remix_flag_private.h

@@ -10,5 +10,6 @@
 #include "remix_queue_private.h"
 #include "remix_sem_private.h"
 #include "remix_task_private.h"
+#include "remix_flag_private.h"
 
 #endif

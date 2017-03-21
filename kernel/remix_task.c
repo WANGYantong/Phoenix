@@ -145,12 +145,11 @@ REMIX_TCB *REMIX_TaskTcbInit(U8 * pucTaskName, VFUNCTION vfFuncPointer, void *pv
 			pstrTcb->uiTaskFlag |= DELAYQUEFLAG;
 		}
 	}
-
 #ifdef  REMIX_SEMGROUPFLAG
 
-    pstrTcb->strTaskNodeFlag.pRemixFlag=(REMIX_FLAG*)NULL;
-    pstrTcb->strTaskNodeFlag.uiFlagWantBit=(U32)0;
-    pstrTcb->strTaskNodeFlag.uiFlagNodeOpt=REMIXFLAGWAITCLRAND;
+	pstrTcb->strTaskNodeFlag.pRemixFlag = (REMIX_FLAG *) NULL;
+	pstrTcb->strTaskNodeFlag.uiFlagWantBit = (U32) 0;
+	pstrTcb->strTaskNodeFlag.uiFlagNodeOpt = REMIXFLAGWAITCLRAND;
 
 #endif
 
@@ -361,7 +360,7 @@ U32 REMIX_TaskPend(REMIX_SEM * pstrSem, U32 uiDelayTick)
 	}
 
 	REMIX_TaskAddToSemTable(gpstrCurTcb, pstrSem);
-    gpstrCurTcb->uiTaskFlag &= ~TASKSEMGROUPFLAG;
+	gpstrCurTcb->uiTaskFlag &= (~((U32) TASKSEMGROUPFLAG));
 	gpstrCurTcb->strTaskOpt.ucTaskSta |= TASKPEND;
 
 #ifdef REMIX_TASKROUNDROBIN
@@ -377,18 +376,18 @@ U32 REMIX_TaskPend(REMIX_SEM * pstrSem, U32 uiDelayTick)
 
 #ifdef REMIX_SEMGROUPFLAG
 
-U32 REMIX_FlagBlock(REMIX_FLAG* pstrFlag, U32 uiFlagWantBit, U32 uiFlagNodeOpt, U32 uiDelayTick)
+U32 REMIX_FlagBlock(REMIX_FLAG * pstrFlag, U32 uiFlagWantBit, U32 uiFlagNodeOpt, U32 uiDelayTick)
 {
 	REMIX_DLIST *pstrList;
 	REMIX_DLIST *pstrNode;
 	REMIX_PRIOFLAG *pstrPrioFlag;
 	PRIORITYBITS ucTaskPrio;
 
-    if (gpstrCurTcb == gpstrIdleTaskTcb) {
+	if (gpstrCurTcb == gpstrIdleTaskTcb) {
 		return RTN_FAIL;
 	}
 
-    ucTaskPrio = gpstrCurTcb->ucTaskPrio;
+	ucTaskPrio = gpstrCurTcb->ucTaskPrio;
 	pstrList = &gstrReadyTab.astrList[ucTaskPrio];
 	pstrPrioFlag = &gstrReadyTab.strFlag;
 
@@ -397,22 +396,22 @@ U32 REMIX_FlagBlock(REMIX_FLAG* pstrFlag, U32 uiFlagWantBit, U32 uiFlagNodeOpt, 
 
 	gpstrCurTcb->strTaskOpt.uiDelayTick = uiDelayTick;
 
-    if (SEMWAITFOREVER != uiDelayTick) {
+	if (SEMWAITFOREVER != uiDelayTick) {
 		gpstrCurTcb->uiStillTick = guiTick + uiDelayTick;
 
 		REMIX_TaskAddToDelayTable(pstrNode);
 		gpstrCurTcb->uiTaskFlag |= DELAYQUEFLAG;
 	}
 
-    gpstrCurTcb->strTaskNodeFlag.pRemixFlag=pstrFlag;
-    gpstrCurTcb->strTaskNodeFlag.uiFlagWantBit=uiFlagWantBit;
-    gpstrCurTcb->strTaskNodeFlag.uiFlagNodeOpt=uiFlagNodeOpt;
+	gpstrCurTcb->strTaskNodeFlag.pRemixFlag = pstrFlag;
+	gpstrCurTcb->strTaskNodeFlag.uiFlagWantBit = uiFlagWantBit;
+	gpstrCurTcb->strTaskNodeFlag.uiFlagNodeOpt = uiFlagNodeOpt;
 
-    REMIX_TaskAddToFlagTable(gpstrCurTcb, pstrFlag);
-    gpstrCurTcb->uiTaskFlag |= TASKSEMGROUPFLAG;
-    gpstrCurTcb->strTaskOpt.ucTaskSta |= TASKPEND;
+	REMIX_TaskAddToFlagTable(gpstrCurTcb, pstrFlag);
+	gpstrCurTcb->uiTaskFlag |= TASKSEMGROUPFLAG;
+	gpstrCurTcb->strTaskOpt.ucTaskSta |= TASKPEND;
 
- #ifdef REMIX_TASKROUNDROBIN
+#ifdef REMIX_TASKROUNDROBIN
 
 	gauiSliceCnt[gpstrCurTcb->ucTaskPrio] = 0;
 
@@ -509,24 +508,23 @@ void REMIX_TaskTimeSlice(U32 uiTimeSlice, U32 TaskTimeSliceOpt)
 
 	(void) REMIX_IntLock();
 
-    if(((TaskTimeSliceOpt < USERHIGHESTPRIORITY)
-        ||(TaskTimeSliceOpt > USERLOWESTPRIORITY))
-        && (TASKTIMESLICEALLPRIO != TaskTimeSliceOpt)){
+	if (((TaskTimeSliceOpt < USERHIGHESTPRIORITY)
+	     || (TaskTimeSliceOpt > USERLOWESTPRIORITY))
+	    && (TASKTIMESLICEALLPRIO != TaskTimeSliceOpt)) {
 
-        (void) REMIX_IntUnlock();
+		(void) REMIX_IntUnlock();
 
-        return;
+		return;
 
-    }
+	}
 
-    if(TASKTIMESLICEALLPRIO == TaskTimeSliceOpt){
-        for(i=0;i<PRIORITYNUM;i++){
-            guiTimeSlice[i]=uiTimeSlice;
-        }
-    }
-    else{
-        guiTimeSlice[TaskTimeSliceOpt]=uiTimeSlice;
-    }
+	if (TASKTIMESLICEALLPRIO == TaskTimeSliceOpt) {
+		for (i = 0; i < PRIORITYNUM; i++) {
+			guiTimeSlice[i] = uiTimeSlice;
+		}
+	} else {
+		guiTimeSlice[TaskTimeSliceOpt] = uiTimeSlice;
+	}
 
 	for (i = 0; i < PRIORITYNUM; i++) {
 		gauiSliceCnt[i] = 0;

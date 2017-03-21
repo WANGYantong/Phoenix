@@ -18,22 +18,22 @@ REMIX_TCB *gpstrIdleTaskTcb;
 U32 guiUser;
 
 // const U8 caucTaskPrioUnmapTab[256] = {
-// 	0, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-// 	4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-// 	5, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-// 	4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-// 	6, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-// 	4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-// 	5, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-// 	4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-// 	7, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-// 	4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-// 	5, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-// 	4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-// 	6, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-// 	4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-// 	5, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-// 	4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0
+//      0, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+//      4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+//      5, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+//      4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+//      6, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+//      4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+//      5, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+//      4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+//      7, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+//      4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+//      5, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+//      4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+//      6, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+//      4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+//      5, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+//      4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0
 // };
 
 void REMIXOS_Init(void)
@@ -72,7 +72,7 @@ void REMIXOS_Init(void)
 	gpstrIdleTaskTcb =
 	    REMIX_TaskCreate(ROOTIDLENAME, REMIX_IdleTask, NULL, NULL, IDLETASKSTACK, LOWESTPRIORITY, NULL);
 
-    REMIX_SystemHardwareInit();
+	REMIX_SystemHardwareInit();
 
 }
 
@@ -103,11 +103,11 @@ void REMIX_TaskTick(void)
 #endif
 
 #ifdef REMIX_TASKROUNDROBIN
-    if(NULL!=gpstrCurTcb){
-        if(0 != guiTimeSlice[gpstrCurTcb->ucTaskPrio]){
-            gauiSliceCnt[gpstrCurTcb->ucTaskPrio]++;
-        }
-    }
+	if (NULL != gpstrCurTcb) {
+		if (0 != guiTimeSlice[gpstrCurTcb->ucTaskPrio]) {
+			gauiSliceCnt[gpstrCurTcb->ucTaskPrio]++;
+		}
+	}
 #endif
 
 	REMIX_IntPendSvSet();
@@ -306,17 +306,18 @@ void REMIX_TaskDelayTableSched(void)
 					pstrTcb->strTaskOpt.uiDelayTick = RTN_TASKDELAYTIMEOUT;
 				} else if (TASKPEND == (TASKPEND & pstrTcb->strTaskOpt.ucTaskSta)) {
 
-#ifdef REMIXSEMGROUPFLAG
-                    if(TASKSEMGROUPFLAG==(pstrTcb->uiTaskFlag&TASKSEMGROUPFLAG)){
-                        (void)REMIX_TaskDeleteFromFlagTable(pstrTcb);
-                        pstrTcb->uiTaskFlag &=~TASKSEMGROUPFLAG;
-                    }
-                    else
+#ifdef REMIX_SEMGROUPFLAG
+					if (TASKSEMGROUPFLAG == (pstrTcb->uiTaskFlag & TASKSEMGROUPFLAG)) {
+						(void) REMIX_TaskDeleteFromFlagTable(pstrTcb);
+						pstrTcb->uiTaskFlag &= (~((U32) TASKSEMGROUPFLAG));
+						pstrTcb->strTaskOpt.uiDelayTick = RTN_FLAGTASKTIMEOUT;
+					} else
 #endif
-                        (void) REMIX_TaskDeleteFromSemTable(pstrTcb);
-
-                    pstrTcb->strTaskOpt.ucTaskSta &= ~((U8) TASKPEND);
-                    pstrTcb->strTaskOpt.uiDelayTick = RTN_SEMTASKTIMEOUT;
+					{
+						(void) REMIX_TaskDeleteFromSemTable(pstrTcb);
+						pstrTcb->strTaskOpt.uiDelayTick = RTN_SEMTASKTIMEOUT;
+					}
+					pstrTcb->strTaskOpt.ucTaskSta &= ~((U8) TASKPEND);
 				}
 
 				pstrNode = &pstrTcb->strTcbQue.strQueHead;
@@ -427,44 +428,43 @@ void REMIX_TaskFlagTableInit(REMIX_TASKSCHEDTAB * pstrSchedTab)
 	REMIX_TaskSchedTableInit(pstrSchedTab);
 }
 
-void REMIX_TaskAddToFlagTable(REMIX_TCB * pstrTcb, REMIX_FLAG* pstrFlag)
+void REMIX_TaskAddToFlagTable(REMIX_TCB * pstrTcb, REMIX_FLAG * pstrFlag)
 {
 	REMIX_DLIST *pstrList;
 	REMIX_DLIST *pstrNode;
 	REMIX_PRIOFLAG *pstrPrioFlag;
 	PRIORITYBITS ucTaskPrio;
 
-    if(REMIXFLAGSCHEDPRIO==(REMIXFLAGSCHEDMASK&pstrFlag->uiFlagOpt)){
-        ucTaskPrio=pstrTcb->ucTaskPrio;
-        pstrNode=&pstrTcb->strSemQue.strQueHead;
-
-        pstrList=&pstrFlag->strFlagTab.astrList[ucTaskPrio];
-        pstrPrioFlag=&pstrFlag->strFlagTab.strFlag;
-
-        REMIX_TaskAddToSchedTable(pstrList, pstrNode, pstrPrioFlag, ucTaskPrio);
-    }
-    else{
-        pstrList = &pstrFlag->strFlagTab.astrList[LOWESTPRIORITY];
+	if (REMIXFLAGSCHEDPRIO == (REMIXFLAGSCHEDMASK & pstrFlag->uiFlagOpt)) {
+		ucTaskPrio = pstrTcb->ucTaskPrio;
 		pstrNode = &pstrTcb->strSemQue.strQueHead;
 
-        REMIX_DlistNodeAdd(pstrList, pstrNode);
-    }
+		pstrList = &pstrFlag->strFlagTab.astrList[ucTaskPrio];
+		pstrPrioFlag = &pstrFlag->strFlagTab.strFlag;
+
+		REMIX_TaskAddToSchedTable(pstrList, pstrNode, pstrPrioFlag, ucTaskPrio);
+	} else {
+		pstrList = &pstrFlag->strFlagTab.astrList[LOWESTPRIORITY];
+		pstrNode = &pstrTcb->strSemQue.strQueHead;
+
+		REMIX_DlistNodeAdd(pstrList, pstrNode);
+	}
 
 }
 
 REMIX_DLIST *REMIX_TaskDeleteFromFlagTable(REMIX_TCB * pstrTcb)
 {
-	REMIX_FLAG* pstrFlag;
+	REMIX_FLAG *pstrFlag;
 	REMIX_DLIST *pstrList;
 	REMIX_PRIOFLAG *pstrPrioFlag;
 	PRIORITYBITS ucTaskPrio;
 
 	pstrFlag = pstrTcb->strTaskNodeFlag.pRemixFlag;
 
-	if (REMIXFLAGSCHEDPRIO== (REMIXFLAGSCHEDMASK & pstrFlag->uiFlagOpt)) {
+	if (REMIXFLAGSCHEDPRIO == (REMIXFLAGSCHEDMASK & pstrFlag->uiFlagOpt)) {
 		ucTaskPrio = pstrTcb->ucTaskPrio;
-		pstrList=&pstrFlag->strFlagTab.astrList[ucTaskPrio];
-        pstrPrioFlag=&pstrFlag->strFlagTab.strFlag;
+		pstrList = &pstrFlag->strFlagTab.astrList[ucTaskPrio];
+		pstrPrioFlag = &pstrFlag->strFlagTab.strFlag;
 
 		return REMIX_TaskDeleteFromSchedTable(pstrList, pstrPrioFlag, ucTaskPrio);
 	} else {
@@ -472,6 +472,148 @@ REMIX_DLIST *REMIX_TaskDeleteFromFlagTable(REMIX_TCB * pstrTcb)
 
 		return REMIX_DlistNodeDelete(pstrList);
 	}
+}
+
+REMIX_TCB *REMIX_TaskFlagTableSche(REMIX_FLAG * pstrFlag)
+{
+	REMIX_DLIST *pstrNode;
+	REMIX_TCBQUE *pstrTaskQue;
+	REMIX_TCB *pstrTcb;
+	PRIORITYBITS ucTaskPrio;
+	U32 uiFlagSta;
+
+	if (REMIXFLAGSCHEDFIFO == (pstrFlag->uiFlagOpt & REMIXFLAGSCHEDMASK)) {
+		ucTaskPrio = LOWESTPRIORITY;
+		pstrNode = REMIX_DlistEmpInq(&pstrFlag->strFlagTab.astrList[ucTaskPrio]);
+		while (1) {
+
+			if (NULL == pstrNode) {
+				return (REMIX_TCB *) NULL;
+			}
+
+			pstrTaskQue = (REMIX_TCBQUE *) pstrNode;
+			pstrTcb = pstrTaskQue->pstrTcb;
+
+			switch (pstrTcb->strTaskNodeFlag.uiFlagNodeOpt) {
+
+			case REMIXFLAGWAITSETAND:
+				uiFlagSta = pstrFlag->uiFlagNowBit & pstrTcb->strTaskNodeFlag.uiFlagWantBit;
+				if (uiFlagSta == pstrTcb->strTaskNodeFlag.uiFlagWantBit) {
+					return pstrTcb;
+				} else {
+					break;
+				}
+
+			case REMIXFLAGWAITSETOR:
+				uiFlagSta = pstrFlag->uiFlagNowBit & pstrTcb->strTaskNodeFlag.uiFlagWantBit;
+				if (uiFlagSta != (U32) 0) {
+					return pstrTcb;
+				} else {
+					break;
+				}
+
+			case REMIXFLAGWAITCLRAND:
+				uiFlagSta = ~pstrFlag->uiFlagNowBit & pstrTcb->strTaskNodeFlag.uiFlagWantBit;
+				if (uiFlagSta == pstrTcb->strTaskNodeFlag.uiFlagWantBit) {
+					return pstrTcb;
+				} else {
+					break;
+				}
+
+			case REMIXFLAGWAITCLROR:
+				uiFlagSta = ~pstrFlag->uiFlagNowBit & pstrTcb->strTaskNodeFlag.uiFlagWantBit;
+				if (uiFlagSta != (U32) 0) {
+					return pstrTcb;
+				} else {
+					break;
+				}
+
+			default:
+				break;
+			}
+
+			pstrNode = REMIX_DlistNextNodeEmpInq(&pstrFlag->strFlagTab.astrList[ucTaskPrio], pstrNode);
+		}
+	} else {
+		ucTaskPrio = REMIX_TaskGetHighestPrio(&pstrFlag->strFlagTab.strFlag);
+		pstrNode = REMIX_DlistEmpInq(&pstrFlag->strFlagTab.astrList[ucTaskPrio]);
+		while (1) {
+			while (NULL == pstrNode) {
+				ucTaskPrio++;
+				if ((LOWESTPRIORITY + 1) == ucTaskPrio) {
+					return (REMIX_TCB *) NULL;
+				} else {
+					pstrNode = REMIX_DlistEmpInq(&pstrFlag->strFlagTab.astrList[ucTaskPrio]);
+				}
+			}
+
+			pstrTaskQue = (REMIX_TCBQUE *) pstrNode;
+			pstrTcb = pstrTaskQue->pstrTcb;
+
+			switch (pstrTcb->strTaskNodeFlag.uiFlagNodeOpt) {
+
+			case REMIXFLAGWAITSETAND:
+				uiFlagSta = pstrFlag->uiFlagNowBit & pstrTcb->strTaskNodeFlag.uiFlagWantBit;
+				if (uiFlagSta == pstrTcb->strTaskNodeFlag.uiFlagWantBit) {
+					return pstrTcb;
+				} else {
+					break;
+				}
+
+			case REMIXFLAGWAITSETOR:
+				uiFlagSta = pstrFlag->uiFlagNowBit & pstrTcb->strTaskNodeFlag.uiFlagWantBit;
+				if (uiFlagSta != (U32) 0) {
+					return pstrTcb;
+				} else {
+					break;
+				}
+
+			case REMIXFLAGWAITCLRAND:
+				uiFlagSta = ~pstrFlag->uiFlagNowBit & pstrTcb->strTaskNodeFlag.uiFlagWantBit;
+				if (uiFlagSta == pstrTcb->strTaskNodeFlag.uiFlagWantBit) {
+					return pstrTcb;
+				} else {
+					break;
+				}
+
+			case REMIXFLAGWAITCLROR:
+				uiFlagSta = ~pstrFlag->uiFlagNowBit & pstrTcb->strTaskNodeFlag.uiFlagWantBit;
+				if (uiFlagSta != (U32) 0) {
+					return pstrTcb;
+				} else {
+					break;
+				}
+
+			default:
+				break;
+			}
+
+			pstrNode = REMIX_DlistNextNodeEmpInq(&pstrFlag->strFlagTab.astrList[ucTaskPrio], pstrNode);
+		}
+	}
+}
+
+REMIX_TCB *REMIX_TaskFlagTableCheck(REMIX_FLAG * pstrFlag)
+{
+	REMIX_DLIST *pstrNode;
+	REMIX_TCBQUE *pstrTaskQue;
+	PRIORITYBITS ucTaskPrio;
+
+	if (REMIXFLAGSCHEDFIFO == (pstrFlag->uiFlagOpt & REMIXFLAGSCHEDMASK)) {
+		ucTaskPrio = REMIX_TaskGetHighestPrio(&pstrFlag->strFlagTab.strFlag);
+	} else {
+		ucTaskPrio = LOWESTPRIORITY;
+	}
+
+	pstrNode = REMIX_DlistEmpInq(&pstrFlag->strFlagTab.astrList[ucTaskPrio]);
+
+	if (NULL == pstrNode) {
+		return (REMIX_TCB *) NULL;
+	} else {
+		pstrTaskQue = (REMIX_TCBQUE *) pstrNode;
+		return pstrTaskQue->pstrTcb;
+	}
+
 }
 
 #endif
@@ -703,24 +845,24 @@ PRIORITYBITS REMIX_TaskGetHighestPrio(REMIX_PRIOFLAG * pstrPrioFlag)
 #endif
 
 // #if PRIORITYNUM >= PRIORITY1024
-// 	ucPrioFlagGrp3 = caucTaskPrioUnmapTab[pstrPrioFlag->ucPrioFlagGrp4];
-// 	ucPrioFlagGrp2 = caucTaskPrioUnmapTab[pstrPrioFlag->aucPrioFlagGrp3[ucPrioFlagGrp3]];
-// 	ucPrioFlagGrp1 = caucTaskPrioUnmapTab[pstrPrioFlag->aucPrioFlagGrp2[ucPrioFlagGrp3 * 8 + ucPrioFlagGrp2]];
-// 	ucHighestFlagInGrp1 =
-// 	    caucTaskPrioUnmapTab[pstrPrioFlag->aucPrioFlagGrp1
-// 				 [(ucPrioFlagGrp3 * 8 + ucPrioFlagGrp2) * 8 + ucPrioFlagGrp1]];
-// 	return (PRIORITYBITS) (((ucPrioFlagGrp3 * 8 + ucPrioFlagGrp2) * 8 + ucPrioFlagGrp1) * 8 + ucHighestFlagInGrp1);
+//      ucPrioFlagGrp3 = caucTaskPrioUnmapTab[pstrPrioFlag->ucPrioFlagGrp4];
+//      ucPrioFlagGrp2 = caucTaskPrioUnmapTab[pstrPrioFlag->aucPrioFlagGrp3[ucPrioFlagGrp3]];
+//      ucPrioFlagGrp1 = caucTaskPrioUnmapTab[pstrPrioFlag->aucPrioFlagGrp2[ucPrioFlagGrp3 * 8 + ucPrioFlagGrp2]];
+//      ucHighestFlagInGrp1 =
+//          caucTaskPrioUnmapTab[pstrPrioFlag->aucPrioFlagGrp1
+//                               [(ucPrioFlagGrp3 * 8 + ucPrioFlagGrp2) * 8 + ucPrioFlagGrp1]];
+//      return (PRIORITYBITS) (((ucPrioFlagGrp3 * 8 + ucPrioFlagGrp2) * 8 + ucPrioFlagGrp1) * 8 + ucHighestFlagInGrp1);
 // #elif PRIORITYNUM >= PRIORITY128
-// 	ucPrioFlagGrp2 = caucTaskPrioUnmapTab[pstrPrioFlag->ucPrioFlagGrp3];
-// 	ucPrioFlagGrp1 = caucTaskPrioUnmapTab[pstrPrioFlag->aucPrioFlagGrp2[ucPrioFlagGrp2]];
-// 	ucHighestFlagInGrp1 = caucTaskPrioUnmapTab[pstrPrioFlag->aucPrioFlagGrp1[ucPrioFlagGrp2 * 8 + ucPrioFlagGrp1]];
-// 	return (PRIORITYBITS) ((ucPrioFlagGrp2 * 8 + ucPrioFlagGrp1) * 8 + ucHighestFlagInGrp1);
+//      ucPrioFlagGrp2 = caucTaskPrioUnmapTab[pstrPrioFlag->ucPrioFlagGrp3];
+//      ucPrioFlagGrp1 = caucTaskPrioUnmapTab[pstrPrioFlag->aucPrioFlagGrp2[ucPrioFlagGrp2]];
+//      ucHighestFlagInGrp1 = caucTaskPrioUnmapTab[pstrPrioFlag->aucPrioFlagGrp1[ucPrioFlagGrp2 * 8 + ucPrioFlagGrp1]];
+//      return (PRIORITYBITS) ((ucPrioFlagGrp2 * 8 + ucPrioFlagGrp1) * 8 + ucHighestFlagInGrp1);
 // #elif PRIORITYNUM >= PRIORITY16
-// 	ucPrioFlagGrp1 = caucTaskPrioUnmapTab[pstrPrioFlag->ucPrioFlagGrp2];
-// 	ucHighestFlagInGrp1 = caucTaskPrioUnmapTab[pstrPrioFlag->aucPrioFlagGrp1[ucPrioFlagGrp1]];
-// 	return (PRIORITYBITS) (ucPrioFlagGrp1 * 8 + ucHighestFlagInGrp1);
+//      ucPrioFlagGrp1 = caucTaskPrioUnmapTab[pstrPrioFlag->ucPrioFlagGrp2];
+//      ucHighestFlagInGrp1 = caucTaskPrioUnmapTab[pstrPrioFlag->aucPrioFlagGrp1[ucPrioFlagGrp1]];
+//      return (PRIORITYBITS) (ucPrioFlagGrp1 * 8 + ucHighestFlagInGrp1);
 // #else
-// 	return caucTaskPrioUnmapTab[pstrPrioFlag->ucPrioFlagGrp1];
+//      return caucTaskPrioUnmapTab[pstrPrioFlag->ucPrioFlagGrp1];
 // #endif
 
 #if PRIORITYNUM >= PRIORITY1024
@@ -729,12 +871,13 @@ PRIORITYBITS REMIX_TaskGetHighestPrio(REMIX_PRIOFLAG * pstrPrioFlag)
 	ucPrioFlagGrp1 = REMIX_CalcPrioFromPrioFlag(pstrPrioFlag->aucPrioFlagGrp2[ucPrioFlagGrp3 * 8 + ucPrioFlagGrp2]);
 	ucHighestFlagInGrp1 =
 	    REMIX_CalcPrioFromPrioFlag(pstrPrioFlag->aucPrioFlagGrp1
-				 [(ucPrioFlagGrp3 * 8 + ucPrioFlagGrp2) * 8 + ucPrioFlagGrp1]);
+				       [(ucPrioFlagGrp3 * 8 + ucPrioFlagGrp2) * 8 + ucPrioFlagGrp1]);
 	return (PRIORITYBITS) (((ucPrioFlagGrp3 * 8 + ucPrioFlagGrp2) * 8 + ucPrioFlagGrp1) * 8 + ucHighestFlagInGrp1);
 #elif PRIORITYNUM >= PRIORITY128
 	ucPrioFlagGrp2 = REMIX_CalcPrioFromPrioFlag(pstrPrioFlag->ucPrioFlagGrp3);
 	ucPrioFlagGrp1 = REMIX_CalcPrioFromPrioFlag(pstrPrioFlag->aucPrioFlagGrp2[ucPrioFlagGrp2]);
-	ucHighestFlagInGrp1 = REMIX_CalcPrioFromPrioFlag(pstrPrioFlag->aucPrioFlagGrp1[ucPrioFlagGrp2 * 8 + ucPrioFlagGrp1]);
+	ucHighestFlagInGrp1 =
+	    REMIX_CalcPrioFromPrioFlag(pstrPrioFlag->aucPrioFlagGrp1[ucPrioFlagGrp2 * 8 + ucPrioFlagGrp1]);
 	return (PRIORITYBITS) ((ucPrioFlagGrp2 * 8 + ucPrioFlagGrp1) * 8 + ucHighestFlagInGrp1);
 #elif PRIORITYNUM >= PRIORITY16
 	ucPrioFlagGrp1 = REMIX_CalcPrioFromPrioFlag(pstrPrioFlag->ucPrioFlagGrp2);

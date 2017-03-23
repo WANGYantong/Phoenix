@@ -200,6 +200,17 @@ typedef struct remix_tasknodeflag
 
 #endif
 
+#ifdef REMIX_MEMSTATIC
+typedef struct remix_mem
+{
+    void* pvMemAddr;
+    void* pvMemFreeList;
+    U32 uiMemBlkSize;
+    U32 uiMemNumBlk;
+    U32 uiMemNumFree;
+}REMIX_MEM;
+#endif
+
 //有一些可以考虑合并，重新封装
 typedef struct remix_tcb
 {

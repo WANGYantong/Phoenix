@@ -31,6 +31,18 @@ extern REMIX_TCB *gpstrSerialTaskTcb;
 //extern REMIX_SEM *gpstrSemMut;
 extern REMIX_FLAG* gpstrFlag;
 
+extern U8 buffer[5][TASKSTACK];
+extern REMIX_MEM* pstrMemBuf;
+extern U8* pucTask1Stack;
+extern U8* pucTask2Stack;
+extern U8* pucTask3Stack;
+extern U8* pucTask4Stack;
+
+extern U32 uiTask1StackSizeBackUp;
+extern U32 uiTask2StackSizeBackUp;
+extern U32 uiTask3StackSizeBackUp;
+extern U32 uiTask4StackSizeBackUp;
+
 /************************************************************************/
 extern void DEV_SoftwareInit(void);
 extern void DEV_HardwareInit(void);
@@ -43,6 +55,7 @@ extern void TEST_TestTask1(void *pvPara);
 extern void TEST_TestTask2(void *pvPara);
 extern void TEST_TestTask3(void *pvPara);
 extern void TEST_TestTask4(void *pvPara);
+extern void TEST_TestTask5(void *pvPara);
 extern void TEST_SerialPrintTask(void *pvPara);
 extern void TEST_TaskCreatePrint(REMIX_TCB * pstrTcb);
 extern void TEST_TaskSwitchPrint(REMIX_TCB * pstrOldTcb, REMIX_TCB * pstrNewTcb);

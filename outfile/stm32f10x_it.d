@@ -41,3 +41,4 @@
 ..\outfile\stm32f10x_it.o: ..\kernel\remix_sem_public.h
 ..\outfile\stm32f10x_it.o: ..\kernel\remix_task_public.h
 ..\outfile\stm32f10x_it.o: ..\kernel\remix_flag_public.h
+..\outfile\stm32f10x_it.o: ..\kernel\remix_mem_public.h

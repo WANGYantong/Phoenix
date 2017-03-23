@@ -151,13 +151,15 @@ U8 REMIX_CalcPrioFromPrioFlag(U8 ucPrioFlag)
 {
 	U8 ucPrioTemp;
 
-#ifdef  RBIT_AND_CLZ
+#ifdef  REMIX_RBITANDCLZ
 	ucPrioTemp = (U8) REMIX_CalcPrioTemp((U32) ucPrioFlag);
 	if (0x20 == ucPrioTemp)	//防止全0的时候误报优先级为0x20
 		return 0;
 	else
 		return ucPrioTemp;
-#else
+#endif
+
+#ifdef REMIX_XORANDSWITCH
 	ucPrioTemp = ucPrioFlag ^ (ucPrioFlag - 1);
 	switch (ucPrioTemp) {
 	case 0x01:

@@ -41,6 +41,7 @@
 ..\outfile\device.o: ..\kernel\remix_sem_public.h
 ..\outfile\device.o: ..\kernel\remix_task_public.h
 ..\outfile\device.o: ..\kernel\remix_flag_public.h
+..\outfile\device.o: ..\kernel\remix_mem_public.h
 ..\outfile\device.o: C:\Program Files (x86)\KeilMDK\ARM\ARMCC\bin\..\include\stdio.h
 ..\outfile\device.o: C:\Program Files (x86)\KeilMDK\ARM\ARMCC\bin\..\include\stdarg.h
 ..\outfile\device.o: C:\Program Files (x86)\KeilMDK\ARM\ARMCC\bin\..\include\string.h

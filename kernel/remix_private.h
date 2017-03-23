@@ -11,5 +11,6 @@
 #include "remix_sem_private.h"
 #include "remix_task_private.h"
 #include "remix_flag_private.h"
+#include "remix_mem_private.h"
 
 #endif

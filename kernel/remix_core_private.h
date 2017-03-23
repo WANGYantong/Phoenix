@@ -21,7 +21,10 @@ extern REMIX_TCB* gpstrCurTcb;
 extern REMIX_TCB* gpstrRootTaskTcb;
 extern REMIX_TCB* gpstrIdleTaskTcb;
 extern U32 guiUser;
-//extern const U8 caucTaskPrioUnmapTab[256];
+
+#ifdef REMIX_UNMAP
+extern const U8 caucTaskPrioUnmapTab[256];
+#endif
 
 extern void REMIXOS_Init(void);
 extern void REMIXOS_Start(void);

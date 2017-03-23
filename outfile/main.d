@@ -40,3 +40,4 @@
 ..\outfile\main.o: ..\kernel\remix_sem_public.h
 ..\outfile\main.o: ..\kernel\remix_task_public.h
 ..\outfile\main.o: ..\kernel\remix_flag_public.h
+..\outfile\main.o: ..\kernel\remix_mem_public.h

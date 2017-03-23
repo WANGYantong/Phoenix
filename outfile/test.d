@@ -41,4 +41,5 @@
 ..\outfile\test.o: ..\kernel\remix_sem_public.h
 ..\outfile\test.o: ..\kernel\remix_task_public.h
 ..\outfile\test.o: ..\kernel\remix_flag_public.h
+..\outfile\test.o: ..\kernel\remix_mem_public.h
 ..\outfile\test.o: C:\Program Files (x86)\KeilMDK\ARM\ARMCC\bin\..\include\stdlib.h

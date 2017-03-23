@@ -40,3 +40,4 @@
 ..\outfile\unoptimize.o: ..\kernel\remix_sem_public.h
 ..\outfile\unoptimize.o: ..\kernel\remix_task_public.h
 ..\outfile\unoptimize.o: ..\kernel\remix_flag_public.h
+..\outfile\unoptimize.o: ..\kernel\remix_mem_public.h

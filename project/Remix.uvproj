@@ -436,6 +436,11 @@
               <FileType>1</FileType>
               <FilePath>..\kernel\remix_flag.c</FilePath>
             </File>
+            <File>
+              <FileName>remix_mem.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\kernel\remix_mem.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

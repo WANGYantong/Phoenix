@@ -17,7 +17,7 @@ void TEST_TestTask1(void *pvPara)
 			DEV_PutStrToMem((U8 *) "\r\nTask1 gets flag! Tick is: %d", REMIX_GetSystemTick());
 		}
 		(void) REMIX_TaskDelay(200);
-		if (REMIX_GetSystemTick() > 12000) {
+		if (REMIX_GetSystemTick() > 10000) {
 			DEV_PutStrToMem((U8 *) "\r\nTask1 delete itself! Tick is: %d", REMIX_GetSystemTick());
 			break;
 		}
@@ -34,7 +34,7 @@ void TEST_TestTask2(void *pvPara)
 			DEV_PutStrToMem((U8 *) "\r\nTask2 gets flag! Tick is: %d", REMIX_GetSystemTick());
 		}
 		(void) REMIX_TaskDelay(200);
-		if (REMIX_GetSystemTick() > 12000) {
+		if (REMIX_GetSystemTick() > 13000) {
 			DEV_PutStrToMem((U8 *) "\r\nTask2 delete itself! Tick is: %d", REMIX_GetSystemTick());
 			break;
 		}
@@ -81,6 +81,25 @@ void TEST_TestTask4(void *pvPara)
 		}
 	}
 
+}
+
+void TEST_TestTask5(void *pvPara)
+{
+	while (1) {
+		if (REMIX_GetSystemTick() > 18000) {
+			DEV_PutStrToMem((U8 *) "\r\nFree Task1 Memory! Tick is: %d", REMIX_GetSystemTick());
+			REMIX_MemFree(pstrMemBuf, pucTask1Stack, &uiTask1StackSizeBackUp);
+			DEV_PutStrToMem((U8 *) "\r\nFree Task2 Memory! Tick is: %d", REMIX_GetSystemTick());
+			REMIX_MemFree(pstrMemBuf, pucTask2Stack, &uiTask2StackSizeBackUp);
+			DEV_PutStrToMem((U8 *) "\r\nFree Task3 Memory! Tick is: %d", REMIX_GetSystemTick());
+			REMIX_MemFree(pstrMemBuf, pucTask3Stack, &uiTask3StackSizeBackUp);
+			DEV_PutStrToMem((U8 *) "\r\nFree Task4 Memory! Tick is: %d", REMIX_GetSystemTick());
+			REMIX_MemFree(pstrMemBuf, pucTask4Stack, &uiTask4StackSizeBackUp);
+			break;
+		}
+
+		(void) REMIX_TaskDelay(500);
+	}
 }
 
 /**********************************************/

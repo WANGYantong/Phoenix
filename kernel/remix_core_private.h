@@ -26,8 +26,6 @@ extern U32 guiUser;
 extern const U8 caucTaskPrioUnmapTab[256];
 #endif
 
-extern void REMIXOS_Init(void);
-extern void REMIXOS_Start(void);
 extern void REMIX_BeforeRootTask(void * pvPara);
 extern void REMIX_TaskSched(void);
 extern void REMIX_TaskListInit(void);
@@ -61,8 +59,6 @@ extern void REMIX_SetUser(U32 uiUser);
 extern U32 REMIX_GetUser(void);
 extern void REMIX_SwitchToTask(void);
 extern U32 REMIX_GetXpsr(void);
-extern U8  REMIX_CalcPrioFromPrioFlag(U8 ucPrioFlag);
-extern U32 REMIX_CalcPrioTemp(U32 ucPrioFlag);
 
 
 #endif

@@ -22,6 +22,8 @@ extern void REMIX_PendSvIsrInit(void);
 extern void REMIX_SetChipWorkMode(U32 uiMode);
 extern void REMIX_TaskSwiSched(void);
 extern void REMIX_TaskOccurSwi(U32 uiSwiNo);
+extern U8  REMIX_CalcPrioFromPrioFlag(U8 ucPrioFlag);
+extern U32 REMIX_CalcPrioTemp(U32 ucPrioFlag);
 
 
 #endif

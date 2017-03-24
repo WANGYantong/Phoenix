@@ -17,7 +17,7 @@ extern U32 guiCpuSharePeriod;
 #endif
 
 #ifdef REMIX_DEBUGSTACKCHECK
-void REMIX_TaskStackCheckInit(REMIX_TCB * pstrTcb);
+extern void REMIX_TaskStackCheckInit(REMIX_TCB * pstrTcb);
 #endif
 
 #ifdef REMIX_CPUSTATISTIC

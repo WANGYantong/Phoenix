@@ -1,5 +1,5 @@
-#ifndef __REMIX_CPU_H__
-#define __REMIX_CPU_H__
+#ifndef __REMIX_CPU_PUBLIC_H__
+#define __REMIX_CPU_PUBLIC_H__
 
 #define SWI_TASKSCHED           0x10001001
 

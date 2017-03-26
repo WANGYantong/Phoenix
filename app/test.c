@@ -1,8 +1,8 @@
 #include "test.h"
 #include <stdlib.h>
 
-REMIX_QUEUE *gpstrSerialMsgQue;	/* 串口打印消息队列指针 */
-REMIX_TCB *gpstrSerialTaskTcb;	/* 串口打印任务TCB指针 */
+REMIX_QUEUE *gpstrSerialMsgQue;
+REMIX_TCB *gpstrSerialTaskTcb;
 //REMIX_SEM *gpstrSemMut;
 //U32 number;
 REMIX_FLAG *gpstrFlag;
@@ -102,17 +102,11 @@ void TEST_TestTask5(void *pvPara)
 	}
 }
 
-/**********************************************/
-//函数功能:测试任务1
-//输入参数:pvPara:任务入口指针
-//返回值  :none
-/**********************************************/
 // void TEST_TestTask1(void *pvPara)
 // {
 //      while (1) {
 
 //              if (RTN_SUCD == REMIX_SemTake(gpstrSemMut, SEMWAITFOREVER)) {
-//                      /* 任务打印 */
 //                      DEV_PutStrToMem((U8 *) "\r\nTeacher will release a question! Tick is: %d",
 //                                      REMIX_GetSystemTick());
 
@@ -122,7 +116,6 @@ void TEST_TestTask5(void *pvPara)
 
 //                      number = REMIX_GetSystemTick() % 39;
 
-//                      /* 任务打印 */
 //                      DEV_PutStrToMem((U8 *) "\r\nTeacher ask students to count the fibonacci: %d", number);
 
 //                      REMIX_SemGive(gpstrSemMut);
@@ -135,7 +128,6 @@ void TEST_TestTask5(void *pvPara)
 
 //              DEV_PutStrToMem((U8 *) "\r\nTeacher wakes up! Tick is: %d", REMIX_GetSystemTick());
 
-//              /* 超过70秒后退出该任务 */
 //              if (REMIX_GetSystemTick() > 7000) {
 //                      DEV_PutStrToMem((U8 *) "\r\nTeacher says class over Tick is: %d", REMIX_GetSystemTick());
 //                      break;
@@ -143,11 +135,6 @@ void TEST_TestTask5(void *pvPara)
 //      }
 // }
 
-/**********************************************/
-//函数功能:测试任务2
-//输入参数:pvPara:任务入口指针
-//返回值  :none
-/**********************************************/
 // void TEST_TestTask2(void *pvPara)
 // {
 //      U32 uiStackRemainLen;
@@ -183,7 +170,6 @@ void TEST_TestTask5(void *pvPara)
 
 //              DEV_PutStrToMem((U8 *) "\r\nStudent1 wakes up! Tick is: %d", REMIX_GetSystemTick());
 
-//              /* 超过70秒后退出该任务 */
 //              if (REMIX_GetSystemTick() > 7000) {
 //                      DEV_PutStrToMem((U8 *) "\r\nStudent1 knows class over");
 
@@ -195,11 +181,6 @@ void TEST_TestTask5(void *pvPara)
 //      }
 // }
 
-/**********************************************/
-//函数功能:测试任务3
-//输入参数:pvPara:任务入口指针
-//返回值  :none
-/**********************************************/
 // void TEST_TestTask3(void *pvPara)
 // {
 //      U32 uiStackRemainLen;
@@ -229,15 +210,12 @@ void TEST_TestTask5(void *pvPara)
 
 //              }
 
-//              /* 任务打印 */
 //              DEV_PutStrToMem((U8 *) "\r\nStudent2 is sleeping! Tick is: %d", REMIX_GetSystemTick());
 
-//              /* 任务延迟1秒 */
 //              (void) REMIX_TaskDelay(100);
 
 //              DEV_PutStrToMem((U8 *) "\r\nStudent2 wakes up! Tick is: %d", REMIX_GetSystemTick());
 
-//              /* 超过70秒后退出该任务 */
 //              if (REMIX_GetSystemTick() > 7000) {
 //                      DEV_PutStrToMem((U8 *) "\r\nStudent2 knows class over");
 
@@ -280,47 +258,28 @@ void TEST_TestTask5(void *pvPara)
 //      return fibonacci[num];
 // }
 
-/**********************************************/
-//函数功能:串口打印任务，从队列中获取需要打印的消息缓冲，将缓冲中的数据打印到串口
-//输入参数:pvPara:任务入口指针
-//返回值  :none
-/**********************************************/
 void TEST_SerialPrintTask(void *pvPara)
 {
 	REMIX_DLIST *pstrMsgQueNode;
 	MSGBUF *pstrMsgBuf;
 
-	/* 从队列循环获取消息 */
 	while (1) {
-		/* 从队列中获取到一条需要打印的消息, 向串口打印消息数据 */
 		if (REMIX_QueueGetNode(gpstrSerialMsgQue, &pstrMsgQueNode, QUEUEWAITFOREVER) == RTN_SUCD) {
 			pstrMsgBuf = (MSGBUF *) pstrMsgQueNode;
 
-			/* 将缓冲中的数据打印到串口 */
 			DEV_PrintMsg(pstrMsgBuf->aucBuf, pstrMsgBuf->ucLength);
 
-			/* 缓冲消息中的数据发送完毕, 释放缓冲 */
 			DEV_BufferFree(&gstrBufPool, pstrMsgQueNode);
 		}
 	}
 
 }
 
-/**********************************************/
-//函数功能:模拟任务运行函数
-//输入参数:uiMs:要延迟的时间，单位ms
-//返回值  :none
-/**********************************************/
 void TEST_TaskRun(U32 uiMs)
 {
 	DEV_DelayMs(uiMs);
 }
 
-/**********************************************/
-//函数功能:将任务创建过程打印到内存中
-//输入参数:pstrTcb:新创建的任务的TCB指针
-//返回值  :none
-/**********************************************/
 void TEST_TaskCreatePrint(REMIX_TCB * pstrTcb)
 {
 	if (pstrTcb != (REMIX_TCB *) NULL) {
@@ -333,19 +292,11 @@ void TEST_TaskCreatePrint(REMIX_TCB * pstrTcb)
 	}
 }
 
-/**********************************************/
-//函数功能:将任务切换过程打印到内存中
-//输入参数:pstrOldTcb:切换前的任务TCB指针
-//         pstrNewTcb:切换后的任务TCB指针
-//返回值  :none
-/**********************************************/
 void TEST_TaskSwitchPrint(REMIX_TCB * pstrOldTcb, REMIX_TCB * pstrNewTcb)
 {
-	//打印CPU占用率
 #ifdef REMIX_CPUSTATISTIC
 	TEST_PrintCpuUtilize();
 #endif
-	//不打印串口打印任务的切换过程,将此任务定义为空闲任务
 	if (pstrOldTcb == gpstrSerialTaskTcb) {
 		pstrOldTcb = REMIX_GetIdleTcb();
 	}
@@ -353,7 +304,6 @@ void TEST_TaskSwitchPrint(REMIX_TCB * pstrOldTcb, REMIX_TCB * pstrNewTcb)
 	if (pstrNewTcb == gpstrSerialTaskTcb) {
 		pstrNewTcb = REMIX_GetIdleTcb();
 	}
-	//同一个任务切换不打印信息
 	if (pstrNewTcb == pstrOldTcb) {
 		return;
 	}
@@ -370,21 +320,11 @@ void TEST_TaskSwitchPrint(REMIX_TCB * pstrOldTcb, REMIX_TCB * pstrNewTcb)
 
 }
 
-/**********************************************/
-//函数功能:将任务删除过程打印到内存中
-//输入参数:pstrTcb:被删除的任务的TCB指针
-//返回值  :none
-/**********************************************/
 void TEST_TaskDeletePrint(REMIX_TCB * pstrTcb)
 {
 	DEV_PutStrToMem((U8 *) "\r\nTask %s is deleted! Tick is: %d", pstrTcb->pucTaskName, REMIX_GetSystemTick());
 }
 
-/**********************************************/
-//函数功能:输出各个任务的CPU占用率
-//输入参数:none
-//返回值  :none
-/**********************************************/
 #ifdef REMIX_CPUSTATISTIC
 void TEST_PrintCpuUtilize(void)
 {
@@ -393,10 +333,8 @@ void TEST_PrintCpuUtilize(void)
 	REMIX_DLIST *pstrTaskList;
 	REMIX_TCB *pstrTcb;
 
-	/* 获取当前时间 */
 	uiTime = REMIX_GetSystemTick() / 100;
 
-	/* 经过1秒时间 */
 	if (uiTime != suiLastTime) {
 		pstrTaskList = REMIX_GetTaskLinkRoot();
 
@@ -406,7 +344,6 @@ void TEST_PrintCpuUtilize(void)
 					pstrTcb->pucTaskName, REMIX_GetCPUShare(pstrTcb));
 		}
 
-		/* 更新时间 */
 		suiLastTime = uiTime;
 	}
 }

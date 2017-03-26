@@ -1,0 +1,5 @@
+--cpu Cortex-M3 -g --apcs=interwork --pd "__MICROLIB SETA 1" -I..\kernel 
+-I "C:\Program Files (x86)\KeilMDK\ARM\RV31\INC" 
+-I "C:\Program Files (x86)\KeilMDK\ARM\CMSIS\Include" 
+-I "C:\Program Files (x86)\KeilMDK\ARM\Inc\ST\STM32F10x" 
+--list "..\outfile\remix_core_a.lst" --xref -o "..\outfile\remix_core_a.o" --depend "..\outfile\remix_core_a.d" "..\kernel\remix_core_a.asm"

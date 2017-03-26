@@ -6,22 +6,22 @@
 //版本号:主版本号.子版本号.修正版本号.编译版本号
 #define SOFTWARE_VER                "003.004.001.001"
 
-#define BUFPOOLNUM                  100	//BUFPOOL数量
-#define MSGBUFLEN                   100	//每个BUF的长度，单位:字节
+#define BUFPOOLNUM                  100
+#define MSGBUFLEN                   100
 
-#define TASKSTACK                   1024	//任务栈大小，单位:字节
+#define TASKSTACK                   1024
 
-typedef struct msgbuf		//消息缓冲结构
+typedef struct msgbuf
 {
-	REMIX_DLIST strList;	//缓冲链表
-	U8 ucLength;		//消息长度
-	U8 aucBuf[MSGBUFLEN];	//消息缓冲
+	REMIX_DLIST strList;
+	U8 ucLength;
+	U8 aucBuf[MSGBUFLEN];
 } MSGBUF;
 
-typedef struct bufpool		//消息缓冲池结构
+typedef struct bufpool
 {
-	REMIX_DLIST strFreeList;	//缓冲池空闲链表
-	MSGBUF astrBufPool[BUFPOOLNUM];	//缓冲池
+	REMIX_DLIST strFreeList;
+	MSGBUF astrBufPool[BUFPOOLNUM];
 } BUFPOOL;
 
 /************************************************************************/

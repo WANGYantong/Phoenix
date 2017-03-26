@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include "remix_private.h"
 
-REMIX_DLIST gstrTaskList;	//for all tasks in remix
+REMIX_DLIST gstrTaskList;
 
 #ifdef REMIX_TASKROUNDROBIN
 U32 guiTimeSlice[PRIORITYNUM];

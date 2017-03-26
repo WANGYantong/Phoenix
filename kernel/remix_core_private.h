@@ -10,6 +10,7 @@
 #define USERROOT                    0
 #define USERGUEST                   1
 
+/*************************************************************/
 extern U32 guiSystemStatus;
 extern REMIX_TASKSCHEDTAB gstrReadyTab;
 extern REMIX_DLIST gstrDelayTab;
@@ -25,6 +26,7 @@ extern U32 guiUser;
 #ifdef REMIX_UNMAP
 extern const U8 caucTaskPrioUnmapTab[256];
 #endif
+/*************************************************************/
 
 extern void REMIX_BeforeRootTask(void * pvPara);
 extern void REMIX_TaskSched(void);

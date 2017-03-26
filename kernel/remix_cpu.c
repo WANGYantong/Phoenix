@@ -153,7 +153,7 @@ U8 REMIX_CalcPrioFromPrioFlag(U8 ucPrioFlag)
 
 #ifdef  REMIX_RBITANDCLZ
 	ucPrioTemp = (U8) REMIX_CalcPrioTemp((U32) ucPrioFlag);
-	if (0x20 == ucPrioTemp)	//防止全0的时候误报优先级为0x20
+	if (0x20 == ucPrioTemp)
 		return 0;
 	else
 		return ucPrioTemp;

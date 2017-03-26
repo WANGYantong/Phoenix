@@ -167,7 +167,7 @@ typedef struct remix_sem
     U32 uiCounter;
     U32 uiSemOpt;
     U8* pucSemMem;
-    struct remix_tcb* pstrSemTask;  //互斥信号量
+    struct remix_tcb* pstrSemTask;
 }REMIX_SEM;
 
 #ifdef REMIX_CPUSTATISTIC
@@ -185,17 +185,17 @@ typedef struct remix_cpushare
 
 typedef struct remix_flag
 {
-    REMIX_TASKSCHEDTAB strFlagTab;      //等待的任务
-    U32 uiFlagOpt;                      //FIFO OR PRIO
-    U32 uiFlagNowBit;                 //当前哪些状态标志位就绪
-    U8* pucFlagMem;                     //分配的内存空间
+    REMIX_TASKSCHEDTAB strFlagTab;
+    U32 uiFlagOpt;
+    U32 uiFlagNowBit;
+    U8* pucFlagMem;
 }REMIX_FLAG;
 
 typedef struct remix_tasknodeflag
 {
-    REMIX_FLAG* pRemixFlag;      //指向需要的信号量集
-    U32 uiFlagWantBit;           //需要哪些状态标志位
-    U32 uiFlagNodeOpt;           //需要这些状态标志位的类型是AND/OR?
+    REMIX_FLAG* pRemixFlag;
+    U32 uiFlagWantBit;
+    U32 uiFlagNodeOpt;
 }REMIX_TASKNODEFLAG;
 
 #endif
@@ -211,25 +211,24 @@ typedef struct remix_mem
 }REMIX_MEM;
 #endif
 
-//有一些可以考虑合并，重新封装
 typedef struct remix_tcb
 {
     STACKREG strStackReg;
-    REMIX_TCBQUE strTaskQue;        //ALL Tasks in Remix
-    REMIX_TCBQUE strTcbQue;         //register in Ready OR Delay
-    REMIX_TCBQUE strSemQue;         //register in Sem OR flag
+    REMIX_TCBQUE strTaskQue;
+    REMIX_TCBQUE strTcbQue;
+    REMIX_TCBQUE strSemQue;
     REMIX_SEM* pstrSem;
 #ifdef REMIX_SEMGROUPFLAG
     REMIX_TASKNODEFLAG strTaskNodeFlag;
 #endif
     U8* pucTaskName;
     U8* pucTaskStack;
-    U32 uiTaskFlag;                 //是否在delay表中?是否继承优先级?是否申请栈?
+    U32 uiTaskFlag;
     PRIORITYBITS ucTaskPrio;
 #ifdef REMIX_TASKPRIOINHER
     PRIORITYBITS ucTaskPrioBackup;
 #endif
-    REMIX_TASKOPT strTaskOpt;           //里面的ucTaskSta记录5中状态:ready?delay?pend...
+    REMIX_TASKOPT strTaskOpt;
     U32 uiStillTick;
 #ifdef REMIX_CPUSTATISTIC
     REMIX_CPUSHARE strCpuShare;

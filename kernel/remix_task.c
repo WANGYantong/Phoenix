@@ -76,14 +76,22 @@ REMIX_TCB *REMIX_TaskTcbInit(U8 * pucTaskName, VFUNCTION vfFuncPointer, void *pv
 	U8 *pucStackBy4;
 	U32 uiTaskFlag;
 
-	(void) REMIX_IntLock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+	(void) REMIX_TaskLock(DISABLE_ALL_INTERRUPT);
+#else
+	(void) REMIX_TaskLock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 	if (NULL == pucTaskStack) {
 
 		pucTaskStack = malloc(uiStackSize);
 
 		if (NULL == pucTaskStack) {
-			(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+			(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+			(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 			return (REMIX_TCB *) NULL;
 		}
 
@@ -153,7 +161,11 @@ REMIX_TCB *REMIX_TaskTcbInit(U8 * pucTaskName, VFUNCTION vfFuncPointer, void *pv
 
 #endif
 
-	(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+	(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+	(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 	return pstrTcb;
 
@@ -178,8 +190,11 @@ U32 REMIX_TaskDelete(REMIX_TCB * pstrTcb)
 	if (gpstrIdleTaskTcb == pstrTcb) {
 		return RTN_FAIL;
 	}
-
-	(void) REMIX_IntLock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+	(void) REMIX_TaskLock(DISABLE_ALL_INTERRUPT);
+#else
+	(void) REMIX_TaskLock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 #ifdef REMIX_INCLUDETASKHOOK
 
@@ -221,8 +236,11 @@ U32 REMIX_TaskDelete(REMIX_TCB * pstrTcb)
 	if (TASKSTACKFLAG == (pstrTcb->uiTaskFlag & TASKSTACKFLAG)) {
 		free(pstrTcb->pucTaskStack);
 	}
-
-	(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+	(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+	(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 	REMIX_TaskSwiSched();
 
@@ -255,7 +273,11 @@ U32 REMIX_TaskDelay(U32 uiDelayTick)
 		pstrList = &gstrReadyTab.astrList[ucTaskPrio];
 		pstrPrioFlag = &gstrReadyTab.strFlag;
 
-		(void) REMIX_IntLock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+		(void) REMIX_TaskLock(DISABLE_ALL_INTERRUPT);
+#else
+		(void) REMIX_TaskLock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 		pstrNode = REMIX_TaskDeleteFromReadyTable(pstrList, pstrPrioFlag, ucTaskPrio);
 		gpstrCurTcb->strTaskOpt.ucTaskSta &= ~((U8) TASKREADY);
@@ -274,7 +296,11 @@ U32 REMIX_TaskDelay(U32 uiDelayTick)
 		gauiSliceCnt[gpstrCurTcb->ucTaskPrio] = 0;
 #endif
 
-		(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+		(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+		(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 	} else {
 		gpstrCurTcb->strTaskOpt.uiDelayTick = RTN_SUCD;
 	}
@@ -295,11 +321,18 @@ U32 REMIX_TaskWake(REMIX_TCB * pstrTcb)
 	if (NULL == pstrTcb) {
 		return RTN_FAIL;
 	}
-
-	(void) REMIX_IntLock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+	(void) REMIX_TaskLock(DISABLE_ALL_INTERRUPT);
+#else
+	(void) REMIX_TaskLock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 	if (TASKDELAY != (TASKDELAY & pstrTcb->strTaskOpt.ucTaskSta)) {
-		(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+		(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+		(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 		return RTN_FAIL;
 	}
 
@@ -321,7 +354,11 @@ U32 REMIX_TaskWake(REMIX_TCB * pstrTcb)
 
 	pstrTcb->strTaskOpt.ucTaskSta |= TASKREADY;
 
-	(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+	(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+	(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 	REMIX_TaskSwiSched();
 
@@ -506,13 +543,21 @@ void REMIX_TaskTimeSlice(U32 uiTimeSlice, U32 TaskTimeSliceOpt)
 {
 	U32 i;
 
-	(void) REMIX_IntLock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+	(void) REMIX_TaskLock(DISABLE_ALL_INTERRUPT);
+#else
+	(void) REMIX_TaskLock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 	if (((TaskTimeSliceOpt < USERHIGHESTPRIORITY)
 	     || (TaskTimeSliceOpt > USERLOWESTPRIORITY))
 	    && (TASKTIMESLICEALLPRIO != TaskTimeSliceOpt)) {
 
-		(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+		(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+		(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 		return;
 
@@ -530,7 +575,11 @@ void REMIX_TaskTimeSlice(U32 uiTimeSlice, U32 TaskTimeSliceOpt)
 		gauiSliceCnt[i] = 0;
 	}
 
-	(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+	(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+	(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 }
 
 #endif

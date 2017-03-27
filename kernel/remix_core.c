@@ -51,7 +51,7 @@ void REMIXOS_Init(void)
 	guiTick = 0;
 	gucTickSched = TICKSCHEDCLR;
 
-	guiIntLockCounter = 0;
+	guiTaskLockCounter = 0;
 
 #ifdef REMIX_INCLUDETASKHOOK
 	REMIX_TaskHookInit();

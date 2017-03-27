@@ -10,14 +10,14 @@ ARM Macro Assembler    Page 1
     2 00000000                 EXTERN           gpstrCurTaskReg
     3 00000000                 EXTERN           gpstrNextTaskReg
     4 00000000         
-    5 00000000         
-    6 00000000                 EXTERN           REMIX_TaskSched
-    7 00000000         
-    8 00000000                 EXPORT           REMIX_CalcPrioTemp
-    9 00000000                 EXPORT           REMIX_PendSvContextSwitch
-   10 00000000                 EXPORT           REMIX_SwitchToTask
-   11 00000000                 EXPORT           REMIX_TaskOccurSwi
-   12 00000000                 EXPORT           REMIX_GetXpsr
+    5 00000000                 EXTERN           REMIX_TaskSched
+    6 00000000         
+    7 00000000                 EXPORT           REMIX_CalcPrioTemp
+    8 00000000                 EXPORT           REMIX_PendSvContextSwitch
+    9 00000000                 EXPORT           REMIX_SwitchToTask
+   10 00000000                 EXPORT           REMIX_TaskOccurSwi
+   11 00000000                 EXPORT           REMIX_GetXpsr
+   12 00000000                 EXPORT           REMIX_SetBasepri
    13 00000000         
    14 00000000                 END
     3 00000000         
@@ -35,12 +35,12 @@ ARM Macro Assembler    Page 1
    15 0000000A         
    16 0000000A B500            PUSH             {R14}
    17 0000000C         
-   18 0000000C 4821            LDR              R0, =REMIX_TaskSched
+   18 0000000C 4824            LDR              R0, =REMIX_TaskSched
    19 0000000E F20F 0E05       ADR.W            R14, {PC} + 0x7
    20 00000012 4700            BX               R0
    21 00000014         
    22 00000014 46EE            MOV              R14, R13
-   23 00000016 4820            LDR              R0, =gpstrCurTaskReg
+   23 00000016 4823            LDR              R0, =gpstrCurTaskReg
    24 00000018 F8D0 C000       LDR              R12, [R0]
    25 0000001C 4660            MOV              R0, R12
    26 0000001E B190            CBZ              R0, __BACKUP_REG
@@ -57,7 +57,7 @@ ARM Macro Assembler    Page 1
    37 00000046         
    38 00000046         __BACKUP_REG
    39 00000046         
-   40 00000046 4815            LDR              R0, =gpstrNextTaskReg
+   40 00000046 4818            LDR              R0, =gpstrNextTaskReg
    41 00000048 6801            LDR              R1, [R0]
    42 0000004A F101 0110       ADD              R1, #0x10
    43 0000004E E8B1 0FF0       LDMIA            R1!, {R4 - R11}
@@ -76,7 +76,7 @@ ARM Macro Assembler    Page 2
    50 00000062         
    51 00000062         REMIX_SwitchToTask
    52 00000062         
-   53 00000062 480E            LDR              R0, =gpstrNextTaskReg
+   53 00000062 4811            LDR              R0, =gpstrNextTaskReg
    54 00000064 F8D0 D000       LDR              R13, [R0]
    55 00000068         
    56 00000068 B010            ADD              R13, #0x40
@@ -104,17 +104,27 @@ ARM Macro Assembler    Page 2
    78 0000008C F3EF 8003       MRS              R0, XPSR
    79 00000090 4770            BX               R14
    80 00000092         
-   81 00000092 00 00           ALIGN
-   82 00000094         
-   83 00000094                 END
+   81 00000092         
+   82 00000092         REMIX_SetBasepri
+   83 00000092         
+   84 00000092 F3EF 8111       MRS              R1, BASEPRI
+   85 00000096 F380 8811       MSR              BASEPRI, R0
+   86 0000009A 4608            MOV              R0, R1
+   87 0000009C 4770            BX               R14
+   88 0000009E         
+   89 0000009E         
+   90 0000009E 00 00           ALIGN
+   91 000000A0         
+   92 000000A0                 END
               00000000 
               00000000 
               00000000 
 Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=..\outfi
-le\remix_core_a.d -o..\outfile\remix_core_a.o -I..\kernel -I"C:\Program Files (
-x86)\KeilMDK\ARM\RV31\INC" -I"C:\Program Files (x86)\KeilMDK\ARM\CMSIS\Include"
- -I"C:\Program Files (x86)\KeilMDK\ARM\Inc\ST\STM32F10x" --predefine="__MICROLI
-B SETA 1" --list=..\outfile\remix_core_a.lst ..\kernel\remix_core_a.asm
+le\remix_core_a.d -o..\outfile\remix_core_a.o -I..\kernel -I..\app -I"C:\Progra
+m Files (x86)\KeilMDK\ARM\RV31\INC" -I"C:\Program Files (x86)\KeilMDK\ARM\CMSIS
+\Include" -I"C:\Program Files (x86)\KeilMDK\ARM\Inc\ST\STM32F10x" --predefine="
+__MICROLIB SETA 1" --list=..\outfile\remix_core_a.lst ..\kernel\remix_core_a.as
+m
 
 
 
@@ -135,7 +145,7 @@ Symbol: REMIX_CalcPrioTemp
    Definitions
       At line 9 in file ..\kernel\remix_core_a.asm
    Uses
-      At line 8 in file ..\kernel\remix_core_a_private.h
+      At line 7 in file ..\kernel\remix_core_a_private.h
 Comment: REMIX_CalcPrioTemp used once
 REMIX_GetXpsr 0000008C
 
@@ -143,7 +153,7 @@ Symbol: REMIX_GetXpsr
    Definitions
       At line 76 in file ..\kernel\remix_core_a.asm
    Uses
-      At line 12 in file ..\kernel\remix_core_a_private.h
+      At line 11 in file ..\kernel\remix_core_a_private.h
 Comment: REMIX_GetXpsr used once
 REMIX_PendSvContextSwitch 0000000A
 
@@ -151,15 +161,23 @@ Symbol: REMIX_PendSvContextSwitch
    Definitions
       At line 14 in file ..\kernel\remix_core_a.asm
    Uses
-      At line 9 in file ..\kernel\remix_core_a_private.h
+      At line 8 in file ..\kernel\remix_core_a_private.h
 Comment: REMIX_PendSvContextSwitch used once
+REMIX_SetBasepri 00000092
+
+Symbol: REMIX_SetBasepri
+   Definitions
+      At line 82 in file ..\kernel\remix_core_a.asm
+   Uses
+      At line 12 in file ..\kernel\remix_core_a_private.h
+Comment: REMIX_SetBasepri used once
 REMIX_SwitchToTask 00000062
 
 Symbol: REMIX_SwitchToTask
    Definitions
       At line 51 in file ..\kernel\remix_core_a.asm
    Uses
-      At line 10 in file ..\kernel\remix_core_a_private.h
+      At line 9 in file ..\kernel\remix_core_a_private.h
 Comment: REMIX_SwitchToTask used once
 REMIX_TaskOccurSwi 00000088
 
@@ -167,17 +185,23 @@ Symbol: REMIX_TaskOccurSwi
    Definitions
       At line 70 in file ..\kernel\remix_core_a.asm
    Uses
-      At line 11 in file ..\kernel\remix_core_a_private.h
+      At line 10 in file ..\kernel\remix_core_a_private.h
 Comment: REMIX_TaskOccurSwi used once
 __BACKUP_REG 00000046
 
 Symbol: __BACKUP_REG
+
+
+
+ARM Macro Assembler    Page 2 Alphabetic symbol ordering
+Relocatable symbols
+
    Definitions
       At line 38 in file ..\kernel\remix_core_a.asm
    Uses
       At line 26 in file ..\kernel\remix_core_a.asm
 Comment: __BACKUP_REG used once
-7 symbols
+8 symbols
 
 
 
@@ -188,7 +212,7 @@ REMIX_TaskSched 00000000
 
 Symbol: REMIX_TaskSched
    Definitions
-      At line 6 in file ..\kernel\remix_core_a_private.h
+      At line 5 in file ..\kernel\remix_core_a_private.h
    Uses
       At line 18 in file ..\kernel\remix_core_a.asm
 Comment: REMIX_TaskSched used once
@@ -210,4 +234,4 @@ Symbol: gpstrNextTaskReg
       At line 53 in file ..\kernel\remix_core_a.asm
 
 3 symbols
-343 symbols in table
+344 symbols in table

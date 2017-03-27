@@ -47,16 +47,22 @@ REMIX_MEM *REMIX_MemCreate(void *pvAddr, U32 uiNumBlks, U32 uiBlkSize)
 	if (sizeof(void *) > uiBlkSize) {
 		return (REMIX_MEM *) NULL;
 	}
-
-	(void) REMIX_IntLock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+	(void) REMIX_TaskLock(DISABLE_ALL_INTERRUPT);
+#else
+	(void) REMIX_TaskLock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 	pstrMem = gpstrMemFreeList;
 
 	if ((REMIX_MEM *) NULL != gpstrMemFreeList) {
 		gpstrMemFreeList = (REMIX_MEM *) gpstrMemFreeList->pvMemFreeList;
 	}
-
-	(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+	(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+	(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 	if ((REMIX_MEM *) NULL == pstrMem) {
 		return (REMIX_MEM *) NULL;
@@ -93,8 +99,11 @@ void *REMIX_MemMalloc(REMIX_MEM * pstrMem, U32 uiSize, U32 * uiSizeBackUp)
 	if (uiSize > (pstrMem->uiMemBlkSize)) {
 		return NULL;
 	}
-
-	REMIX_IntLock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+	(void) REMIX_TaskLock(DISABLE_ALL_INTERRUPT);
+#else
+	(void) REMIX_TaskLock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 	if (pstrMem->uiMemNumFree > 0u) {
 		pvBlk = pstrMem->pvMemFreeList;
@@ -102,11 +111,18 @@ void *REMIX_MemMalloc(REMIX_MEM * pstrMem, U32 uiSize, U32 * uiSizeBackUp)
 		pstrMem->uiMemNumFree--;
 		*uiSizeBackUp = pstrMem->uiMemBlkSize;
 
-		REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+		(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+		(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 		return (pvBlk);
 	}
-
-	REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+	(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+	(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 	return NULL;
 
@@ -118,22 +134,38 @@ U8 REMIX_MemFree(REMIX_MEM * pstrMem, void *pvBlk, U32 * uiSizeBackUp)
 	    || (NULL == pvBlk)) {
 		return RTN_FAIL;
 	}
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+	(void) REMIX_TaskLock(DISABLE_ALL_INTERRUPT);
+#else
+	(void) REMIX_TaskLock(DISABLE_SELECT_INTERRUPT);
+#endif
 
-	(void) REMIX_IntLock();
 	if ((pstrMem->uiMemNumFree) >= (pstrMem->uiMemNumBlk)) {
-		(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+		(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+		(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 		return RTN_FAIL;
 	}
 
 	if (*uiSizeBackUp != (pstrMem->uiMemBlkSize)) {
-		(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+		(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+		(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 		return RTN_FAIL;
 	}
 
 	*(void **) pvBlk = pstrMem->pvMemFreeList;
 	pstrMem->pvMemFreeList = pvBlk;
 	pstrMem->uiMemNumFree++;
-	(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+	(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+	(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 	return RTN_SUCD;
 }

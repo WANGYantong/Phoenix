@@ -105,20 +105,36 @@ MSGBUF *DEV_BufferAlloc(BUFPOOL * pstrBufPool)
 {
 	MSGBUF *pstrBuf;
 
-	(void) REMIX_IntLock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+	(void) REMIX_TaskLock(DISABLE_ALL_INTERRUPT);
+#else
+	(void) REMIX_TaskLock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 	pstrBuf = (MSGBUF *) REMIX_DlistNodeDelete(&pstrBufPool->strFreeList);
 
-	(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+	(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+	(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 	return pstrBuf;
 }
 
 void DEV_BufferFree(BUFPOOL * pstrBufPool, REMIX_DLIST * pstrQueNode)
 {
-	(void) REMIX_IntLock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+	(void) REMIX_TaskLock(DISABLE_ALL_INTERRUPT);
+#else
+	(void) REMIX_TaskLock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 	REMIX_DlistNodeAdd(&pstrBufPool->strFreeList, pstrQueNode);
 
-	(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+	(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+	(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 }

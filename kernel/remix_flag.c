@@ -14,17 +14,28 @@ REMIX_FLAG *REMIX_FlagCreate(REMIX_FLAG * pstrFlag, U32 uiFlagOpt, U32 uiFlagBit
 
 	if (NULL == pstrFlag) {
 
-		REMIX_IntLock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+		(void) REMIX_TaskLock(DISABLE_ALL_INTERRUPT);
+#else
+		(void) REMIX_TaskLock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 		pucFlagMemAddr = malloc(sizeof(REMIX_FLAG));
 		if (NULL == pucFlagMemAddr) {
 
-			REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+			(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+			(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 			return (REMIX_FLAG *) NULL;
 		}
-
-		REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+		(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+		(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 		pstrFlag = (REMIX_FLAG *) pucFlagMemAddr;
 	} else {
@@ -67,7 +78,11 @@ U32 REMIX_FlagTake(REMIX_FLAG * pstrFlag, U32 uiFlagWantBit, U32 uiFlagNodeOpt, 
 		ucConsume = 0;
 	}
 
-	(void) REMIX_IntLock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+	(void) REMIX_TaskLock(DISABLE_ALL_INTERRUPT);
+#else
+	(void) REMIX_TaskLock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 	switch (uiFlagNodeOpt) {
 
@@ -80,26 +95,40 @@ U32 REMIX_FlagTake(REMIX_FLAG * pstrFlag, U32 uiFlagWantBit, U32 uiFlagNodeOpt, 
 			if (1 == ucConsume) {
 				pstrFlag->uiFlagNowBit &= ~uiFlagSta;
 			}
-
-			(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+			(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+			(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 			return RTN_SUCD;
 		} else {
 
 			if (FLAGNOWAIT == uiDelayTick) {
 
-				(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+				(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+				(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 				return RTN_FLAGTASKRETURN;
 
 			}
 
 			if (RTN_FAIL == REMIX_FlagBlock(pstrFlag, uiFlagWantBit, uiFlagNodeOpt, uiDelayTick)) {
-				(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+				(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+				(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 				return RTN_FAIL;
 			}
-
-			(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+			(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+			(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 			REMIX_TaskSwiSched();
 
@@ -120,24 +149,38 @@ U32 REMIX_FlagTake(REMIX_FLAG * pstrFlag, U32 uiFlagWantBit, U32 uiFlagNodeOpt, 
 			if (1 == ucConsume) {
 				pstrFlag->uiFlagNowBit &= ~uiFlagSta;
 			}
-
-			(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+			(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+			(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 			return RTN_SUCD;
 		} else {
 			if (FLAGNOWAIT == uiDelayTick) {
 
-				(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+				(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+				(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 				return RTN_FLAGTASKRETURN;
 			}
 
 			if (RTN_FAIL == REMIX_FlagBlock(pstrFlag, uiFlagWantBit, uiFlagNodeOpt, uiDelayTick)) {
-				(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+				(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+				(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 				return RTN_FAIL;
 			}
-
-			(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+			(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+			(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 			REMIX_TaskSwiSched();
 
@@ -159,26 +202,40 @@ U32 REMIX_FlagTake(REMIX_FLAG * pstrFlag, U32 uiFlagWantBit, U32 uiFlagNodeOpt, 
 			if (1 == ucConsume) {
 				pstrFlag->uiFlagNowBit |= uiFlagSta;
 			}
-
-			(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+			(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+			(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 			return RTN_SUCD;
 
 		} else {
 			if (FLAGNOWAIT == uiDelayTick) {
 
-				(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+				(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+				(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 				return RTN_FLAGTASKRETURN;
 
 			}
 
 			if (RTN_FAIL == REMIX_FlagBlock(pstrFlag, uiFlagWantBit, uiFlagNodeOpt, uiDelayTick)) {
-				(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+				(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+				(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 				return RTN_FAIL;
 			}
-
-			(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+			(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+			(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 			REMIX_TaskSwiSched();
 
@@ -199,26 +256,40 @@ U32 REMIX_FlagTake(REMIX_FLAG * pstrFlag, U32 uiFlagWantBit, U32 uiFlagNodeOpt, 
 			if (1 == ucConsume) {
 				pstrFlag->uiFlagNowBit |= uiFlagSta;
 			}
-
-			(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+			(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+			(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 			return RTN_SUCD;
 
 		} else {
 			if (FLAGNOWAIT == uiDelayTick) {
 
-				(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+				(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+				(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 				return RTN_FLAGTASKRETURN;
 
 			}
 
 			if (RTN_FAIL == REMIX_FlagBlock(pstrFlag, uiFlagWantBit, uiFlagNodeOpt, uiDelayTick)) {
-				(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+				(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+				(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 				return RTN_FAIL;
 			}
-
-			(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+			(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+			(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 			REMIX_TaskSwiSched();
 
@@ -232,7 +303,11 @@ U32 REMIX_FlagTake(REMIX_FLAG * pstrFlag, U32 uiFlagWantBit, U32 uiFlagNodeOpt, 
 
 	default:
 
-		(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+		(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+		(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 		return RTN_FAIL;
 	}
@@ -255,8 +330,11 @@ U32 REMIX_FlagGive(REMIX_FLAG * pstrFlag, U32 uiSetBit, U8 ucOpt)
 	    && (REMIXFLAGSET != (ucOpt & REMIXFLAGSETMASK))) {
 		return RTN_FAIL;
 	}
-
-	(void) REMIX_IntLock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+	(void) REMIX_TaskLock(DISABLE_ALL_INTERRUPT);
+#else
+	(void) REMIX_TaskLock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 	switch (ucOpt) {
 	case REMIXFLAGCLR:
@@ -266,7 +344,11 @@ U32 REMIX_FlagGive(REMIX_FLAG * pstrFlag, U32 uiSetBit, U8 ucOpt)
 		pstrFlag->uiFlagNowBit |= uiSetBit;
 		break;
 	default:
-		(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+		(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+		(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 		return RTN_FAIL;
 	}
 
@@ -293,14 +375,21 @@ U32 REMIX_FlagGive(REMIX_FLAG * pstrFlag, U32 uiSetBit, U8 ucOpt)
 		REMIX_TaskAddToReadyTable(pstrList, pstrNode, pstrPrioFlag, ucTaskPrio);
 		pstrTcb->strTaskOpt.ucTaskSta |= TASKREADY;
 
-		(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+		(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+		(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 		REMIX_TaskSwiSched();
 
 		return RTN_SUCD;
 	}
-
-	(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+	(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+	(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 	return RTN_SUCD;
 }
 
@@ -315,8 +404,11 @@ U32 REMIX_FlagFlushValue(REMIX_FLAG * pstrFlag, U32 uiRtnValue)
 	if (NULL == pstrFlag) {
 		return RTN_FAIL;
 	}
-
-	(void) REMIX_IntLock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+	(void) REMIX_TaskLock(DISABLE_ALL_INTERRUPT);
+#else
+	(void) REMIX_TaskLock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 	while (1) {
 		pstrTcb = REMIX_TaskFlagTableCheck(pstrFlag);
@@ -345,7 +437,11 @@ U32 REMIX_FlagFlushValue(REMIX_FLAG * pstrFlag, U32 uiRtnValue)
 		}
 	}
 
-	(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+	(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+	(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 	return RTN_SUCD;
 }
@@ -366,10 +462,20 @@ U32 REMIX_FlagDelete(REMIX_FLAG * pstrFlag)
 	}
 
 	if (NULL != pstrFlag->pucFlagMem) {
-		(void) REMIX_IntLock();
+
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+		(void) REMIX_TaskLock(DISABLE_ALL_INTERRUPT);
+#else
+		(void) REMIX_TaskLock(DISABLE_SELECT_INTERRUPT);
+#endif
+
 		free(pstrFlag->pucFlagMem);
 		pstrFlag->pucFlagMem = (U8 *) NULL;
-		(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+		(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+		(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 	}
 
 	return RTN_SUCD;

@@ -15,15 +15,27 @@ REMIX_QUEUE *REMIX_QueueCreate(REMIX_QUEUE * pstrQue, U32 uiQueOpt)
 	}
 
 	if (NULL == pstrQue) {
-		(void) REMIX_IntLock();
+
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+		(void) REMIX_TaskLock(DISABLE_ALL_INTERRUPT);
+#else
+		(void) REMIX_TaskLock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 		pucQueueMemAddr = malloc(sizeof(REMIX_QUEUE));
 		if (NULL == pucQueueMemAddr) {
-			(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+			(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+			(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 			return (REMIX_QUEUE *) NULL;
 		}
-
-		(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+		(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+		(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 		pstrQue = (REMIX_QUEUE *) pucQueueMemAddr;
 	} else {
@@ -49,12 +61,19 @@ U32 REMIX_QueuePutNode(REMIX_QUEUE * pstrQue, REMIX_DLIST * pstrQueNode)
 	if ((NULL == pstrQue) || (NULL == pstrQueNode)) {
 		return RTN_FAIL;
 	}
-
-	(void) REMIX_IntLock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+	(void) REMIX_TaskLock(DISABLE_ALL_INTERRUPT);
+#else
+	(void) REMIX_TaskLock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 	REMIX_DlistNodeAdd(&pstrQue->strList, pstrQueNode);
 
-	(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+	(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+	(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 	return REMIX_SemGive(&pstrQue->strSem);
 }
@@ -72,12 +91,19 @@ U32 REMIX_QueueGetNode(REMIX_QUEUE * pstrQue, REMIX_DLIST ** ppstrQueNode, U32 u
 	if (RTN_SUCD != uiRtn) {
 		return uiRtn;
 	}
-
-	(void) REMIX_IntLock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+	(void) REMIX_TaskLock(DISABLE_ALL_INTERRUPT);
+#else
+	(void) REMIX_TaskLock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 	pstrQueNode = REMIX_DlistNodeDelete(&pstrQue->strList);
 
-	(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+	(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+	(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 
 	*ppstrQueNode = pstrQueNode;
 
@@ -96,10 +122,20 @@ U32 REMIX_QueueDelete(REMIX_QUEUE * pstrQue)
 	}
 
 	if (NULL != pstrQue->pucQueueMem) {
-		(void) REMIX_IntLock();
+
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+		(void) REMIX_TaskLock(DISABLE_ALL_INTERRUPT);
+#else
+		(void) REMIX_TaskLock(DISABLE_SELECT_INTERRUPT);
+#endif
+
 		free(pstrQue->pucQueueMem);
 		pstrQue->pucQueueMem = (U8 *) NULL;
-		(void) REMIX_IntUnlock();
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+		(void) REMIX_TaskUnlock(DISABLE_ALL_INTERRUPT);
+#else
+		(void) REMIX_TaskUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
 	}
 
 	return RTN_SUCD;

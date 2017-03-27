@@ -1,5 +1,0 @@
--c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\lib\CMSIS\CM3\CoreSupport -I..\lib\STM32F10x_StdPeriph_Driver\inc -I..\kernel -I..\app -I..\lib\STM32F10x_StdPeriph_Driver\src 
--I "C:\Program Files (x86)\KeilMDK\ARM\RV31\INC" 
--I "C:\Program Files (x86)\KeilMDK\ARM\CMSIS\Include" 
--I "C:\Program Files (x86)\KeilMDK\ARM\Inc\ST\STM32F10x" 
--o "..\outfile\stm32f10x_dma.o" --omf_browse "..\outfile\stm32f10x_dma.crf" --depend "..\outfile\stm32f10x_dma.d" "..\lib\STM32F10x_StdPeriph_Driver\src\stm32f10x_dma.c"

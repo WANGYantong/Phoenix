@@ -1,6 +1,6 @@
 #include "remix_private.h"
 
-U32 guiTaskLockCounter;
+U32 guiIntLockCounter;
 
 void REMIX_TaskStackInit(REMIX_TCB * pstrTcb, VFUNCTION vfFuncPointer, void *pvPara)
 {
@@ -143,30 +143,48 @@ U32 REMIX_RunInInt(void)
 	}
 }
 
-U32 REMIX_TaskLock(U8 ucOpt)
+U32 REMIX_InterruptLock(void)
+{
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+    return REMIX_IntLock(DISABLE_ALL_INTERRUPT);
+#else
+    return REMIX_IntLock(DISABLE_SELECT_INTERRUPT+REMIX_MAX_SYSCALL_INTERRUPT_PRIORITY);
+#endif
+}
+
+U32 REMIX_InterruptUnlock(void)
+{
+#ifdef REMIX_KERNEL_CRITICAL_ALL
+    return REMIX_IntUnlock(DISABLE_ALL_INTERRUPT);
+#else
+    return REMIX_IntUnlock(DISABLE_SELECT_INTERRUPT);
+#endif
+}
+
+U32 REMIX_IntLock(U8 ucOpt)
 {
 	if (RTN_SUCD == REMIX_RunInInt()) {
 		return RTN_FAIL;
 	}
 
-	if ((DISABLE_ALL_INTERRUPT != ucOpt)
-	    && (DISABLE_SELECT_INTERRUPT != ucOpt)) {
+	if ((DISABLE_ALL_INTERRUPT != (ucOpt&DISABLE_INTERRUPT_OPT_MASK))
+	    && (DISABLE_SELECT_INTERRUPT != (ucOpt&DISABLE_INTERRUPT_OPT_MASK))) {
 		return RTN_FAIL;
 	}
 
-	if (0 == guiTaskLockCounter) {
+	if (0 == guiIntLockCounter) {
 
-		if (DISABLE_ALL_INTERRUPT == ucOpt) {
+		if (DISABLE_ALL_INTERRUPT == (ucOpt&DISABLE_INTERRUPT_OPT_MASK)) {
 			__disable_irq();
 		} else {
-			(void) REMIX_SetBasepri(REMIX_MAX_SYSCALL_INTERRUPT_PRIORITY);
+			(void) REMIX_SetBasepri(ucOpt&DISABLE_INTERRUPT_PRIO_MASK);
 		}
 
-		guiTaskLockCounter++;
+		guiIntLockCounter++;
 
 		return RTN_SUCD;
-	} else if (guiTaskLockCounter < 0xFFFFFFFF) {
-		guiTaskLockCounter++;
+	} else if (guiIntLockCounter < 0xFFFFFFFF) {
+		guiIntLockCounter++;
 
 		return RTN_SUCD;
 	} else {
@@ -174,26 +192,25 @@ U32 REMIX_TaskLock(U8 ucOpt)
 	}
 }
 
-U32 REMIX_TaskUnlock(U8 ucOpt)
+U32 REMIX_IntUnlock(U8 ucOpt)
 {
 	if (RTN_SUCD == REMIX_RunInInt()) {
 		return RTN_FAIL;
 	}
 
-	if ((DISABLE_ALL_INTERRUPT != ucOpt)
-	    && (DISABLE_SELECT_INTERRUPT != ucOpt)) {
+	if ((DISABLE_ALL_INTERRUPT != (ucOpt&DISABLE_INTERRUPT_OPT_MASK))
+	    && (DISABLE_SELECT_INTERRUPT != (ucOpt&DISABLE_INTERRUPT_OPT_MASK))) {
 		return RTN_FAIL;
 	}
 
-
-	if (guiTaskLockCounter > 1) {
-		guiTaskLockCounter--;
+	if (guiIntLockCounter > 1) {
+		guiIntLockCounter--;
 
 		return RTN_SUCD;
-	} else if (1 == guiTaskLockCounter) {
-		guiTaskLockCounter--;
+	} else if (1 == guiIntLockCounter) {
+		guiIntLockCounter--;
 
-		if (DISABLE_ALL_INTERRUPT == ucOpt) {
+		if (DISABLE_ALL_INTERRUPT == (ucOpt&DISABLE_INTERRUPT_OPT_MASK)) {
 			__enable_irq();
 		} else {
 			(void) REMIX_SetBasepri(0);

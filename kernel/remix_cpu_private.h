@@ -13,7 +13,7 @@
 #define PRIVILEGED              0
 #define UNPRIVILEGED            1
 
-extern U32 guiTaskLockCounter;
+extern U32 guiIntLockCounter;
 
 extern void REMIX_TaskStackInit(REMIX_TCB * pstrTcb, VFUNCTION vfFuncPointer, void * pvPara);
 extern void REMIX_SystemHardwareInit(void);
@@ -25,6 +25,8 @@ extern void REMIX_TaskOccurSwi(U32 uiSwiNo);
 extern U8  REMIX_CalcPrioFromPrioFlag(U8 ucPrioFlag);
 extern U32 REMIX_CalcPrioTemp(U32 ucPrioFlag);
 extern U32 REMIX_SetBasepri(U32 uiBasePri);
+extern U32 REMIX_IntLock(U8 ucOpt);
+extern U32 REMIX_IntUnlock(U8 ucOpt);
 
 
 #endif

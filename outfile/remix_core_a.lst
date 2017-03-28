@@ -122,9 +122,8 @@ ARM Macro Assembler    Page 2
 Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=..\outfi
 le\remix_core_a.d -o..\outfile\remix_core_a.o -I..\kernel -I..\app -I"C:\Progra
 m Files (x86)\KeilMDK\ARM\RV31\INC" -I"C:\Program Files (x86)\KeilMDK\ARM\CMSIS
-\Include" -I"C:\Program Files (x86)\KeilMDK\ARM\Inc\ST\STM32F10x" --predefine="
-__MICROLIB SETA 1" --list=..\outfile\remix_core_a.lst ..\kernel\remix_core_a.as
-m
+\Include" -I"C:\Program Files (x86)\KeilMDK\ARM\Inc\ST\STM32F10x" --list=..\out
+file\remix_core_a.lst ..\kernel\remix_core_a.asm
 
 
 
@@ -234,4 +233,4 @@ Symbol: gpstrNextTaskReg
       At line 53 in file ..\kernel\remix_core_a.asm
 
 3 symbols
-344 symbols in table
+343 symbols in table

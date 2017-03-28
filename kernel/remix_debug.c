@@ -97,3 +97,15 @@ U32 REMIX_GetCPUShare(REMIX_TCB * pstrTcb)
 }
 
 #endif
+
+/***********************************************************************/
+
+void REMIX_IdleHook(void)
+{
+#ifdef REMIX_IDLETASKHOOK
+
+    __WFI();
+
+#endif
+}
+

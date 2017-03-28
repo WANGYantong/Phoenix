@@ -221,3 +221,4 @@ U32 REMIX_IntUnlock(U8 ucOpt)
 		return RTN_FAIL;
 	}
 }
+

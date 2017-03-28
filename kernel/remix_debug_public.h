@@ -9,5 +9,6 @@ extern U32 REMIX_TaskStackCheck(REMIX_TCB * pstrTcb);
 extern U32 REMIX_GetCPUShare(REMIX_TCB * pstrTcb);
 #endif
 
+extern void REMIX_IdleHook(void);
 
 #endif

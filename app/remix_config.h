@@ -35,4 +35,14 @@
 #define REMIX_MEMPARTNUM           4
 #endif
 
+#ifdef __NVIC_PRIO_BITS
+	#define REMIX_PRIO_BITS       		__NVIC_PRIO_BITS
+#else
+	#define REMIX_PRIO_BITS       		4
+#endif
+
+#define REMIX_KERNEL_CRITICAL_ALL       0
+
+#define REMIX_MAX_SYSCALL_INTERRUPT_PRIORITY    (0x01 << (8-REMIX_PRIO_BITS))
+
 #endif

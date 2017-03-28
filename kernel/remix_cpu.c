@@ -1,6 +1,6 @@
 #include "remix_private.h"
 
-U32 guiIntLockCounter;
+U32 guiTaskLockCounter;
 
 void REMIX_TaskStackInit(REMIX_TCB * pstrTcb, VFUNCTION vfFuncPointer, void *pvPara)
 {
@@ -96,57 +96,6 @@ void REMIX_IntPendSvSet(void)
 	HWREG(NVIC_INT_CTRL) |= NVIC_INT_CTRL_PEND_SV;
 }
 
-U32 REMIX_RunInInt(void)
-{
-	if (0 != (REMIX_GetXpsr() & XPSR_EXTMASK)) {
-		return RTN_SUCD;
-	} else {
-		return RTN_FAIL;
-	}
-}
-
-U32 REMIX_IntLock(void)
-{
-	if (RTN_SUCD == REMIX_RunInInt()) {
-		return RTN_FAIL;
-	}
-
-	if (0 == guiIntLockCounter) {
-		__disable_irq();
-
-		guiIntLockCounter++;
-
-		return RTN_SUCD;
-	} else if (guiIntLockCounter < 0xFFFFFFFF) {
-		guiIntLockCounter++;
-
-		return RTN_SUCD;
-	} else {
-		return RTN_FAIL;
-	}
-}
-
-U32 REMIX_IntUnlock(void)
-{
-	if (RTN_SUCD == REMIX_RunInInt()) {
-		return RTN_FAIL;
-	}
-
-	if (guiIntLockCounter > 1) {
-		guiIntLockCounter--;
-
-		return RTN_SUCD;
-	} else if (1 == guiIntLockCounter) {
-		guiIntLockCounter--;
-
-		__enable_irq();
-
-		return RTN_SUCD;
-	} else {
-		return RTN_FAIL;
-	}
-}
-
 U8 REMIX_CalcPrioFromPrioFlag(U8 ucPrioFlag)
 {
 	U8 ucPrioTemp;
@@ -183,4 +132,75 @@ U8 REMIX_CalcPrioFromPrioFlag(U8 ucPrioFlag)
 	}
 #endif
 
+}
+
+U32 REMIX_RunInInt(void)
+{
+	if (0 != (REMIX_GetXpsr() & XPSR_EXTMASK)) {
+		return RTN_SUCD;
+	} else {
+		return RTN_FAIL;
+	}
+}
+
+U32 REMIX_TaskLock(U8 ucOpt)
+{
+	if (RTN_SUCD == REMIX_RunInInt()) {
+		return RTN_FAIL;
+	}
+
+	if ((DISABLE_ALL_INTERRUPT != ucOpt)
+	    && (DISABLE_SELECT_INTERRUPT != ucOpt)) {
+		return RTN_FAIL;
+	}
+
+	if (0 == guiTaskLockCounter) {
+
+		if (DISABLE_ALL_INTERRUPT == ucOpt) {
+			__disable_irq();
+		} else {
+			(void) REMIX_SetBasepri(REMIX_MAX_SYSCALL_INTERRUPT_PRIORITY);
+		}
+
+		guiTaskLockCounter++;
+
+		return RTN_SUCD;
+	} else if (guiTaskLockCounter < 0xFFFFFFFF) {
+		guiTaskLockCounter++;
+
+		return RTN_SUCD;
+	} else {
+		return RTN_FAIL;
+	}
+}
+
+U32 REMIX_TaskUnlock(U8 ucOpt)
+{
+	if (RTN_SUCD == REMIX_RunInInt()) {
+		return RTN_FAIL;
+	}
+
+	if ((DISABLE_ALL_INTERRUPT != ucOpt)
+	    && (DISABLE_SELECT_INTERRUPT != ucOpt)) {
+		return RTN_FAIL;
+	}
+
+
+	if (guiTaskLockCounter > 1) {
+		guiTaskLockCounter--;
+
+		return RTN_SUCD;
+	} else if (1 == guiTaskLockCounter) {
+		guiTaskLockCounter--;
+
+		if (DISABLE_ALL_INTERRUPT == ucOpt) {
+			__enable_irq();
+		} else {
+			(void) REMIX_SetBasepri(0);
+		}
+
+		return RTN_SUCD;
+	} else {
+		return RTN_FAIL;
+	}
 }

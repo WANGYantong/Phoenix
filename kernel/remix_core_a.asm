@@ -78,6 +78,15 @@ REMIX_GetXpsr
     MRS    R0, XPSR
     BX     R14
 
+
+REMIX_SetBasepri
+
+    MRS    R1, BASEPRI
+    MSR    BASEPRI, R0
+    MOV    R0, R1
+    BX 	   R14
+
+
     ALIGN
 
     END

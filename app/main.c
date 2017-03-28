@@ -12,6 +12,12 @@ U32 uiTask2StackSizeBackUp;
 U32 uiTask3StackSizeBackUp;
 U32 uiTask4StackSizeBackUp;
 
+REMIX_TCB* gpstrTask1;
+REMIX_TCB* gpstrTask2;
+REMIX_TCB* gpstrTask3;
+REMIX_TCB* gpstrTask4;
+
+
 S32 main(void)
 {
 	REMIXOS_Init();
@@ -27,10 +33,10 @@ S32 main(void)
 	pucTask3Stack = REMIX_MemMalloc(pstrMemBuf, TASKSTACK, &uiTask3StackSizeBackUp);
 	pucTask4Stack = REMIX_MemMalloc(pstrMemBuf, TASKSTACK, &uiTask4StackSizeBackUp);
 
-	(void) REMIX_TaskCreate("Task1", TEST_TestTask1, NULL, pucTask1Stack, TASKSTACK, 2, NULL);
-	(void) REMIX_TaskCreate("Task2", TEST_TestTask2, NULL, pucTask2Stack, TASKSTACK, 3, NULL);
-	(void) REMIX_TaskCreate("Task3", TEST_TestTask3, NULL, pucTask3Stack, TASKSTACK, 4, NULL);
-	(void) REMIX_TaskCreate("Task4", TEST_TestTask4, NULL, pucTask4Stack, TASKSTACK, 4, NULL);
+	gpstrTask1=REMIX_TaskCreate("Task1", TEST_TestTask1, NULL, pucTask1Stack, TASKSTACK, 3, NULL);
+	gpstrTask2=REMIX_TaskCreate("Task2", TEST_TestTask2, NULL, pucTask2Stack, TASKSTACK, 3, NULL);
+	gpstrTask3=REMIX_TaskCreate("Task3", TEST_TestTask3, NULL, pucTask3Stack, TASKSTACK, 4, NULL);
+	gpstrTask4=REMIX_TaskCreate("Task4", TEST_TestTask4, NULL, pucTask4Stack, TASKSTACK, 4, NULL);
 
 	(void) REMIX_TaskCreate("Cleaner", TEST_TestTask5, NULL, NULL, TASKSTACK, 5, NULL);
 

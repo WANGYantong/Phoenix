@@ -43,6 +43,11 @@ extern U32 uiTask2StackSizeBackUp;
 extern U32 uiTask3StackSizeBackUp;
 extern U32 uiTask4StackSizeBackUp;
 
+extern REMIX_TCB* gpstrTask1;
+extern REMIX_TCB* gpstrTask2;
+extern REMIX_TCB* gpstrTask3;
+extern REMIX_TCB* gpstrTask4;
+
 /************************************************************************/
 extern void DEV_SoftwareInit(void);
 extern void DEV_HardwareInit(void);

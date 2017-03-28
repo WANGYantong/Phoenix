@@ -9,6 +9,9 @@ REMIX_FLAG *gpstrFlag;
 
 void TEST_TestTask1(void *pvPara)
 {
+    DEV_PutStrToMem((U8 *) "\r\nTask1 suspend Task1! Tick is: %d", REMIX_GetSystemTick());
+    REMIX_TaskSuspend(gpstrTask1);
+
 	while (1) {
 		DEV_PutStrToMem((U8 *) "\r\nTask1 is searching flag! Tick is: %d", REMIX_GetSystemTick());
 
@@ -16,8 +19,14 @@ void TEST_TestTask1(void *pvPara)
 		    REMIX_FlagTake(gpstrFlag, (U32) 0x3, (REMIXFLAGWAITSETAND + REMIXFLAGCONSUME), FLAGWAITFOREVER)) {
 			DEV_PutStrToMem((U8 *) "\r\nTask1 gets flag! Tick is: %d", REMIX_GetSystemTick());
 		}
+
 		(void) REMIX_TaskDelay(200);
-		if (REMIX_GetSystemTick() > 10000) {
+
+		if (REMIX_GetSystemTick() > 15000) {
+
+           // DEV_PutStrToMem((U8 *) "\r\nTask1 resume Task2! Tick is: %d", REMIX_GetSystemTick());
+           // REMIX_TaskResume(gpstrTask2);
+
 			DEV_PutStrToMem((U8 *) "\r\nTask1 delete itself! Tick is: %d", REMIX_GetSystemTick());
 			break;
 		}
@@ -34,8 +43,11 @@ void TEST_TestTask2(void *pvPara)
 			DEV_PutStrToMem((U8 *) "\r\nTask2 gets flag! Tick is: %d", REMIX_GetSystemTick());
 		}
 		(void) REMIX_TaskDelay(200);
-		if (REMIX_GetSystemTick() > 13000) {
-			DEV_PutStrToMem((U8 *) "\r\nTask2 delete itself! Tick is: %d", REMIX_GetSystemTick());
+		if (REMIX_GetSystemTick() > 10000) {
+            DEV_PutStrToMem((U8 *) "\r\nTask2 resume Task1! Tick is: %d", REMIX_GetSystemTick());
+            REMIX_TaskResume(gpstrTask1);
+
+            DEV_PutStrToMem((U8 *) "\r\nTask2 delete itself! Tick is: %d", REMIX_GetSystemTick());
 			break;
 		}
 	}

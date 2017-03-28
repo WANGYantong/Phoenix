@@ -181,10 +181,10 @@ void REMIX_TaskAddToReadyTable(REMIX_DLIST * pstrList, REMIX_DLIST * pstrNode, R
 	REMIX_TaskAddToSchedTable(pstrList, pstrNode, pstrPrioFlag, ucTaskPrio);
 }
 
-REMIX_DLIST *REMIX_TaskDeleteFromReadyTable(REMIX_DLIST * pstrList, REMIX_PRIOFLAG * pstrPrioFlag,
+REMIX_DLIST *REMIX_TaskDeleteFromReadyTable(REMIX_DLIST * pstrList, REMIX_DLIST * pstrNode, REMIX_PRIOFLAG * pstrPrioFlag,
 					    PRIORITYBITS ucTaskPrio)
 {
-	return REMIX_TaskDeleteFromSchedTable(pstrList, pstrPrioFlag, ucTaskPrio);
+	return REMIX_TaskDeleteFromSchedTable(pstrList, pstrNode, pstrPrioFlag, ucTaskPrio);
 }
 
 REMIX_TCB *REMIX_TaskReadyTableSched(void)
@@ -384,21 +384,23 @@ REMIX_DLIST *REMIX_TaskDeleteFromSemTable(REMIX_TCB * pstrTcb)
 {
 	REMIX_SEM *pstrSem;
 	REMIX_DLIST *pstrList;
+    REMIX_DLIST* pstrNode;
 	REMIX_PRIOFLAG *pstrPrioFlag;
 	PRIORITYBITS ucTaskPrio;
 
 	pstrSem = pstrTcb->pstrSem;
+    pstrNode=&pstrTcb->strSemQue.strQueHead;
 
 	if (SEMPRIO == (SEMSCHEDULEMASK & pstrSem->uiSemOpt)) {
 		ucTaskPrio = pstrTcb->ucTaskPrio;
 		pstrList = &pstrSem->strSemTab.astrList[ucTaskPrio];
 		pstrPrioFlag = &pstrSem->strSemTab.strFlag;
 
-		return REMIX_TaskDeleteFromSchedTable(pstrList, pstrPrioFlag, ucTaskPrio);
+		return REMIX_TaskDeleteFromSchedTable(pstrList, pstrNode, pstrPrioFlag, ucTaskPrio);
 	} else {
 		pstrList = &pstrSem->strSemTab.astrList[LOWESTPRIORITY];
 
-		return REMIX_DlistNodeDelete(pstrList);
+		return REMIX_DlistCurNodeDelete(pstrList, pstrNode);
 	}
 }
 
@@ -462,17 +464,19 @@ REMIX_DLIST *REMIX_TaskDeleteFromFlagTable(REMIX_TCB * pstrTcb)
 {
 	REMIX_FLAG *pstrFlag;
 	REMIX_DLIST *pstrList;
+    REMIX_DLIST *pstrNode;
 	REMIX_PRIOFLAG *pstrPrioFlag;
 	PRIORITYBITS ucTaskPrio;
 
 	pstrFlag = pstrTcb->strTaskNodeFlag.pRemixFlag;
 
 	if (REMIXFLAGSCHEDPRIO == (REMIXFLAGSCHEDMASK & pstrFlag->uiFlagOpt)) {
-		ucTaskPrio = pstrTcb->ucTaskPrio;
+        pstrNode=&pstrTcb->strSemQue.strQueHead;
+        ucTaskPrio = pstrTcb->ucTaskPrio;
 		pstrList = &pstrFlag->strFlagTab.astrList[ucTaskPrio];
 		pstrPrioFlag = &pstrFlag->strFlagTab.strFlag;
 
-		return REMIX_TaskDeleteFromSchedTable(pstrList, pstrPrioFlag, ucTaskPrio);
+		return REMIX_TaskDeleteFromSchedTable(pstrList, pstrNode, pstrPrioFlag, ucTaskPrio);
 	} else {
 		pstrList = &pstrFlag->strFlagTab.astrList[LOWESTPRIORITY];
 
@@ -685,12 +689,17 @@ void REMIX_TaskAddToSchedTable(REMIX_DLIST * pstrList, REMIX_DLIST * pstrNode,
 	REMIX_TaskSetPrioFlag(pstrPrioFlag, ucTaskPrio);
 }
 
-REMIX_DLIST *REMIX_TaskDeleteFromSchedTable(REMIX_DLIST * pstrList, REMIX_PRIOFLAG * pstrPrioFlag,
+REMIX_DLIST *REMIX_TaskDeleteFromSchedTable(REMIX_DLIST * pstrList, REMIX_DLIST * pstrNode, REMIX_PRIOFLAG * pstrPrioFlag,
 					    PRIORITYBITS ucTaskPrio)
 {
 	REMIX_DLIST *pstrDelNode;
 
-	pstrDelNode = REMIX_DlistNodeDelete(pstrList);
+    if((REMIX_DLIST*)NULL!=pstrNode){
+        pstrDelNode = REMIX_DlistCurNodeDelete(pstrList, pstrNode);
+    }
+	else{
+        pstrDelNode=REMIX_DlistNodeDelete(pstrList);
+    }
 
 	if (NULL == REMIX_DlistEmpInq(pstrList)) {
 		REMIX_TaskClrPrioFlag(pstrPrioFlag, ucTaskPrio);

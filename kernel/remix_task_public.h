@@ -38,6 +38,8 @@ extern U32 REMIX_TaskDelete(REMIX_TCB * pstrTcb);
 extern void REMIX_TaskSelfDelete(void);
 extern U32 REMIX_TaskDelay(U32 uiDelayTick);
 extern U32 REMIX_TaskWake(REMIX_TCB * pstrTcb);
+extern U32 REMIX_TaskSuspend(REMIX_TCB * pstrTcb);
+extern U32 REMIX_TaskResume(REMIX_TCB * pstrTcb);
 extern REMIX_DLIST* REMIX_GetTaskLinkRoot(void);
 
 #ifdef REMIX_TASKROUNDROBIN

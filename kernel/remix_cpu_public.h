@@ -3,13 +3,18 @@
 
 #define SWI_TASKSCHED           0x10001001
 
-#define DISABLE_ALL_INTERRUPT      0x0
-#define DISABLE_SELECT_INTERRUPT   0x1
+#define DISABLE_ALL_INTERRUPT           0x1
+#define DISABLE_SELECT_INTERRUPT        0x2
+
+#define DISABLE_INTERRUPT_OPT_MASK      0x3
+#define DISABLE_INTERRUPT_PRIO_MASK     0xFC
+
 
 extern void REMIX_IntPendSvSet(void);
 extern U32 REMIX_RunInInt(void);
-extern U32 REMIX_TaskLock(U8 ucOpt);
-extern U32 REMIX_TaskUnlock(U8 ucOpt);
+extern U32 REMIX_InterruptLock(void);
+extern U32 REMIX_InterruptUnlock(void);
+
 
 #endif
 

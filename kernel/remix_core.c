@@ -51,7 +51,7 @@ void REMIXOS_Init(void)
 	guiTick = 0;
 	gucTickSched = TICKSCHEDCLR;
 
-	guiTaskLockCounter = 0;
+	guiIntLockCounter = 0;
 
 #ifdef REMIX_INCLUDETASKHOOK
 	REMIX_TaskHookInit();
@@ -913,7 +913,9 @@ PRIORITYBITS REMIX_TaskGetHighestPrio(REMIX_PRIOFLAG * pstrPrioFlag)
 
 void REMIX_IdleTask(void *pvPara)
 {
-	while (1);
+	while (1){
+        REMIX_IdleHook();
+    }
 }
 
 U32 REMIX_GetSystemTick(void)

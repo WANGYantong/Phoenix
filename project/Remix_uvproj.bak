@@ -366,7 +366,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>..\kernel</IncludePath>
+              <IncludePath>..\kernel;..\app</IncludePath>
             </VariousControls>
           </Aads>
           <LDads>
